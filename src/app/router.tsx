@@ -23,6 +23,15 @@ export const router = createBrowserRouter([
             element: <div>Auth</div>,
           }
         ]
+      },
+      {
+        element: <ProtectedLayout requiredRoles={["Admin"]}/>,
+        children: [
+          {
+            path: "/admin",
+            element: <div>Admin</div>,
+          }
+        ]
       }
     ],
   }
