@@ -1,30 +1,30 @@
 import { IWishList } from "@/entities/wish-list";
 
 export interface IUserProfile {
-    Id: number;
-    Name: string;
-    Email: string;
-    AvatarUrl: string;
-    AvatarPath: string;
-    WishList: IWishList[];
-    HistoryList: IHistory[];
-    NotificationList: INotification[];
-    IsPrivate: boolean;
+    id: number;
+    name: string;
+    email: string;
+    avatarUrl: string;
+    avatarPath: string;
+    wishList: IWishList[];
+    historyList: IHistory[];
+    notificationList: INotification[];
+    isPrivate: boolean;
 }
 
 export interface IUserProfilePreview {
-    Id:string;
-    Name:string;
-    AvatarUrl:string;
-    AvatarPath:string;
+    id: string;
+    name: string;
+    avatarUrl: string;
+    avatarPath: string;
 }
 
 export interface IHistory {
-    ContentId: string;
-    ViewDate:Date;
+    contentId: string;
+    viewDate: Date;
 }
 
 export interface INotification {
-    Message:string;
-    LinkRaw:string;
+    message: string;
+    linkRaw: string;
 }

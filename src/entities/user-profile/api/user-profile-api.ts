@@ -6,19 +6,19 @@ export const userProfileApi = createApi({
   reducerPath: "userProfileApi",
   baseQuery: baseQueryWithRefresh,
   endpoints: (builder) => ({
-    getProfile: builder.query<IUserProfile, void>({
+    fetchProfile: builder.query<IUserProfile, void>({
       query: () => ({
         url: `/user-profile-api/v1/profile/`,
         method: "GET"
       }),
     }),
-    getProfileId: builder.query<IUserProfilePreview, string>({
+    fetchProfileId: builder.query<IUserProfilePreview, string>({
       query: (id) => ({
         url: `/user-profile-api/v1/profile/${id}`,
         method: "GET"
       }),
     }),
-    putProfileId: builder.query<IUserProfile, IUserProfile>({
+    updateProfileId: builder.query<IUserProfile, IUserProfile>({
       query: (userProfileDto) => ({
         url: `/user-profile-api/v1/profile/${userProfileDto}`,
         method: "PUT"

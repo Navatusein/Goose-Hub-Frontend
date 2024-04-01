@@ -1,12 +1,12 @@
 export interface IWishList {
-    Id:string;
-    Name:string;
-    IsPrivate:boolean;
-    Notify:boolean;
-    ContentList:IWishListContent[];
+    id: string;
+    name: string;
+    isPrivate: boolean;
+    notify: boolean;
+    contents: IWishListContent[];
 }
 
 export interface IWishListContent {
-    ContentId:string;
-    Priority:number;
+    contentId: string;
+    priority: number;
 }
