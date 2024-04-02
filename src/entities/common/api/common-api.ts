@@ -1,34 +1,30 @@
 import {createApi} from "@reduxjs/toolkit/query";
 import {baseQueryWithRefresh} from "@/shared/api/base-query.ts";
-import {IPreview, IQuery, IEpisode, IContent} from "@/entities/common";
+import {IPreview, IQuery, IPagination} from "@/entities/common";
 
 export const commonApi = createApi({
-    reducerPath: "commonApi",
-    baseQuery: baseQueryWithRefresh,
-    endpoints: (builder) => ({
-        fetchDirectedBy: builder.query<IPreview, string>({
-        query: (id) => ({
-            url: `/common-api/v1/preview/${id}`,
-            method: "GET"
-        }),
-        }),
-        fetchDirectedBy: builder.query<IQuery, string>({
-        query: (id) => ({
-            url: `/common-api/v1/query/${id}`,
-            method: "GET"
-        }),
-        }),
-        fetchDirectedBy: builder.query<IEpisode, string>({
-        query: (id) => ({
-            url: `/common-api/v1/episode/${id}`,
-            method: "GET"
-        }),
-        }),
-        fetchDirectedBy: builder.query<IContent, string>({
-        query: (id) => ({
-            url: `/common-api/v1/content/${id}`,
-            method: "GET"
-        }),
-        }),
-    })
+  reducerPath: "commonApi",
+  baseQuery: baseQueryWithRefresh,
+  endpoints: (builder) => ({
+    fetchContentFranchiseById: builder.query<IPreview, string>({
+      query: (id) => ({
+        url: `/movie-api/v1/content/franchise/${id}`,
+        method: "GET"
+      })
+    }),
+    fetchContentQuery: builder.query<IPagination, IQuery>({
+      query: (query) => ({
+        url: `/movie-api/v1/content/query`,
+        method: "GET",
+        data: query
+      })
+    }),
+    fetchContentByIds: builder.query<IPreview, string[]>({
+      query: (ids) => ({
+        url: `/movie-api/v1/content/ids`,
+        method: "GET",
+        data: ids
+      })
+    }),
+  })
 })

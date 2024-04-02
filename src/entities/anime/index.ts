@@ -1,5 +1,5 @@
 import {animeApi} from "./api/anime-api";
-import {IAnime} from "./model/types";
+import {IAnime, AnimeTypeEnum} from "./model/types";
 
-export type {IAnime}
+export type {IAnime, AnimeTypeEnum};
 export {animeApi};
