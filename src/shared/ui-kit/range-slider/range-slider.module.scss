@@ -1,0 +1,38 @@
+.range-slider-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: 300px;
+}
+
+.range-slider-root {
+  flex-grow: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  touch-action: none;
+}
+
+.range-slider-track {
+  background-color: var(--color-text-secondary);
+  position: relative;
+  flex-grow: 1;
+  border-radius: 9999px;
+  height: 5px;
+}
+
+.range-slider-range {
+  position: absolute;
+  background-color: var(--color-accent);
+  border-radius: 9999px;
+  height: 100%;
+}
+
+.range-slider-thumb {
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: var(--color-accent);
+  border-radius: 10px;
+}

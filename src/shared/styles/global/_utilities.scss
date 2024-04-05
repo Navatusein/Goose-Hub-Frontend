@@ -1,0 +1,17 @@
+@use "../utilities";
+
+.visually-hidden {
+  @include utilities.visually-hidden;
+}
+
+.hidden-mobile {
+  @include utilities.mobile {
+    display: none !important;
+  }
+}
+
+.visible-mobile {
+  @include utilities.mobile-above {
+    display: none !important;
+  }
+}

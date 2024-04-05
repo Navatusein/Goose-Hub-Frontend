@@ -10,4 +10,14 @@ export default defineConfig({
     },
   },
   plugins: [react()],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: '@use "@/shared/styles/utilities/index.scss" as *;'
+      }
+    },
+    modules: {
+      localsConvention: "dashes"
+    }
+  },
 })

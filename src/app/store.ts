@@ -10,36 +10,38 @@ import {userProfileApi} from "@/entities/user-profile";
 import {wishListApi} from "@/entities/wish-list";
 import { commentApi } from "@/entities/comment";
 
+const IS_DEV_ENVIRONMENT = import.meta.env.VITE_ENVIRONMENT == "Development";
+
 const rootReducer = combineReducers({
-  [animeApi.reducerPath]: animeApi.reducer,
-  [commentApi.reducerPath]: commentApi.reducer,
-  [commonApi.reducerPath]: commonApi.reducer,
-  [franchiseApi.reducerPath]: franchiseApi.reducer,
-  [infoApi.reducerPath]: infoApi.reducer,
-  [movieApi.reducerPath]: movieApi.reducer,
-  [serialApi.reducerPath]: serialApi.reducer,
   user: userReducer,
   [userApi.reducerPath]: userApi.reducer,
   [userProfileApi.reducerPath]: userProfileApi.reducer,
-  [wishListApi.reducerPath]: wishListApi.reducer
+  [wishListApi.reducerPath]: wishListApi.reducer,
+  [commonApi.reducerPath]: commonApi.reducer,
+  [animeApi.reducerPath]: animeApi.reducer,
+  [movieApi.reducerPath]: movieApi.reducer,
+  [serialApi.reducerPath]: serialApi.reducer,
+  [franchiseApi.reducerPath]: franchiseApi.reducer,
+  [infoApi.reducerPath]: infoApi.reducer,
+  [commentApi.reducerPath]: commentApi.reducer
 });
 
 const middlewares: ThunkMiddleware[] = [
-  animeApi.middleware,
-  commentApi.middleware,
-  commonApi.middleware,
-  franchiseApi.middleware,
-  infoApi.middleware,
-  movieApi.middleware,
-  serialApi.middleware,
   userApi.middleware,
   userProfileApi.middleware,
-  wishListApi.middleware
+  wishListApi.middleware,
+  commonApi.middleware,
+  animeApi.middleware,
+  movieApi.middleware,
+  serialApi.middleware,
+  franchiseApi.middleware,
+  infoApi.middleware,
+  commentApi.middleware,
 ]
 
 export const store = configureStore({
   reducer: rootReducer,
-  devTools: true,
+  devTools: IS_DEV_ENVIRONMENT,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({
     serializableCheck: false
   }).concat(middlewares)

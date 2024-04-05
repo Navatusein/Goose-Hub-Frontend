@@ -1,6 +1,7 @@
 import {createBrowserRouter} from "react-router-dom";
-import BaseLayout from "@/app/layouts/base-layout.tsx";
-import ProtectedLayout from "@/app/layouts/protected-layout.tsx";
+import BaseLayout from "@/app/layouts/base-layout/base-layout.tsx";
+import ProtectedLayout from "@/app/layouts/protected-layout/protected-layout.tsx";
+import {DeveloperPage} from "@/pages/developer";
 
 export const router = createBrowserRouter([
   {
@@ -9,7 +10,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <div>Main</div>
+        element: <DeveloperPage/>
       },
       {
         path: "/login",

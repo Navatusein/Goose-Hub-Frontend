@@ -1,0 +1,21 @@
+
+
+:root[data-colormode="dark"] {
+  --color-text-primary: #E0E3EC;
+  --color-text-secondary: #AEAEAE;
+  --color-background: #010409;
+  --color-primary: #161B22;
+  --color-secondary: #0D1117;
+  --color-accent: #2283DC;
+  --color-danger: #F33636;
+}
+
+:root[data-colormode="light"] {
+  --color-text-primary: #E0E3EC;
+  --color-text-secondary: #AEAEAE;
+  --color-background: #010409;
+  --color-primary: #161B22;
+  --color-secondary: #0D1117;
+  --color-accent: #2283DC;
+  --color-danger: #F33636;
+}
