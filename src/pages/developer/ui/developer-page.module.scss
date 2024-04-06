@@ -1,0 +1,16 @@
+.flex_container {
+  display: inline-flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: normal;
+  align-items: center;
+  align-content: stretch;
+}
+.flex_items {
+  display: block;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  align-self: auto;
+  order: 0;
+}

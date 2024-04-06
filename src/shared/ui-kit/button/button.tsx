@@ -7,12 +7,14 @@ interface IProps {
   styles?: CSSProperties;
   className?: string;
   onClick?: MouseEventHandler;
+  type?: "default" | "outline" | "small";
 }
 
 const Button: FC<IProps> = (props) => {
+  const types = {"default": styles.default, "outline": styles.outline, "small": styles.small};
   return (
     <button
-      className={`${styles.button} ${props.className}`}
+      className={`${props.className} ${styles.default} ${types[props.type ?? "default"]} `}
       style={props.styles}
       onClick={props.onClick}
     >

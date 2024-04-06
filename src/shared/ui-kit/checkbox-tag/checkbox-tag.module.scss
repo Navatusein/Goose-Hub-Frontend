@@ -1,5 +1,5 @@
 .checkbox-tag {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 5px 10px;
@@ -8,6 +8,7 @@
   border: solid 1px var(--color-primary);
   border-radius: 10px;
   user-select: none;
+  font-size: 14px;
 
   input[type="checkbox"] {
     display: none;

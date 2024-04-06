@@ -1,0 +1,22 @@
+.alert {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $padding-small;
+  background-color: var(--color-primary);
+  color: var(--color-text-primary);
+  border: solid 1px var(--color-primary);
+  border-radius: $border-radius;
+  font-size: 16px;
+  &.primary {
+    background-color: var(--color-primary);
+  }
+
+  &.accent {
+    background-color: var(--color-accent);
+  }
+
+  &.danger {
+    background-color: var(--color-danger);
+  }
+}

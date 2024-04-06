@@ -5,12 +5,14 @@ interface IProps {
   text: string;
   styles?: CSSProperties;
   className?: string;
-  onChange: ChangeEventHandler;
+  onChange?: ChangeEventHandler;
 }
 
 const CheckboxTag: FC<IProps> = (props) => {
   return (
-    <label className={`${styles.checkboxTag} ${props.className}`}>
+    <label className={`${styles.checkboxTag} ${props.className}`}
+      style={props.styles}
+    >
       <input type="checkbox" onChange={props.onChange}/>
       {props.text}
     </label>

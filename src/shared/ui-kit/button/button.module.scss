@@ -1,4 +1,4 @@
-.button {
+.default {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -22,5 +22,32 @@
 
   &:active {
     background-color: var(--color-accent);
+  }
+
+
+  &.outline {
+    color: var(--color-text-secondary);
+    background-color: transparent;
+    border: solid 1px transparent;
+
+    @include hover {
+      color:  var(--color-text-primary);
+    }
+  
+    &:active {
+      color: var(--color-accent);
+    }
+  }
+
+  &.small {
+    gap: 5px;
+    font-size: 14px;
+    min-height: 0px;
+
+    .icon {
+      width: 16px;
+      height: 16px;
+    }
+
   }
 }

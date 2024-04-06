@@ -1,0 +1,14 @@
+.link {
+  color: var(--color-text-secondary);
+  font-size: 18px;
+  text-decoration: none;
+
+  @include hover {
+    color: var(--color-text-primary);
+    text-decoration: underline;
+  }
+
+  &:active {
+    color: var(--color-accent);
+  }
+} 

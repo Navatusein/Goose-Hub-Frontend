@@ -1,0 +1,36 @@
+.container {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 5px;
+  color: var(--color-text-primary);
+  font-size: 16px;
+}
+
+.input {
+  display: block;
+  color: var(--color-text-primary);
+  background-color: var(--color-primary);
+  border: solid 1px var(--color-primary);
+  border-radius: 10px;
+  gap: 10px;
+  padding: 10px;
+  min-height: 45px;
+  color: var(--color-text-primary);
+  font-size: 16px;
+
+  &:focus {
+    outline: none !important;
+    border: solid 1px var(--color-accent);
+  }
+
+  &:focus::placeholder {
+    opacity: 0;
+  }
+
+  &::placeholder {
+    font-size: 16px;
+    color: var(--color-text-secondary);
+  }
+}
