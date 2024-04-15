@@ -1,10 +1,11 @@
-import {FC, useState} from "react";
+import {CSSProperties, FC, useState} from "react";
 import styles from "./range-slider.module.scss";
 import * as Slider from "@radix-ui/react-slider";
 
 interface IProps {
   min: number;
   max: number;
+  styles?: CSSProperties;
 }
 
 const RangeSlider: FC<IProps> = (props) => {
@@ -17,7 +18,7 @@ const RangeSlider: FC<IProps> = (props) => {
   }
 
   return (
-    <div className={styles.rangeSliderContainer}>
+    <div className={styles.rangeSliderContainer} style={props.styles}>
       {min}
       <Slider.Root
         className={styles.rangeSliderRoot}

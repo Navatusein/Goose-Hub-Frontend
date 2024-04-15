@@ -17,32 +17,70 @@
   }
 
   @include hover {
-    border: solid 1px var(--color-accent);
+    border: solid 1px var(--color-accent-hover);
+    color: var(--color-accent-hover);
   }
 
   &:active {
-    background-color: var(--color-accent);
+    color: var(--color-accent-active);
+    border: solid 1px var(--color-accent-active);
   }
 
+  &.defaultAccent {
+    color: var(--color-text-primary);
+    background-color: var(--color-accent);
+    border: none;
+
+    @include hover {
+      background-color: var(--color-accent-hover);
+    }
+
+    &:active {
+      background-color: var(--color-accent-active);
+    }
+  }
 
   &.outline {
-    color: var(--color-text-secondary);
     background-color: transparent;
     border: solid 1px transparent;
 
     @include hover {
-      color:  var(--color-text-primary);
+      color:  var(--color-accent);
     }
   
     &:active {
-      color: var(--color-accent);
+      color: var(--color-accent-active);
+    }
+  }
+
+  &.outlineAccent {
+    color: var(--color-accent);
+    background-color: transparent;
+    border: solid 1px transparent;
+
+    @include hover {
+      color:  var(--color-accent-hover);
+    }
+
+    &:active {
+      color: var(--color-accent-active);
     }
   }
 
   &.small {
     gap: 5px;
     font-size: 14px;
-    min-height: 0px;
+    min-height: 0;
+
+    @include hover {
+      color:  var(--color-accent);
+    }
+
+    &:active {
+      color: var(--color-accent-active);
+      border: solid 1px var(--color-accent-active);
+      background-color: var(--color-primary);
+    }
 
     .icon {
       width: 16px;

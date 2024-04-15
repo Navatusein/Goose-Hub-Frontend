@@ -7,11 +7,11 @@ interface IProps {
   styles?: CSSProperties;
   className?: string;
   onClick?: MouseEventHandler;
-  type?: "default" | "outline" | "small";
+  type?: "default" | "defaultAccent" | "outline" | "outlineAccent" | "small";
 }
 
 const Button: FC<IProps> = (props) => {
-  const types = {"default": styles.default, "outline": styles.outline, "small": styles.small};
+  const types = {"default": styles.default, "defaultAccent": styles.defaultAccent, "outline": styles.outline, "outlineAccent": styles.outlineAccent, "small": styles.small};
   return (
     <button
       className={`${props.className} ${styles.default} ${types[props.type ?? "default"]} `}

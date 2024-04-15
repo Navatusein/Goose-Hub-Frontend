@@ -1,11 +1,12 @@
-.container {
+ .container {
+  color: var(--color-text-primary);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
 
-.button {
+.default {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,10 +24,43 @@
   }
 
   @include hover {
-    border: solid 1px var(--color-accent);
+    border: solid 1px var(--color-accent-hover);
+    color: var(--color-accent-hover);
   }
 
   &:active {
-    background-color: var(--color-accent);
+    border: solid 1px var(--color-accent-active);
+    color: var(--color-accent-active);
   }
+
+  &.accent {
+    background-color: var(--color-accent);
+    color: var(--color-text-primary);
+
+    @include hover {
+      border: solid 1px var(--color-accent-hover);
+      background-color: var(--color-accent-hover);
+    }
+
+    &:active {
+      border: solid 1px var(--color-accent-active);
+      background-color: var(--color-accent-active);
+    }
+  }
+
+  &.danger {
+    background-color: var(--color-danger);
+    color: var(--color-text-primary);
+
+    @include hover {
+      border: solid 1px var(--color-danger-hover);
+      background-color: var(--color-danger-hover);
+    }
+
+    &:active {
+      border: solid 1px var(--color-danger-active);
+      background-color: var(--color-danger-active);
+    }
+  }
+
 }

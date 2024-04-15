@@ -26,3 +26,19 @@
     color: var(--color-text-secondary);
   }
 }
+
+.disabled {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  background-color: var(--color-disabled);
+  border: solid 1px var(--color-disabled);
+  border-radius: 10px;
+  width: 295px;
+  height: 97px;
+  padding: 20px;
+  font-size: 16px;
+  resize: none;
+  pointer-events: none;
+}

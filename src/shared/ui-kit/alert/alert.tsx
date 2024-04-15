@@ -1,4 +1,4 @@
-import { CSSProperties, FC } from "react";
+import {CSSProperties, FC} from "react";
 import styles from "./alert.module.scss";
 
 interface IProps {
@@ -9,7 +9,7 @@ interface IProps {
 }
 
 const Alert: FC<IProps> = (props) => {
-  const colors = {"primary": styles.primary, "accent": styles.accent, "danger": styles.danger};
+  const colors   = {"primary": styles.primary, "accent": styles.accent, "danger": styles.danger};
   return(
     <div 
       className={`${styles.alert} ${colors[props.color ?? "primary"]} ${props.className}`}
