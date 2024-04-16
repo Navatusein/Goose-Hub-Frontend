@@ -12,7 +12,7 @@ const Tag: FC<IProps> = (props) => {
   const colors = {"primary": styles.primary, "accent": styles.accent, "danger": styles.danger};
   return (
     <div 
-      className={`${styles.tag} ${colors[props.color ?? "primary"]} ${props.className}`}
+      className={`${styles.tag} ${colors[props.color ?? "primary"]} ${props.className ?? ""}`}
       style={props.styles}
     >
       {props.text}

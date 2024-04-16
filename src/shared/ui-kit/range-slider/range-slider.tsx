@@ -6,6 +6,7 @@ interface IProps {
   min: number;
   max: number;
   styles?: CSSProperties;
+  className?: string;
 }
 
 const RangeSlider: FC<IProps> = (props) => {
@@ -18,7 +19,7 @@ const RangeSlider: FC<IProps> = (props) => {
   }
 
   return (
-    <div className={styles.rangeSliderContainer} style={props.styles}>
+    <div className={`${styles.rangeSliderContainer} ${props.className ?? ""}`} style={props.styles}>
       {min}
       <Slider.Root
         className={styles.rangeSliderRoot}
@@ -31,8 +32,8 @@ const RangeSlider: FC<IProps> = (props) => {
         <Slider.Track className={styles.rangeSliderTrack}>
           <Slider.Range className={styles.rangeSliderRange}/>
         </Slider.Track>
-        <Slider.Thumb className={styles.rangeSliderThumb}/>
-        <Slider.Thumb className={styles.rangeSliderThumb}/>
+        <Slider.Thumb className={`${styles.rangeSliderThumb} ${styles.accentColor}`}/>
+        <Slider.Thumb className={`${styles.rangeSliderThumb} ${styles.accentColor}`}/>
       </Slider.Root>
       {max}
     </div>

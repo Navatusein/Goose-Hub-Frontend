@@ -1,91 +1,27 @@
-.default {
+.button {
+  --icon-size: 32px;
+
+  @include clickable;
+
+  height: $height-control-default;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  color: var(--color-text-primary);
-  background-color: var(--color-primary);
-  border: solid 1px var(--color-primary);
-  border-radius: 10px;
-  padding: 5px 10px;
+  border-radius: $border-radius-default;
+  padding: $padding-default;
   font-size: 16px;
-  min-height: 50px;
+
+  &.small-size {
+    --icon-size: 18px;
+
+    height: $height-control-small;
+    font-size: 14px;
+    gap: 5px;
+  }
 
   .icon {
-    width: 32px;
-    height: 32px;
-  }
-
-  @include hover {
-    border: solid 1px var(--color-accent-hover);
-    color: var(--color-accent-hover);
-  }
-
-  &:active {
-    color: var(--color-accent-active);
-    border: solid 1px var(--color-accent-active);
-  }
-
-  &.defaultAccent {
-    color: var(--color-text-primary);
-    background-color: var(--color-accent);
-    border: none;
-
-    @include hover {
-      background-color: var(--color-accent-hover);
-    }
-
-    &:active {
-      background-color: var(--color-accent-active);
-    }
-  }
-
-  &.outline {
-    background-color: transparent;
-    border: solid 1px transparent;
-
-    @include hover {
-      color:  var(--color-accent);
-    }
-  
-    &:active {
-      color: var(--color-accent-active);
-    }
-  }
-
-  &.outlineAccent {
-    color: var(--color-accent);
-    background-color: transparent;
-    border: solid 1px transparent;
-
-    @include hover {
-      color:  var(--color-accent-hover);
-    }
-
-    &:active {
-      color: var(--color-accent-active);
-    }
-  }
-
-  &.small {
-    gap: 5px;
-    font-size: 14px;
-    min-height: 0;
-
-    @include hover {
-      color:  var(--color-accent);
-    }
-
-    &:active {
-      color: var(--color-accent-active);
-      border: solid 1px var(--color-accent-active);
-      background-color: var(--color-primary);
-    }
-
-    .icon {
-      width: 16px;
-      height: 16px;
-    }
-
+    width: var(--icon-size);
+    height: var(--icon-size);
   }
 }

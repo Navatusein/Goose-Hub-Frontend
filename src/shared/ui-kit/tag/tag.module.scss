@@ -1,17 +1,14 @@
 .tag {
-  display: inline-flex;
+  height: $height-control-small;
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding: $padding-small;
+  padding: $padding-default;
   background-color: var(--color-primary);
   color: var(--color-text-primary);
   border: solid 1px var(--color-primary);
-  border-radius: $border-radius;
+  border-radius: $border-radius-default;
   font-size: 14px;
-
-  &.primary {
-    background-color: var(--color-primary);
-  }
 
   &.accent {
     background-color: var(--color-accent);

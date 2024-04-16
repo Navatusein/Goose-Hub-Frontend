@@ -7,15 +7,19 @@ interface IProps{
   styles?: CSSProperties;
   className?: string;
   href: string;
-  type?: "default" | "small" | "accent" | "smallAccent";
+  color?: "primary" | "accent" | "danger";
+  size?: "default" | "small";
 }
 
 const Link: FC<IProps> = (props) => {
-  const types = {"default": styles.link, "small": styles.small, "accent": styles.accent, "smallAccent": styles.smallAccent};
+  const colors = {"primary": "", "accent": styles.accentColor, "danger": styles.dangerColor};
+  const sizes = {"default": "", "small": styles.smallSize}
+
+  const linkStyles = `${colors[props.color ?? "primary"]} ${sizes[props.size ?? "default"]} ${styles.outlineType}`;
   return(
     <ReactRouterLink 
       to={props.href}
-      className={`${styles.link} ${props.className} ${types[props.type ?? "default"]}`}
+      className={`${styles.link} ${linkStyles} ${props.className ?? ""}`}
       style={props.styles}
     >
       {props.text}

@@ -1,44 +1,7 @@
-.textarea {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-text-secondary);
-  background-color: var(--color-primary);
-  border: solid 1px var(--color-primary);
-  border-radius: 10px;
-  width: 295px;
-  height: 97px;
-  padding: 20px;
-  font-size: 16px;
-  resize: none;
+.container {
+  @include input;
 
-  &:focus {
-    outline: none !important;
-    border: solid 1px var(--color-accent);
+  .field {
+    resize: none;
   }
-
-  &:focus::placeholder {
-    opacity: 0;
-  }
-
-  &::placeholder {
-    font-size: 16px;
-    color: var(--color-text-secondary);
-  }
-}
-
-.disabled {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-text-secondary);
-  background-color: var(--color-disabled);
-  border: solid 1px var(--color-disabled);
-  border-radius: 10px;
-  width: 295px;
-  height: 97px;
-  padding: 20px;
-  font-size: 16px;
-  resize: none;
-  pointer-events: none;
 }

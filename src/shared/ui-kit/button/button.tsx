@@ -2,19 +2,26 @@ import {CSSProperties, FC, MouseEventHandler, ReactNode} from "react";
 import styles from "./button.module.scss";
 
 interface IProps {
-  text: string;
+  text?: string;
   icon?: ReactNode;
   styles?: CSSProperties;
   className?: string;
   onClick?: MouseEventHandler;
-  type?: "default" | "defaultAccent" | "outline" | "outlineAccent" | "small";
+  color?: "primary" | "accent" | "danger";
+  type?: "default" | "outline" | "round";
+  size?: "default" | "small";
 }
 
 const Button: FC<IProps> = (props) => {
-  const types = {"default": styles.default, "defaultAccent": styles.defaultAccent, "outline": styles.outline, "outlineAccent": styles.outlineAccent, "small": styles.small};
+  const types = {"default": "", "outline": styles.outlineType, "round": styles.roundType};
+  const colors = {"primary": "", "accent": styles.accentColor, "danger": styles.dangerColor};
+  const sizes = {"default": "", "small": styles.smallSize}
+
+  const buttonStyles = `${types[props.type ?? "default"]} ${colors[props.color ?? "primary"]} ${sizes[props.size ?? "default"]}`;
+
   return (
     <button
-      className={`${props.className} ${styles.default} ${types[props.type ?? "default"]} `}
+      className={`${styles.button} ${buttonStyles} ${props.className ?? ""}`}
       style={props.styles}
       onClick={props.onClick}
     >

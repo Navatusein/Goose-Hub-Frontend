@@ -7,15 +7,15 @@ interface IProps {
   styles?: CSSProperties;
   className?: string;
   onClick?: MouseEventHandler;
-  type?: "default" | "accent" | "danger";
+  color?: "primary" | "accent" | "danger";
 }
 
 const RoundButton: FC<IProps> = (props) => {
-  const types = {"default": styles.default, "accent": styles.accent, "danger": styles.danger};
+  const colors = {"primary": "", "accent": styles.accentColor, "danger": styles.dangerColor};
   return (
     <div className={styles.container}>
       <button
-        className={`${styles.default} ${props.className} ${types[props.type ?? "default"]}`}
+        className={`${styles.button} ${colors[props.color ?? "primary"]} ${props.className}`}
         style={props.styles}
         onClick={props.onClick}
       >

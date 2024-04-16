@@ -10,7 +10,8 @@ interface IProps {
 
 const CheckboxTag: FC<IProps> = (props) => {
   return (
-    <label className={`${styles.checkboxTag} ${props.className}`}
+    <label
+      className={`${styles.checkboxTag} ${props.className ?? ""}`}
       style={props.styles}
     >
       <input type="checkbox" onChange={props.onChange}/>

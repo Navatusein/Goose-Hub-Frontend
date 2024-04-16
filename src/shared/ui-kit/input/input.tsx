@@ -2,31 +2,31 @@ import {CSSProperties, FC, ReactNode} from "react";
 import styles from "./input.module.scss";
 
 interface IProps {
-  text?: string;
+  text: string;
+  type?: "text";
+  icon?: ReactNode;
+  disabled?: boolean;
+  error?: string;
   styles?: CSSProperties;
   className?: string;
-  icon: ReactNode;
-  type?: "default" | "disabled" | "error";
 }
 
 const Input: FC<IProps> = (props) => {
-  const types = {"default": styles.default, "disabled": styles.disabled, "error": styles.error};
   return (
     <div
       style={props.styles}
-      className={`${props.className} ${styles.container}`}
+      className={`${styles.container} ${props.className ?? ""}`}
     >
-      <div className={styles.group}>
+      <label className={styles.label}>
+        {props.icon && <div className={styles.icon}>{props.icon}</div>}
         <input
-          type="text"
+          className={`${styles.field} ${props.error && styles.error}`}
+          type={props.type ?? "text"}
           placeholder={props.text}
-          className={`${styles.input} ${types[props.type ?? "default"]}`}
+          disabled={props.disabled}
         />
-        <div className={styles.icon}>
-          {props.icon}
-        </div>
-      </div>
-      {props.type === "error" && <p>Error</p>}
+      </label>
+      {props.error && <p>{props.error}</p>}
     </div>
   );
 }

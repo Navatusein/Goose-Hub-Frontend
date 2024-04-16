@@ -1,12 +1,12 @@
 .checkbox-tag {
-  display: inline-flex;
+  @include clickable;
+
+  height: $height-control-small;
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5px 10px;
-  background-color: var(--color-primary);
-  color: var(--color-text-primary);
-  border: solid 1px var(--color-primary);
-  border-radius: 10px;
+  padding: $padding-default;
+  border-radius: $border-radius-default;
   user-select: none;
   font-size: 14px;
 
@@ -14,14 +14,15 @@
     display: none;
   }
 
-  @include hover {
-    border: solid 1px var(--color-accent-hover);
-    color: var(--color-accent-hover);
-  }
-
   &:has(input[type="checkbox"]:checked) {
-    border: solid 1px var(--color-accent);
     color: var(--color-text-primary);
     background-color: var(--color-accent);
+    border: solid 1px var(--color-accent);
+  }
+
+  &:has(input[type="checkbox"]:checked):active {
+    color: var(--color-text-primary);
+    background-color: var(--color-accent-active);
+    border: solid 1px var(--color-accent-active);
   }
 }

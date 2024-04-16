@@ -1,55 +1,18 @@
 .link {
-  color: var(--color-text-primary);
+  @include clickable;
+
   font-size: 18px;
   text-decoration: none;
 
+  &.small-size {
+    font-size: 16px;
+  }
+
   @include hover {
-    color: var(--color-accent-hover);
     text-decoration: underline;
   }
 
   &:active {
-    color: var(--color-accent-active);
-  }
-
-  &.small {
-    font-size: 16px;
-    color: var(--color-text-primary);
-
-    @include hover {
-      color: var(--color-accent-hover);
-      text-decoration: underline;
-    }
-
-    &:active {
-      color: var(--color-accent-active);
-    }
-  }
-
-  &.accent {
-    color: var(--color-accent);
-
-    @include hover {
-      color: var(--color-accent-hover);
-      text-decoration: underline;
-    }
-
-    &:active {
-      color: var(--color-accent-active);
-    }
-  }
-
-  &.smallAccent {
-    font-size: 16px;
-    color: var(--color-accent);
-
-    @include hover {
-      color: var(--color-accent-hover);
-      text-decoration: underline;
-    }
-
-    &:active {
-      color: var(--color-accent-active);
-    }
+    text-decoration: underline;
   }
 } 

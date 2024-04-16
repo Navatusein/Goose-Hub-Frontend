@@ -8,7 +8,6 @@ import Alert from "./alert/alert.tsx";
 import TextArea from "./text-area/text-area.tsx";
 import InputWithLabel from "./input-with-label/input-with-label.tsx";
 import Input from "./input/input.tsx";
-import Line from "./line/line.tsx";
-import TextWithIcon from "./text-with-icon/text-with-icon.tsx";
+import Divider from "@/shared/ui-kit/divider/divider.tsx";
 
-export {Button, RangeSlider, TextWithIcon, Line, Input, InputWithLabel, CheckboxTag, Tag, RoundButton, Link, Alert, TextArea};
+export {Button, RangeSlider, Divider, Input, InputWithLabel, CheckboxTag, Tag, RoundButton, Link, Alert, TextArea};

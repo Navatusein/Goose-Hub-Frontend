@@ -1,89 +1,25 @@
 .container {
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 5px;
-}
+  @include input;
 
-.input {
-  display: block;
-  color: var(--color-text-primary);
-  background-color: var(--color-primary);
-  border: solid 1px var(--color-primary);
-  border-radius: 10px;
-  gap: 10px;
-  padding: 10px 10px 10px 45px;
-  min-height: 45px;
-  width: 223px;
-  font-size: 16px;
+  .label {
+    height: $height-control-default;
+    display: flex;
+    position: relative;
 
-  &:focus {
-    outline: none !important;
-    border: solid 1px var(--color-accent);
-  }
-
-  &:focus ~ .icon {
-    color: var(--color-text-primary);
-  }
-
-  &:focus::placeholder {
-    opacity: 0;
-  }
-
-  &::placeholder {
-    font-size: 16px;
-    color: var(--color-text-secondary);
-  }
-
-  &.disabled {
-    color: var(--color-text-secondary);
-    background-color: var(--color-disabled);
-    border: solid 1px var(--color-disabled);
-    pointer-events: none;
-  }
-
-  &.error {
-    border: 1px solid var(--color-danger);
-
-    &::placeholder {
-      color: var(--color-danger);
+    .icon {
+      width: 25px;
+      height: 25px;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto 0;
+      left: 10px;
     }
 
-    ~ .icon {
-      color: var(--color-danger);
-    }
-
-    &:focus {
-      outline: none !important;
-      border: solid 1px var(--color-accent);
-    }
-
-    &:focus ~ .icon {
-      color: var(--color-text-primary);
+    &:has(.icon) {
+      .field {
+        padding-left: 45px;
+      }
     }
   }
-
-}
-
-.group {
-  position: relative;
-}
-
-.icon {
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 10px;
-  height: 100%;
-  width: 25px;
-  color: var(--color-text-secondary)
-}
-
-p{
-  font-size: 16px;
-  color:var(--color-danger);
 }

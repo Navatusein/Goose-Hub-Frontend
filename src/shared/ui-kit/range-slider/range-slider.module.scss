@@ -30,9 +30,10 @@
 }
 
 .range-slider-thumb {
+  @include clickable();
+
   display: block;
   width: 20px;
   height: 20px;
-  background-color: var(--color-accent);
   border-radius: 10px;
 }
