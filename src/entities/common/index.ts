@@ -1,7 +1,35 @@
 import {commonApi} from "./api/common-api";
-import {IPreview, IQuery, IEpisode, IPagination, IContent,
-  DataTypeEnum, ContentTypeEnum, StatusEnum, SortParam, ContentQuality} from "./model/types";
+import contentCard from "./ui/content-card/content-card";
+import {
+  IPreview,
+  IQuery,
+  IEpisode,
+  IPagination,
+  IContent,
+  DataTypeEnum,
+  ContentTypeEnum,
+  StatusEnum,
+  SortParam,
+  ContentQuality
+} from "./model/types";
 
-export type {IPreview, IQuery, IEpisode, IPagination, IContent,
-  DataTypeEnum, ContentTypeEnum, StatusEnum, SortParam, ContentQuality}
 export {commonApi};
+
+export {contentCard};
+
+export {
+  DataTypeEnum,
+  ContentTypeEnum,
+  StatusEnum
+}
+
+export type {
+  IPreview,
+  IQuery,
+  IEpisode,
+  IPagination,
+  IContent,
+  SortParam,
+  ContentQuality
+}
+

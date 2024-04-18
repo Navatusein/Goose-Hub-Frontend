@@ -1,22 +1,23 @@
 import { AnimeTypeEnum } from "@/entities/anime/model/types";
 
 export interface IPreview {
-  id: string;
-  franchiseId: string;
+  id?: string;
+  franchiseId?: string;
   dataType: DataTypeEnum;
   contentType: ContentTypeEnum;
-  posterPath: string;
-  posterUrl: string;
-  bannerPath: string;
-  bannerUrl: string;
+  posterPath?: string;
+  posterUrl?: string;
+  bannerPath?: string;
+  bannerUrl?: string;
   name: string;
   description: string;
   genres: string[];
-  release: Date;
+  release?: Date;
   ageRestriction: string;
   country: string;
   status: StatusEnum;
   directedBy: string[];
+  studio: string;
 }
 
 export interface IQuery {

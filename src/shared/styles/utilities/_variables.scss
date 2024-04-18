@@ -26,6 +26,8 @@ $height-control-small: 32px;
   --color-danger-active: #D9363E;
 
   --color-transparent: rgba(0, 0, 0, 0);
+
+  --color-logo-text: #F3E1CA;
 }
 
 :root[data-colormode="dark"] {
@@ -46,4 +48,6 @@ $height-control-small: 32px;
   --color-danger-active: #D9363E;
 
   --color-transparent: rgba(0, 0, 0, 0);
+
+  --color-logo-text: #F3E1CA;
 }

@@ -12,6 +12,7 @@ import Divider from "./divider/divider.tsx";
 import Select from "./select/select.tsx";
 import Checkbox from "./checkbox/checkbox.tsx";
 import Switch from "./switch/switch.tsx";
+import Logo from "./logo/logo.tsx";
 
 export {
   Button,
@@ -27,5 +28,6 @@ export {
   TextArea,
   Select,
   Checkbox,
-  Switch
+  Switch,
+  Logo
 };

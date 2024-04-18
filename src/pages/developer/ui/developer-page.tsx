@@ -1,21 +1,25 @@
 import {FC} from 'react';
 import {
+  Alert,
   Button,
-  RangeSlider,
+  Checkbox,
+  CheckboxTag,
   Divider,
   Input,
   InputWithLabel,
-  TextArea,
   Link,
-  Alert,
+  RangeSlider,
   RoundButton,
-  CheckboxTag,
+  Select,
+  Switch,
   Tag,
-  Checkbox,
-  Switch, Select
+  TextArea
 } from "@/shared/ui-kit";
-import {AiOutlinePlayCircle, AiOutlineComment, AiOutlineDelete, AiOutlineSearch} from "react-icons/ai";
+import {AiOutlineComment, AiOutlineDelete, AiOutlinePlayCircle, AiOutlineSearch} from "react-icons/ai";
 import styles from "./developer-page.module.scss";
+import ContentCard from "@/entities/common/ui/content-card/content-card.tsx";
+import {ContentTypeEnum, DataTypeEnum, IPreview, StatusEnum} from "@/entities/common";
+import FilterCard from "@/features/filter-card/filter-card.tsx";
 
 const genres = [
   { value: "екшн", label: "Екшн" },
@@ -35,9 +39,27 @@ const genres = [
   { value: "документальний", label: "Документальний" }
 ];
 
+const content: IPreview = {
+  name: "Клинок, який знищує демонів Клинок, який знищує демонів Клинок, який знищує демонів",
+  dataType: DataTypeEnum.anime,
+  contentType: ContentTypeEnum.anime,
+  description: "description",
+  genres: ["Genre1", "Genre2", "Genre3"],
+  ageRestriction: "16+",
+  country: "Японія",
+  status: StatusEnum.announcement,
+  directedBy: ["DirectedBy"],
+  studio: "Studio",
+  posterUrl: "https://m.media-amazon.com/images/I/712sDu2sccL._AC_SL1500_.jpg"
+}
+
 const DeveloperPage: FC = () => {
   return (
     <div className={styles.verticalContainer}>
+
+      <ContentCard content={content} styles={{width: 220}}/>
+
+      <FilterCard styles={{width: 320}}/>
 
       <div className={styles.horizontalContainer}>
         <Button type="default" color="primary" text="Дивитися" icon={<AiOutlinePlayCircle/>}/>

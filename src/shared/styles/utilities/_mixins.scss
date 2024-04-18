@@ -34,6 +34,7 @@
   color: var(--clickable-color);
   background-color: var(--clickable-background-color);
   border: solid 1px var(--clickable-border-color);
+  cursor: pointer;
 
   &.secondary-color {
     --clickable-background-color: var(--color-secondary);
@@ -141,6 +142,7 @@
 
     &:disabled, &[aria-disabled=true]{
       background-color: var(--color-disabled);
+      cursor: default !important;
     }
 
     &.error {
