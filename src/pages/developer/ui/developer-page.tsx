@@ -1,6 +1,6 @@
 import {FC} from 'react';
-import {Button, RangeSlider, Divider, Input, InputWithLabel, TextArea, Link, Alert, RoundButton, CheckboxTag, Tag} from "@/shared/ui-kit";
-import {AiOutlinePlayCircle, AiOutlineComment, AiOutlineDelete, AiOutlineSearch} from "react-icons/ai";
+import {Button, RangeSlider, Checkbox, Switch, Divider, Input, InputWithLabel, TextArea, Link, Alert, RoundButton, CheckboxTag, Tag} from "@/shared/ui-kit";
+import {AiOutlinePlayCircle, AiOutlineClose, AiOutlineComment, AiOutlineDelete, AiOutlineSearch} from "react-icons/ai";
 import styles from "./developer-page.module.scss";
 
 const DeveloperPage: FC = () => {
@@ -39,7 +39,12 @@ const DeveloperPage: FC = () => {
 
       <RangeSlider min={1990} max={2024}/>
 
-      <CheckboxTag text="Check box"/>
+      <div className={styles.horizontalContainer}>
+        <CheckboxTag text="Check box"/>
+        <Switch/>
+        <Checkbox icon={<AiOutlineClose/>}/>
+      </div>
+
 
       <div className={styles.horizontalContainer}>
         <Tag text="Tag: Text" color="primary"/>
@@ -78,7 +83,6 @@ const DeveloperPage: FC = () => {
         <Input text="Text" disabled/>
         <Input text="Text" error={"Some error message"}/>
       </div>
-
 
       <Divider color="primary"/>
       <Divider color="secondary"/>

@@ -9,5 +9,7 @@ import TextArea from "./text-area/text-area.tsx";
 import InputWithLabel from "./input-with-label/input-with-label.tsx";
 import Input from "./input/input.tsx";
 import Divider from "@/shared/ui-kit/divider/divider.tsx";
+import Switch from "./switch/switch.tsx";
+import Checkbox from "./checkbox/checkbox.tsx";
 
-export {Button, RangeSlider, Divider, Input, InputWithLabel, CheckboxTag, Tag, RoundButton, Link, Alert, TextArea};
+export {Button, RangeSlider, Checkbox, Divider, Switch, Input, InputWithLabel, CheckboxTag, Tag, RoundButton, Link, Alert, TextArea};

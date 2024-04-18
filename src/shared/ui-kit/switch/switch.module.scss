@@ -1,0 +1,45 @@
+.container {
+  position: relative;
+  display: flex;
+  width: 44px;
+  height: 22px;
+
+  input {
+    @include visually-hidden;
+  }
+
+  input:checked + .slider {
+    background-color: var(--color-accent);
+  }
+
+  input:checked + .slider:before {
+    background-color: var(--color-text-primary);
+    transform: translateX(22px);
+  }
+}
+
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-disabled);
+  transition: .3s;
+  border-radius: 16px;
+
+  &:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 2px;
+    bottom: 2px;
+    background-color: var(--color-text-secondary);
+    border-radius: 50%;
+    transition: .3s;
+  }
+}
+
+
+

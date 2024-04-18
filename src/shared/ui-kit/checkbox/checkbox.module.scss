@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  position: relative;
+  input {
+    @include visually-hidden
+  }
+  input:checked + .checkmark {
+    background-color: var(--color-accent);
+    content-visibility: visible;
+    border: none;
+  }
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 18px;
+  width: 18px;
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-text-secondary);
+  box-sizing:border-box;
+  border-radius: 2px;
+  content-visibility: hidden;
+}
+
+
