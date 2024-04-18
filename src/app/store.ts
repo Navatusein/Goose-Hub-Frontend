@@ -10,7 +10,7 @@ import {userProfileApi} from "@/entities/user-profile";
 import {wishListApi} from "@/entities/wish-list";
 import { commentApi } from "@/entities/comment";
 
-const IS_DEV_ENVIRONMENT = import.meta.env.VITE_ENVIRONMENT == "Development";
+const IS_DEV_ENVIRONMENT = import.meta.env.VITE_ENVIRONMENT === "Development";
 
 const rootReducer = combineReducers({
   user: userReducer,
