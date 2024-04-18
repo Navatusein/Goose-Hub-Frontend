@@ -121,7 +121,7 @@
     font-size: 16px;
 
     @include hover {
-      &:not(:focus) {
+      &:not(:focus):not(:disabled) {
         border: solid 1px var(--color-accent-hover);
       }
     }

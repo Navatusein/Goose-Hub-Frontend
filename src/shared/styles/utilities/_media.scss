@@ -64,10 +64,4 @@ $mobile-s: 480px;
       @content;
     }
   }
-
-  @media (hover: none) {
-    &:active:is([aria-disabled=false], :not([aria-disabled])) {
-      @content;
-    }
-  }
 }
