@@ -35,6 +35,15 @@
   background-color: var(--clickable-background-color);
   border: solid 1px var(--clickable-border-color);
 
+  &.secondary-color {
+    --clickable-background-color: var(--color-secondary);
+    --clickable-border-color: var(--color-secondary);
+
+    --clickable-hover-background-color: var(--color-secondary);
+
+    --clickable-active-background-color: var(--color-secondary);
+  }
+
   &.accent-color {
     --clickable-background-color: var(--color-accent);
     --clickable-border-color: var(--color-accent);
@@ -88,7 +97,7 @@
     border: solid 1px var(--clickable-hover-border-color);
   }
 
-  &:active {
+  &:active:is([aria-disabled=false], :not([aria-disabled])) {
     color: var(--clickable-active-color);
     background-color: var(--clickable-active-background-color);
     border: solid 1px var(--clickable-active-border-color);
@@ -105,10 +114,17 @@
     background-color: var(--color-primary);
     border: solid 1px var(--color-primary);
     height: 100%;
+    width:100%;
     padding: 10px 10px;
     border-radius: $border-radius-default;
     outline: none;
     font-size: 16px;
+
+    @include hover {
+      &:not(:focus) {
+        border: solid 1px var(--color-accent-hover);
+      }
+    }
 
     &:focus {
       outline: none !important;
@@ -119,20 +135,20 @@
       opacity: 0;
     }
 
-    &::placeholder {
+    &::placeholder, p.placeholder {
       font-size: 16px;
     }
 
-    &:disabled {
+    &:disabled, &[aria-disabled=true]{
       background-color: var(--color-disabled);
     }
 
     &.error {
       border: solid 1px var(--color-danger);
-    }
 
-    &.error::placeholder {
-      color: var(--color-danger);
+      &::placeholder, & P.placeholder {
+        color: var(--color-danger);
+      }
     }
   }
 

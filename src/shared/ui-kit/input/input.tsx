@@ -1,14 +1,15 @@
-import {CSSProperties, FC, ReactNode} from "react";
+import {ChangeEventHandler, CSSProperties, FC, ReactNode} from "react";
 import styles from "./input.module.scss";
 
 interface IProps {
-  text: string;
+  placeholder?: string;
   type?: "text";
   icon?: ReactNode;
   disabled?: boolean;
   error?: string;
   styles?: CSSProperties;
   className?: string;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
 const Input: FC<IProps> = (props) => {
@@ -22,8 +23,9 @@ const Input: FC<IProps> = (props) => {
         <input
           className={`${styles.field} ${props.error && styles.error}`}
           type={props.type ?? "text"}
-          placeholder={props.text}
+          placeholder={props.placeholder}
           disabled={props.disabled}
+          onChange={props.onChange}
         />
       </label>
       {props.error && <p>{props.error}</p>}

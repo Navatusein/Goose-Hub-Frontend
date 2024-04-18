@@ -1,5 +1,6 @@
 .container {
   position: relative;
+  align-items: center;
   display: flex;
   width: 44px;
   height: 22px;
@@ -25,7 +26,7 @@
   right: 0;
   bottom: 0;
   background-color: var(--color-disabled);
-  transition: .3s;
+  transition: .1s;
   border-radius: 16px;
 
   &:before {
@@ -37,7 +38,7 @@
     bottom: 2px;
     background-color: var(--color-text-secondary);
     border-radius: 50%;
-    transition: .3s;
+    transition: .1s;
   }
 }
 

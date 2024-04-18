@@ -17,11 +17,11 @@ const Button: FC<IProps> = (props) => {
   const colors = {"primary": "", "accent": styles.accentColor, "danger": styles.dangerColor};
   const sizes = {"default": "", "small": styles.smallSize}
 
-  const buttonStyles = `${types[props.type ?? "default"]} ${colors[props.color ?? "primary"]} ${sizes[props.size ?? "default"]}`;
+  const configStyles = `${types[props.type ?? "default"]} ${colors[props.color ?? "primary"]} ${sizes[props.size ?? "default"]}`;
 
   return (
     <button
-      className={`${styles.button} ${buttonStyles} ${props.className ?? ""}`}
+      className={`${styles.button} ${configStyles} ${props.className ?? ""}`}
       style={props.styles}
       onClick={props.onClick}
     >

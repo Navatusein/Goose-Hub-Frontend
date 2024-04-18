@@ -1,8 +1,8 @@
-import {CSSProperties, FC} from "react";
+import {CSSProperties, FC, ReactNode} from "react";
 import styles from "./alert.module.scss";
 
 interface IProps {
-  text: string;
+  children: ReactNode;
   styles?: CSSProperties;
   className?: string;
   color: "primary" | "accent" | "danger";
@@ -15,7 +15,7 @@ const Alert: FC<IProps> = (props) => {
       className={`${styles.alert} ${colors[props.color ?? "primary"]} ${props.className ?? ""}`}
       style={props.styles}
     >
-      {props.text}
+      {props.children}
     </div>
   );
 }

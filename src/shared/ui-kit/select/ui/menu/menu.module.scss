@@ -1,0 +1,37 @@
+.menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  color: var(--color-text-primary);
+  background-color: var(--color-secondary);
+  border: 1px solid var(--color-secondary);
+  margin-top: 10px;
+  border-radius: $border-radius-default;
+  padding: 10px;
+  z-index: 1;
+  gap: 10px;
+
+  &.hidden {
+    @include visually-hidden;
+  }
+}
+
+.menu-list {
+  display: flex;
+  flex-direction: column;
+  max-height: 300px;
+  overflow: auto;
+  gap: 5px;
+  user-select: none;
+}
+
+.menuItem {
+  @include clickable;
+
+  border: solid 1px var(--color-secondary);
+  border-radius: 10px;
+  padding: 5px 10px;
+}

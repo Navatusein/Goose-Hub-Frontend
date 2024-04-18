@@ -1,7 +1,39 @@
 import {FC} from 'react';
-import {Button, RangeSlider, Checkbox, Switch, Divider, Input, InputWithLabel, TextArea, Link, Alert, RoundButton, CheckboxTag, Tag} from "@/shared/ui-kit";
-import {AiOutlinePlayCircle, AiOutlineClose, AiOutlineComment, AiOutlineDelete, AiOutlineSearch} from "react-icons/ai";
+import {
+  Button,
+  RangeSlider,
+  Divider,
+  Input,
+  InputWithLabel,
+  TextArea,
+  Link,
+  Alert,
+  RoundButton,
+  CheckboxTag,
+  Tag,
+  Checkbox,
+  Switch, Select
+} from "@/shared/ui-kit";
+import {AiOutlinePlayCircle, AiOutlineComment, AiOutlineDelete, AiOutlineSearch} from "react-icons/ai";
 import styles from "./developer-page.module.scss";
+
+const genres = [
+  { value: "екшн", label: "Екшн" },
+  { value: "пригоди", label: "Пригоди" },
+  { value: "комедія", label: "Комедія" },
+  { value: "драма", label: "Драма" },
+  { value: "фентезі", label: "Фентезі" },
+  { value: "жахи", label: "Жахи" },
+  { value: "трилер", label: "Трилер" },
+  { value: "романтика", label: "Романтика" },
+  { value: "наукова фантастика", label: "Наукова фантастика" },
+  { value: "детектив", label: "Детектив" },
+  { value: "історичний", label: "Історичний" },
+  { value: "бойовик", label: "Бойовик" },
+  { value: "фантастика", label: "Фантастика" },
+  { value: "містика", label: "Містика" },
+  { value: "документальний", label: "Документальний" }
+];
 
 const DeveloperPage: FC = () => {
   return (
@@ -39,24 +71,48 @@ const DeveloperPage: FC = () => {
 
       <RangeSlider min={1990} max={2024}/>
 
-      <div className={styles.horizontalContainer}>
+      <div className={styles.horizontalContainer} style={{alignItems: "center"}}>
         <CheckboxTag text="Check box"/>
         <Switch/>
-        <Checkbox icon={<AiOutlineClose/>}/>
-      </div>
-
-
-      <div className={styles.horizontalContainer}>
-        <Tag text="Tag: Text" color="primary"/>
-        <Tag text="Text" color="accent"/>
-        <Tag text="Text" color="danger"/>
+        <Checkbox/>
       </div>
 
       <div className={styles.horizontalContainer}>
-        <Alert text="Alert: Все нормально" color="primary"/>
-        <Alert text="Попередження" color="accent"/>
-        <Alert text="Помилка" color="danger"/>
+        <Tag color="primary">
+          Tag: Text
+        </Tag>
+        <Tag color="accent">
+          Tag: Text
+        </Tag>
+        <Tag color="danger">
+          Tag: Text
+        </Tag>
       </div>
+
+      <div className={styles.horizontalContainer}>
+        <Alert color="primary">
+          Alert: Все нормально
+        </Alert>
+        <Alert color="accent">
+          Alert: Попередження
+        </Alert>
+        <Alert color="danger">
+          Alert: Помилка
+        </Alert>
+      </div>
+
+      <div className={styles.horizontalContainer}>
+        <Select placeholder="Select" values={genres} styles={{width: 250}}/>
+        <Select placeholder="Select" values={genres} disabled styles={{width: 250}}/>
+        <Select placeholder="Select" values={genres} error="Some error message" styles={{width: 250}}/>
+      </div>
+
+      <div className={styles.horizontalContainer}>
+        <Select placeholder="Multi Select" isMulti values={genres} styles={{width: 250}}/>
+        <Select placeholder="Select with Search" isSearchable values={genres} styles={{width: 250}}/>
+        <Select placeholder="Creatable" isSearchable isCreatable values={genres} styles={{width: 250}}/>
+      </div>
+
 
       <div className={styles.verticalContainer}>
         <TextArea text="Text"/>
@@ -65,24 +121,25 @@ const DeveloperPage: FC = () => {
       </div>
 
       <InputWithLabel label="Пошук">
-        <Input text="Text" icon={<AiOutlineSearch/>}/>
+        <Input placeholder="Text" icon={<AiOutlineSearch/>}/>
       </InputWithLabel>
 
       <InputWithLabel label="Пошук" type="inline">
-        <Input text="Text" icon={<AiOutlineSearch/>}/>
+        <Input placeholder="Text" icon={<AiOutlineSearch/>}/>
       </InputWithLabel>
 
       <div className={styles.horizontalContainer}>
-        <Input text="Text" icon={<AiOutlineSearch/>}/>
-        <Input text="Text" disabled icon={<AiOutlineSearch/>}/>
-        <Input text="Text" error={"Some error message"} icon={<AiOutlineSearch/>}/>
+        <Input placeholder="Text" icon={<AiOutlineSearch/>}/>
+        <Input placeholder="Text" disabled icon={<AiOutlineSearch/>}/>
+        <Input placeholder="Text" error="Some error message" icon={<AiOutlineSearch/>}/>
       </div>
 
       <div className={styles.horizontalContainer}>
-        <Input text="Text"/>
-        <Input text="Text" disabled/>
-        <Input text="Text" error={"Some error message"}/>
+        <Input placeholder="Text"/>
+        <Input placeholder="Text" disabled/>
+        <Input placeholder="Text" error="Some error message"/>
       </div>
+
 
       <Divider color="primary"/>
       <Divider color="secondary"/>

@@ -1,10 +1,10 @@
-import {ReactNode, CSSProperties, FC} from "react";
+import {CSSProperties, FC} from "react";
 import styles from "./checkbox.module.scss"
+import {AiOutlineClose} from "react-icons/ai";
 
 interface IProps {
   styles?: CSSProperties;
   className?: string;
-  icon: ReactNode;
 }
 
 const Checkbox: FC<IProps> = (props) => {
@@ -15,7 +15,7 @@ const Checkbox: FC<IProps> = (props) => {
         style={props.styles}
         className={props.className}
       />
-      <span className={styles.checkmark}>{props.icon}</span>
+      <div className={styles.checkmark}><AiOutlineClose/></div>
     </label>
   );
 };
