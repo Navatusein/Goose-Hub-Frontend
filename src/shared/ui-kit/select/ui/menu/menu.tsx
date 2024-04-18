@@ -1,7 +1,7 @@
 import {Dispatch, FC, SetStateAction, useMemo, useState} from "react";
 import styles from "./menu.module.scss";
 import {Input} from "@/shared/ui-kit";
-import {IValue} from "@/shared/ui-kit/multi-select/model/types.ts";
+import {IValue} from "@/shared/ui-kit/select/model/types.ts";
 
 interface IProps {
   values: IValue[];

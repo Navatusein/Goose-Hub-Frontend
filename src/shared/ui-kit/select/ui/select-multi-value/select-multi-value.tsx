@@ -1,6 +1,6 @@
 import {Dispatch, FC, SetStateAction, MouseEvent} from 'react';
 import {Tag} from "@/shared/ui-kit";
-import {IValue} from "@/shared/ui-kit/multi-select/model/types.ts";
+import {IValue} from "@/shared/ui-kit/select/model/types.ts";
 
 interface IProps {
   selectedValues: IValue[];

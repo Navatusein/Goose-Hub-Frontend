@@ -1,5 +1,5 @@
 import {Dispatch, FC, SetStateAction} from "react";
-import {IValue} from "@/shared/ui-kit/multi-select/model/types.ts";
+import {IValue} from "@/shared/ui-kit/select/model/types.ts";
 import styles from "./select-single-value.module.scss"
 
 interface IProps {
