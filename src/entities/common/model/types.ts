@@ -12,7 +12,7 @@ export interface IPreview {
   name: string;
   description: string;
   genres: string[];
-  release: Date;
+  release?: Date;
   ageRestriction: string;
   country: string;
   status: StatusEnum;
