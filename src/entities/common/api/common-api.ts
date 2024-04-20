@@ -16,14 +16,14 @@ export const commonApi = createApi({
       query: (query) => ({
         url: `/movie-api/v1/content/query`,
         method: "POST",
-        data: query
+        body: query
       })
     }),
     fetchContentByIds: builder.query<IPreview, string[]>({
       query: (ids) => ({
         url: `/movie-api/v1/content/ids`,
         method: "GET",
-        data: ids
+        body: ids
       })
     }),
   })

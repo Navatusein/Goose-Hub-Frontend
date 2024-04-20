@@ -19,7 +19,6 @@ import {AiOutlineComment, AiOutlineDelete, AiOutlinePlayCircle, AiOutlineSearch}
 import styles from "./developer-page.module.scss";
 import ContentCard from "@/entities/common/ui/content-card/content-card.tsx";
 import {ContentCarousel, ContentTypeEnum, DataTypeEnum, IPreview, StatusEnum} from "@/entities/common";
-import FilterCard from "@/features/filter-card/filter-card.tsx";
 
 const genres = [
   { value: "екшн", label: "Екшн" },
@@ -74,7 +73,6 @@ const DeveloperPage: FC = () => {
         <ContentCard content={content}/>
       </CardGrid>
 
-      <FilterCard styles={{width: 320}}/>
 
       <div className={styles.horizontalContainer}>
         <Button type="default" color="primary" text="Дивитися" icon={<AiOutlinePlayCircle/>}/>
@@ -139,15 +137,15 @@ const DeveloperPage: FC = () => {
       </div>
 
       <div className={styles.horizontalContainer}>
-        <Select placeholder="Select" values={genres} styles={{width: 250}}/>
-        <Select placeholder="Select" values={genres} disabled styles={{width: 250}}/>
-        <Select placeholder="Select" values={genres} error="Some error message" styles={{width: 250}}/>
+        <Select placeholder="Select" options={genres} styles={{width: 250}}/>
+        <Select placeholder="Select" options={genres} disabled styles={{width: 250}}/>
+        <Select placeholder="Select" options={genres} error="Some error message" styles={{width: 250}}/>
       </div>
 
       <div className={styles.horizontalContainer}>
-        <Select placeholder="Multi Select" isMulti values={genres} styles={{width: 250}}/>
-        <Select placeholder="Select with Search" isSearchable values={genres} styles={{width: 250}}/>
-        <Select placeholder="Creatable" isSearchable isCreatable values={genres} styles={{width: 250}}/>
+        <Select placeholder="Multi Select" isMulti options={genres} styles={{width: 250}}/>
+        <Select placeholder="Select with Search" isSearchable options={genres} styles={{width: 250}}/>
+        <Select placeholder="Creatable" isSearchable isCreatable options={genres} styles={{width: 250}}/>
       </div>
 
 

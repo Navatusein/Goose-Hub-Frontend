@@ -27,9 +27,9 @@ export interface IQuery {
   query?: string;
   yearStart?: number;
   yearEnd?: number;
-  contentType?: ContentTypeEnum;
-  status?: StatusEnum[];
-  animeTypes?: AnimeTypeEnum[];
+  contentType: ContentTypeEnum;
+  status: StatusEnum[];
+  animeTypes: AnimeTypeEnum[];
   sort: SortParamEnum;
 }
 

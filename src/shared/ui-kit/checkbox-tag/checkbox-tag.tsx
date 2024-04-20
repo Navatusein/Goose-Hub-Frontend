@@ -5,7 +5,7 @@ interface IProps {
   text: string;
   styles?: CSSProperties;
   className?: string;
-  onChange?: ChangeEventHandler;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
 const CheckboxTag: FC<IProps> = (props) => {

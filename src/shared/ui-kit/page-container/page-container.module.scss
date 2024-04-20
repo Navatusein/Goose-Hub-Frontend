@@ -1,0 +1,15 @@
+.page-container {
+  padding: 10px $padding-body-default;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  @include desktop {
+    padding: 10px $padding-body-large;
+  }
+
+  @include mobile {
+    padding: 10px $padding-body-small;
+    gap: 15px;
+  }
+}

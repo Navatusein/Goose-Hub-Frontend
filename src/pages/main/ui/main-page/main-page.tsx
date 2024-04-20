@@ -1,19 +1,10 @@
 import {FC, useEffect} from "react";
-import styles from "./main-page.module.scss"
-import {
-  commonApi,
-  ContentCarousel,
-  ContentTypeEnum,
-  DataTypeEnum,
-  IPreview,
-  SortParamEnum,
-  StatusEnum
-} from "@/entities/common";
+// import styles from "./main-page.module.scss"
+import {ContentCarousel, ContentTypeEnum, DataTypeEnum, IPreview, StatusEnum} from "@/entities/common";
 import {useOutletContext} from "react-router-dom";
 import {IContext} from "@/shared/types/types.ts";
-import {CardGrid} from "@/shared/ui-kit";
-import ContentCard from "../../entities/common/ui/content-card/content-card.tsx";
-import FilterCard from "@/features/filter-card/filter-card.tsx";
+import {FlexContainer, PageContainer} from "@/shared/ui-kit";
+import {ContentContainer} from "@/widgets/content-container";
 
 const content: IPreview = {
   name: "Клинок, який знищує демонів",
@@ -33,36 +24,17 @@ const content: IPreview = {
 const MainPage: FC = () => {
   const {setIsHeaderAbsolute} = useOutletContext<IContext>();
 
-  const test = commonApi.useFetchContentQueryQuery({pageSize: 10, page: 0, genres: [], sort: SortParamEnum.none});
-
-  useEffect(() => {
-    console.log(test.data);
-  }, [test]);
-
   useEffect(() => {
     setIsHeaderAbsolute(true);
   })
 
   return (
-    <div className={styles.verticalContainer}>
+    <FlexContainer gap={30} vertical>
       <ContentCarousel contentList={[content, content, content, content]}/>
-      <div className={styles.horizontalContainer} style={{padding: "0 200px"}}>
-        <CardGrid>
-          <ContentCard content={content}/>
-          <ContentCard content={content}/>
-          <ContentCard content={content}/>
-          <ContentCard content={content}/>
-          <ContentCard content={content}/>
-          <ContentCard content={content}/>
-          <ContentCard content={content}/>
-          <ContentCard content={content}/>
-          <ContentCard content={content}/>
-          <ContentCard content={content}/>
-          <ContentCard content={content}/>
-        </CardGrid>
-        <FilterCard styles={{minWidth: 300, height: "fit-content"}}/>
-      </div>
-    </div>
+      <PageContainer>
+        <ContentContainer/>
+      </PageContainer>
+    </FlexContainer>
   );
 };
 

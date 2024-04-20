@@ -9,7 +9,7 @@ import SelectSingleValue from "./ui/select-single-value/select-single-value.tsx"
 
 interface IProps {
   placeholder: string;
-  values: IValue[];
+  options: IValue[];
   isMulti?: boolean;
   isSearchable?: boolean;
   isCreatable?: boolean;
@@ -53,7 +53,7 @@ const Select: FC<IProps> = (props) => {
         </div>
       </div>
       <Menu
-        values={props.values}
+        values={props.options}
         selectedValues={selectedValues}
         setSelectedValues={setSelectedValues}
         isOpen={isOpen}

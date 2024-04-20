@@ -14,6 +14,8 @@ import Checkbox from "./checkbox/checkbox.tsx";
 import Switch from "./switch/switch.tsx";
 import Logo from "./logo/logo.tsx";
 import CardGrid from "./card-grid/card-grid.tsx";
+import FlexContainer from "./flex-container/flex-container.tsx";
+import PageContainer from "./page-container/page-container.tsx";
 
 export {
   Button,
@@ -31,5 +33,7 @@ export {
   Checkbox,
   Switch,
   Logo,
-  CardGrid
+  CardGrid,
+  FlexContainer,
+  PageContainer
 };

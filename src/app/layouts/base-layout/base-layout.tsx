@@ -1,8 +1,8 @@
 import {FC, useState} from "react";
 import {Outlet} from "react-router-dom";
 import styles from "./base-layout.module.scss";
-import Header from "@/widgets/header/header.tsx";
-import Footer from "@/widgets/footer/footer.tsx";
+import {Footer} from "@/widgets/footer";
+import {Header} from "@/widgets/header";
 import {IContext} from "@/shared/types/types.ts";
 
 const BaseLayout: FC = () => {
