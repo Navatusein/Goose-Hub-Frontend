@@ -5,14 +5,14 @@ export interface ISerial extends IPreview{
   trailerUrl: string;
   screenshotUrls: string[];
   screenshotPath: string[];
-  episodesCount: string;
-  nextEpisodeDate: Date;
+  episodesCount?: string;
+  nextEpisodeDate?: Date;
   seasons: ISeason[];
 }
 
 export interface ISeason {
-  id: string;
-  name: string;
+  id?: string;
+  name?: string;
   index: number;
   episodes: IEpisode[];
 }

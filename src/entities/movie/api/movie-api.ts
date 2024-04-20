@@ -16,14 +16,14 @@ export const movieApi = createApi({
       query: (movieDto) => ({
         url: `/movie-api/v1/movie/`,
         method: "POST",
-        data: movieDto
+        body: movieDto
       })
     }),
     update: builder.query<IMovie, {id: string, movieDto: IMovie}>({
       query: ({id, movieDto}) => ({
         url: `/movie-api/v1/movie/${id}`,
         method: "PUT",
-        data: movieDto
+        body: movieDto
       })
     }),
     delete: builder.query<void, string>({

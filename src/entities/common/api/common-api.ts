@@ -1,6 +1,6 @@
 import {createApi} from "@reduxjs/toolkit/query/react";
 import {baseQueryWithRefresh} from "@/shared/api/base-query.ts";
-import {IPreview, IQuery, IPagination} from "@/entities/common";
+import {IPreview, IQuery} from "@/entities/common";
 
 export const commonApi = createApi({
   reducerPath: "commonApi",
@@ -12,19 +12,12 @@ export const commonApi = createApi({
         method: "GET"
       })
     }),
-    fetchContentQuery: builder.query<IPagination, IQuery>({
+    fetchContentQuery: builder.query<IPreview, IQuery>({
       query: (query) => ({
         url: `/movie-api/v1/content/query`,
         method: "POST",
-        data: query
+        body: query
       })
-    }),
-    fetchContentByIds: builder.query<IPreview, string[]>({
-      query: (ids) => ({
-        url: `/movie-api/v1/content/ids`,
-        method: "GET",
-        data: ids
-      })
-    }),
+    })
   })
 })

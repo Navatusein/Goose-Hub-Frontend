@@ -12,7 +12,7 @@ export interface IPreview {
   name: string;
   description: string;
   genres: string[];
-  release?: Date;
+  release: Date;
   ageRestriction: string;
   country: string;
   status: StatusEnum;
@@ -34,10 +34,10 @@ export interface IQuery {
 }
 
 export interface IEpisode {
-  id: string;
+  id?: string;
   index: number;
-  name: string;
-  content: IContent[];
+  name?: string;
+  content?: IContent[];
 }
 
 export interface IContent {

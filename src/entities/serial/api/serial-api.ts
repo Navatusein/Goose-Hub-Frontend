@@ -8,27 +8,27 @@ export const serialApi = createApi({
   endpoints: (builder) => ({
     fetchById: builder.query<ISerial, string>({
       query: (id) => ({
-          url: `/serial-api/v1/serial/${id}`,
+          url: `/movie-api/v1/serial/${id}`,
           method: "GET"
       })
     }),
     create: builder.query<ISerial, ISerial>({
       query: (serialDto) => ({
-          url: `/serial-api/v1/serial/`,
+          url: `/movie-api/v1/serial/`,
           method: "POST",
-          data: serialDto
+          body: serialDto
       })
     }),
     update: builder.query<ISerial, {id: string, serialDto: ISerial}>({
       query: ({id, serialDto}) => ({
-          url: `/serial-api/v1/serial/${id}`,
+          url: `/movie-api/v1/serial/${id}`,
           method: "PUT",
-          data: serialDto
+          body: serialDto
       })
     }),
     delete: builder.query<void, string>({
       query: (id) => ({
-          url: `/serial-api/v1/serial/${id}`,
+          url: `/movie-api/v1/serial/${id}`,
           method: "DELETE"
       })
     }),

@@ -22,7 +22,7 @@ export const userProfileApi = createApi({
       query: (userProfileDto) => ({
         url: `/user-profile-api/v1/profile`,
         method: "PUT",
-        data: userProfileDto
+        body: userProfileDto
       })
     }),
   })

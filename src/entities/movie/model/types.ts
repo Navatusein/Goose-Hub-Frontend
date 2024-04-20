@@ -5,5 +5,5 @@ export interface IMovie extends IPreview{
   trailerUrl: string;
   screenshotUrls: string[];
   screenshotPath: string[];
-  content: IContent[];
+  content?: IContent[];
 }

@@ -7,8 +7,8 @@ export interface IAnime extends IPreview {
   screenshotPath: string[];
   animeType: AnimeTypeEnum;
   studio: string;
-  content: IContent[];
-  episodes: IEpisode[];
+  content?: IContent[];
+  episodes?: IEpisode[];
 }
 
 export enum AnimeTypeEnum {
