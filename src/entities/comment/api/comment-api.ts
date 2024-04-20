@@ -22,20 +22,20 @@ export const commentApi = createApi({
         query: ({id, comment}) => ({
           url: `/api/comment-api/v1/content/${id}`,
           method: "POST",
-          data: comment
+          body: comment
         }),
     }),
     createReplyById: builder.query<IComment, {commentId: string, comment: IComment}>({
       query: ({commentId, comment}) => ({
         url: `/api/comment-api/v1/reply/${commentId}`,
         method: "POST",
-        data: comment
+        body: comment
       }),
     }),
     fetchUser: builder.query<IComment, void>({
       query: () => ({
         url: `/api/comment-api/v1/user`,
-        method: "POST"
+        method: "GET"
       }),
     }),
   })

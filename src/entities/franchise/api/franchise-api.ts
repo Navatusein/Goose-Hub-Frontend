@@ -16,14 +16,14 @@ export const franchiseApi = createApi({
       query: (franchiseDto) => ({
         url: `/movie-api/v1/franchise/`,
         method: "POST",
-        data: franchiseDto
+        body: franchiseDto
       })
     }),
     update: builder.query<IFranchise, {id: string, franchiseDto: IFranchise}>({
       query: ({id, franchiseDto}) => ({
         url: `/movie-api/v1/franchise/${id}`,
         method: "PUT",
-        data: franchiseDto
+        body: franchiseDto
       })
     }),
     delete: builder.query<void, string>({

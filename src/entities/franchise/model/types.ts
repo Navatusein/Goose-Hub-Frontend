@@ -1,5 +1,5 @@
 export interface IFranchise {
-  id: string;
+  id?: string;
   name: string;
   description: string;
 }

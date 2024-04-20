@@ -1,5 +1,5 @@
 export interface IWishList {
-    id: string;
+    id?: string;
     name: string;
     isPrivate: boolean;
     notify: boolean;

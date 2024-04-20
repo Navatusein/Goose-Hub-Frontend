@@ -13,7 +13,7 @@ export interface IUserProfile {
 }
 
 export interface IUserProfilePreview {
-    id: string;
+    id?: string;
     name: string;
     avatarUrl: string;
     avatarPath: string;
@@ -26,5 +26,5 @@ export interface IHistory {
 
 export interface INotification {
     message: string;
-    linkRaw: string;
+    linkRaw?: string;
 }

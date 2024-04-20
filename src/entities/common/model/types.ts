@@ -34,10 +34,10 @@ export interface IQuery {
 }
 
 export interface IEpisode {
-  id: string;
+  id?: string;
   index: number;
-  name: string;
-  content: IContent[];
+  name?: string;
+  content?: IContent[];
 }
 
 export interface IContent {

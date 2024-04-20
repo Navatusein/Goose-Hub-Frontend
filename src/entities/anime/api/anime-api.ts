@@ -16,14 +16,14 @@ export const animeApi = createApi({
       query: (animeDto) => ({
         url: `/movie-api/v1/anime/`,
         method: "POST",
-        data: animeDto
+        body: animeDto
       })
     }),
     update: builder.query<IAnime, {id: string, animeDto: IAnime}>({
       query: ({id, animeDto}) => ({
         url: `/movie-api/v1/anime/${id}`,
         method: "PUT",
-        data: animeDto
+        body: animeDto
       })
     }),
     delete: builder.query<void, string>({
