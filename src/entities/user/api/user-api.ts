@@ -1,4 +1,4 @@
-import {createApi} from "@reduxjs/toolkit/query";
+import {createApi} from "@reduxjs/toolkit/query/react";
 import {baseQueryWithRefresh} from "@/shared/api/base-query.ts";
 import {IUser} from "@/entities/user";
 import {logout, setUser} from "@/entities/user/model/user-slice.ts";

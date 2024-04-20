@@ -9,11 +9,12 @@ import {store} from "@/app/store.ts";
 import {IconContext} from "react-icons";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <Provider store={store}>
+  <Provider store={store}>
+    <React.StrictMode>
       <IconContext.Provider value={{className: "react-icon", size: "100%"}}>
         <RouterProvider router={router}/>
       </IconContext.Provider>
-    </Provider>
-  </React.StrictMode>,
+    </React.StrictMode>
+  </Provider>
+,
 )

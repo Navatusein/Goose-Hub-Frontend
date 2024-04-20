@@ -1,4 +1,4 @@
-import {createApi} from "@reduxjs/toolkit/query";
+import {createApi} from "@reduxjs/toolkit/query/react";
 import {baseQueryWithRefresh} from "@/shared/api/base-query.ts";
 import {IPreview, IQuery, IPagination} from "@/entities/common";
 
@@ -15,7 +15,7 @@ export const commonApi = createApi({
     fetchContentQuery: builder.query<IPagination, IQuery>({
       query: (query) => ({
         url: `/movie-api/v1/content/query`,
-        method: "GET",
+        method: "POST",
         data: query
       })
     }),

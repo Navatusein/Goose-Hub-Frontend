@@ -1,5 +1,6 @@
 import {commonApi} from "./api/common-api";
-import contentCard from "./ui/content-card/content-card";
+import ContentCard from "./ui/content-card/content-card";
+import ContentCarousel from "./ui/content-carousel/content-carousel";
 import {
   IPreview,
   IQuery,
@@ -9,18 +10,19 @@ import {
   DataTypeEnum,
   ContentTypeEnum,
   StatusEnum,
-  SortParam,
+  SortParamEnum,
   ContentQuality
 } from "./model/types";
 
 export {commonApi};
 
-export {contentCard};
+export {ContentCard, ContentCarousel};
 
 export {
   DataTypeEnum,
   ContentTypeEnum,
-  StatusEnum
+  StatusEnum,
+  SortParamEnum
 }
 
 export type {
@@ -29,7 +31,6 @@ export type {
   IEpisode,
   IPagination,
   IContent,
-  SortParam,
   ContentQuality
 }
 

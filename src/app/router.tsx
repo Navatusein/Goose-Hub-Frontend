@@ -2,6 +2,7 @@ import {createBrowserRouter} from "react-router-dom";
 import BaseLayout from "@/app/layouts/base-layout/base-layout.tsx";
 import ProtectedLayout from "@/app/layouts/protected-layout/protected-layout.tsx";
 import {DeveloperPage} from "@/pages/developer";
+import {MainPage} from "@/pages/main";
 
 export const router = createBrowserRouter([
   {
@@ -9,7 +10,11 @@ export const router = createBrowserRouter([
     errorElement: <div>Error</div>,
     children: [
       {
-        path: "/",
+        path: "",
+        element: <MainPage/>
+      },
+      {
+        path: "/dev",
         element: <DeveloperPage/>
       },
       {

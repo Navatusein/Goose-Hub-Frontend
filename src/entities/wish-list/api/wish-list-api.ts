@@ -1,4 +1,4 @@
-import {createApi} from "@reduxjs/toolkit/query";
+import {createApi} from "@reduxjs/toolkit/query/react";
 import {baseQueryWithRefresh} from "@/shared/api/base-query.ts";
 import {IWishList} from "@/entities/wish-list";
 

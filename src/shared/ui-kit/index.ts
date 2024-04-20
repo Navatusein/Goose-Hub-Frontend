@@ -13,6 +13,7 @@ import Select from "./select/select.tsx";
 import Checkbox from "./checkbox/checkbox.tsx";
 import Switch from "./switch/switch.tsx";
 import Logo from "./logo/logo.tsx";
+import CardGrid from "./card-grid/card-grid.tsx";
 
 export {
   Button,
@@ -29,5 +30,6 @@ export {
   Select,
   Checkbox,
   Switch,
-  Logo
+  Logo,
+  CardGrid
 };

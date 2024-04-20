@@ -24,13 +24,13 @@ export interface IQuery {
   page: number;
   pageSize: number;
   genres: string[];
-  query: string;
-  yearStart: number;
-  yearEnd: number;
-  contentType: ContentTypeEnum;
-  status: StatusEnum;
-  animeType: AnimeTypeEnum;
-  sort: SortParam;
+  query?: string;
+  yearStart?: number;
+  yearEnd?: number;
+  contentType?: ContentTypeEnum;
+  status?: StatusEnum[];
+  animeTypes?: AnimeTypeEnum[];
+  sort: SortParamEnum;
 }
 
 export interface IEpisode {
@@ -74,7 +74,7 @@ export enum StatusEnum {
   paused = 4
 }
 
-export enum SortParam {
+export enum SortParamEnum {
   none
 }
 

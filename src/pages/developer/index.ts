@@ -1,3 +1,3 @@
-import DeveloperPage from "./ui/developer-page";
+import DeveloperPage from "./developer-page.tsx";
 
 export {DeveloperPage};

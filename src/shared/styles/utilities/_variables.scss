@@ -1,5 +1,7 @@
-
 $padding-default: 5px 10px;
+$padding-body-default: 200px;
+$padding-body-large: 100px;
+$padding-body-small: 10px;
 
 $border-radius-default: 10px;
 $border-radius-circle: 100%;
@@ -7,47 +9,3 @@ $border-radius-circle: 100%;
 $height-control-large: 50px;
 $height-control-default: 45px;
 $height-control-small: 32px;
-
-:root[data-colormode="light"] {
-  --color-text-primary: #FFFFFF;
-  --color-text-secondary: #FFFFFF;
-
-  --color-background: #FFFFFF;
-  --color-primary: #FFFFFF;
-  --color-secondary: #FFFFFF;
-  --color-disabled: #21262D;
-
-  --color-accent: #1677FF;
-  --color-accent-hover: #4096FF;
-  --color-accent-active: #0958D9;
-
-  --color-danger: #FF4D4F;
-  --color-danger-hover: #FF7875;
-  --color-danger-active: #D9363E;
-
-  --color-transparent: rgba(0, 0, 0, 0);
-
-  --color-logo-text: #F3E1CA;
-}
-
-:root[data-colormode="dark"] {
-  --color-text-primary: #E0E3EC;
-  --color-text-secondary: #AEAEAE;
-
-  --color-background: #010409;
-  --color-primary: #161B22;
-  --color-secondary: #0D1117;
-  --color-disabled: #21262D;
-
-  --color-accent: #1677FF;
-  --color-accent-hover: #4096FF;
-  --color-accent-active: #0958D9;
-
-  --color-danger: #FF4D4F;
-  --color-danger-hover: #FF7875;
-  --color-danger-active: #D9363E;
-
-  --color-transparent: rgba(0, 0, 0, 0);
-
-  --color-logo-text: #F3E1CA;
-}

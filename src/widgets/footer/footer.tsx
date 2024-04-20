@@ -1,20 +1,25 @@
-import {FC} from "react";
+import {CSSProperties, FC} from "react";
 import styles from "./footer.module.scss";
 import {Divider, Link, Logo} from "@/shared/ui-kit";
 
-const Footer: FC = () => {
+interface IProps {
+  styles?: CSSProperties;
+  className?: string;
+}
+
+const Footer: FC<IProps> = (props) => {
   return (
-    <div className={styles.footer}>
+    <footer className={`${styles.footer} ${props.className ?? ""}`} style={props.styles}>
       <Divider color="primary"/>
       <div className={styles.container}>
         <Logo/>
-        <div className={styles.linkContainer}>
-          <Link text="Наші контакти" href="/"/>
-          <Link text="Правовласникам" href="/"/>
-          <Link text="Політика конфіденційності" href="/"/>
-        </div>
+        <nav className={styles.linkContainer}>
+          <Link text="Наші контакти" className={styles.link} href="/"/>
+          <Link text="Правовласникам" className={styles.link} href="/"/>
+          <Link text="Політика конфіденційності" className={styles.link} href="/"/>
+        </nav>
       </div>
-    </div>
+    </footer>
   );
 };
 

@@ -2,5 +2,21 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0;
+  padding: 10px $padding-body-default;
+
+  &.position-absolute {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+  }
+
+  @include desktop {
+    padding: 10px $padding-body-large;
+  }
+
+  @include mobile {
+    padding: 10px $padding-body-small;
+  }
 }
