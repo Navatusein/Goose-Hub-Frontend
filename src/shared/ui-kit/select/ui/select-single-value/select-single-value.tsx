@@ -1,16 +1,20 @@
-import {Dispatch, FC, SetStateAction} from "react";
-import {IValue} from "@/shared/ui-kit/select/model/types.ts";
+import {FC, useMemo} from "react";
+import {IValue, ValueType} from "@/shared/ui-kit/select/model/types.ts";
 import styles from "./select-single-value.module.scss"
 
 interface IProps {
-  selectedValues: IValue[];
-  setSelectedValues: Dispatch<SetStateAction<IValue[]>>;
+  options: IValue[];
+  values: ValueType;
 }
 
 const SelectSingleValue: FC<IProps> = (props) => {
+  const selected = useMemo(() => {
+    return props.options.find(x => x.value === props.values[0]);
+  }, [props.options, props.values]);
+
   return (
     <div className={styles.container}>
-      {props.selectedValues[0].label}
+      {selected?.label}
     </div>
   );
 };

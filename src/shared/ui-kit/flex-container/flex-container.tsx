@@ -7,12 +7,35 @@ interface IProps {
   className?: string;
   gap?: number | "Page";
   vertical?: boolean;
+  justify?: "start" | "end" | "center" | "space-between";
+  align?: "start" | "end" | "center";
+  warp?: boolean;
 }
 
 const FlexContainer: FC<IProps> = (props) => {
+  const justify = {
+    "start": styles.justifyStart,
+    "end": styles.justifyEnd,
+    "center": styles.justifyCenter,
+    "space-between": styles.justifySpaceBetween
+  };
+
+  const align = {
+    "start": styles.alignStart,
+    "end": styles.alignEnd,
+    "center": styles.alignCenter
+  }
+
+  const configStyles = `
+    ${props.justify && justify[props.justify]} 
+    ${props.align && align[props.align]} 
+    ${props.vertical === true && styles.vertical}
+    ${props.warp === true && styles.warp}
+  `;
+
   return (
     <div
-      className={`${styles.flexContainer} ${props.vertical === true && styles.vertical} ${props.className ?? ""}`}
+      className={`${styles.flexContainer} ${configStyles} ${props.className ?? ""}`}
       style={{gap: props.gap ?? 10, ...props.styles}}
     >
       {props.children}

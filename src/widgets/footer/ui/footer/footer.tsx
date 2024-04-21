@@ -14,9 +14,9 @@ const Footer: FC<IProps> = (props) => {
       <div className={styles.container}>
         <Logo/>
         <nav className={styles.linkContainer}>
-          <Link text="Наші контакти" className={styles.link} href="/"/>
-          <Link text="Правовласникам" className={styles.link} href="/"/>
-          <Link text="Політика конфіденційності" className={styles.link} href="/"/>
+          <Link text="Наші контакти" className={styles.link} to="/"/>
+          <Link text="Правовласникам" className={styles.link} to="/"/>
+          <Link text="Політика конфіденційності" className={styles.link} to="/"/>
         </nav>
       </div>
     </footer>

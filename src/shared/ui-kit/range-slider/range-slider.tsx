@@ -1,8 +1,10 @@
-import {CSSProperties, FC, useState} from "react";
+import {CSSProperties, FC, useEffect} from "react";
 import styles from "./range-slider.module.scss";
 import * as Slider from "@radix-ui/react-slider";
 
 interface IProps {
+  value: number[];
+  setValue: (value: number[]) => void;
   min: number;
   max: number;
   styles?: CSSProperties;
@@ -10,22 +12,22 @@ interface IProps {
 }
 
 const RangeSlider: FC<IProps> = (props) => {
-  const [min, setMin] = useState<number>(props.min);
-  const [max, setMax] = useState<number>(props.max);
+  useEffect(() => {
+    props.setValue([props.min, props.max]);
+  }, [props.min, props.max]);
 
   const onValueChange = (value: number[]) => {
-    setMin(Math.min(...value));
-    setMax(Math.max(...value));
+    props.setValue(value);
   }
 
   return (
     <div className={`${styles.rangeSliderContainer} ${props.className ?? ""}`} style={props.styles}>
-      {min}
+      {Math.min(...props.value)}
       <Slider.Root
         className={styles.rangeSliderRoot}
-        defaultValue={[props.min, props.max]}
         max={props.max}
         min={props.min}
+        value={props.value}
         step={1}
         onValueChange={onValueChange}
       >
@@ -35,7 +37,7 @@ const RangeSlider: FC<IProps> = (props) => {
         <Slider.Thumb className={`${styles.rangeSliderThumb} ${styles.accentColor}`}/>
         <Slider.Thumb className={`${styles.rangeSliderThumb} ${styles.accentColor}`}/>
       </Slider.Root>
-      {max}
+      {Math.max(...props.value)}
     </div>
   );
 };

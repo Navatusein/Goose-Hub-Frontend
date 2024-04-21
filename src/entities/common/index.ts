@@ -1,6 +1,6 @@
 import {commonApi} from "./api/common-api";
 import ContentCard from "./ui/content-card/content-card";
-import ContentCarousel from "./ui/content-carousel/content-carousel";
+import ContentCarouselCard from "@/entities/common/ui/content-carousel-card/content-carousel-card.tsx";
 import {
   IPreview,
   IQuery,
@@ -16,7 +16,7 @@ import {
 
 export {commonApi};
 
-export {ContentCard, ContentCarousel};
+export {ContentCard, ContentCarouselCard};
 
 export {
   DataTypeEnum,

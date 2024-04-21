@@ -19,10 +19,10 @@ export const commonApi = createApi({
         body: query
       })
     }),
-    fetchContentByIds: builder.query<IPreview, string[]>({
+    fetchContentByIds: builder.query<IPreview[], string[]>({
       query: (ids) => ({
         url: `/movie-api/v1/content/ids`,
-        method: "GET",
+        method: "POST",
         body: ids
       })
     }),

@@ -6,7 +6,7 @@ interface IProps{
   text: string;
   styles?: CSSProperties;
   className?: string;
-  href: string;
+  to: string;
   color?: "primary" | "accent" | "danger";
   size?: "default" | "small";
 }
@@ -18,7 +18,7 @@ const Link: FC<IProps> = (props) => {
   const linkStyles = `${colors[props.color ?? "primary"]} ${sizes[props.size ?? "default"]} ${styles.outlineType}`;
   return(
     <ReactRouterLink 
-      to={props.href}
+      to={props.to}
       className={`${styles.link} ${linkStyles} ${props.className ?? ""}`}
       style={props.styles}
     >

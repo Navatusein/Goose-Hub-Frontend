@@ -2,14 +2,16 @@ import styles from "./select.module.scss"
 import {CSSProperties, FC, useRef, useState} from "react";
 import {useClickOutside} from "@/shared/hooks/use-click-outside.ts";
 import {AiOutlineDown} from "react-icons/ai";
-import {IValue} from "./model/types.ts";
+import {IValue, ValueType} from "./model/types.ts";
 import Menu from "./ui/menu/menu.tsx";
 import SelectMultiValue from "./ui/select-multi-value/select-multi-value.tsx";
 import SelectSingleValue from "./ui/select-single-value/select-single-value.tsx";
 
 interface IProps {
+  values: ValueType;
+  setValues: (values: ValueType) => void;
   placeholder: string;
-  options: IValue[];
+  options?: IValue[];
   isMulti?: boolean;
   isSearchable?: boolean;
   isCreatable?: boolean;
@@ -23,7 +25,6 @@ const Select: FC<IProps> = (props) => {
   const ref = useRef(null)
 
   const [isOpen, setIsOpen] = useState(false)
-  const [selectedValues, setSelectedValues] = useState<IValue[]>([])
 
   useClickOutside(ref, () => {setIsOpen(false)});
 
@@ -38,14 +39,21 @@ const Select: FC<IProps> = (props) => {
     <div className={`${styles.select} ${props.className ?? ""}`} ref={ref} style={props.styles}>
       <div className={`${styles.control} ${styles.field} ${props.error && styles.error}`} aria-disabled={props.disabled} onClick={() => toggleMenu()}>
         <div className={styles.valuesContainer}>
-          {selectedValues.length === 0 && (
+          {props.values.length === 0 && (
             <p className={styles.placeholder}>{props.placeholder}</p>
           )}
-          {(selectedValues.length !== 0 && props.isMulti === true) && (
-            <SelectMultiValue selectedValues={selectedValues} setSelectedValues={setSelectedValues}/>
+          {(props.values.length !== 0 && props.isMulti === true) && (
+            <SelectMultiValue
+              options={props.options!}
+              values={props.values}
+              setValues={props.setValues}
+            />
           )}
-          {(selectedValues.length !== 0 && props.isMulti !== true) && (
-            <SelectSingleValue selectedValues={selectedValues} setSelectedValues={setSelectedValues}/>
+          {(props.values.length !== 0 && props.isMulti !== true) && (
+            <SelectSingleValue
+              options={props.options!}
+              values={props.values}
+            />
           )}
         </div>
         <div className={styles.icon}>
@@ -53,9 +61,9 @@ const Select: FC<IProps> = (props) => {
         </div>
       </div>
       <Menu
-        values={props.options}
-        selectedValues={selectedValues}
-        setSelectedValues={setSelectedValues}
+        options={props.options}
+        values={props.values}
+        setValues={props.setValues}
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         isSearchable={props.isSearchable ?? false}

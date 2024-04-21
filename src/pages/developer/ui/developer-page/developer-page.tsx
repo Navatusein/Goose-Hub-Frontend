@@ -1,78 +1,23 @@
 import {FC} from 'react';
 import {
   Alert,
-  Button, CardGrid,
+  Button,
   Checkbox,
   CheckboxTag,
   Divider,
-  Input,
-  InputWithLabel,
   Link,
-  RangeSlider,
   RoundButton,
-  Select,
   Switch,
   Tag,
   TextArea
 } from "@/shared/ui-kit";
-import {AiOutlineComment, AiOutlineDelete, AiOutlinePlayCircle, AiOutlineSearch} from "react-icons/ai";
+import {AiOutlineComment, AiOutlineDelete, AiOutlinePlayCircle} from "react-icons/ai";
 import styles from "./developer-page.module.scss";
-import ContentCard from "@/entities/common/ui/content-card/content-card.tsx";
-import {ContentCarousel, ContentTypeEnum, DataTypeEnum, IPreview, StatusEnum} from "@/entities/common";
 
-const genres = [
-  { value: "екшн", label: "Екшн" },
-  { value: "пригоди", label: "Пригоди" },
-  { value: "комедія", label: "Комедія" },
-  { value: "драма", label: "Драма" },
-  { value: "фентезі", label: "Фентезі" },
-  { value: "жахи", label: "Жахи" },
-  { value: "трилер", label: "Трилер" },
-  { value: "романтика", label: "Романтика" },
-  { value: "наукова фантастика", label: "Наукова фантастика" },
-  { value: "детектив", label: "Детектив" },
-  { value: "історичний", label: "Історичний" },
-  { value: "бойовик", label: "Бойовик" },
-  { value: "фантастика", label: "Фантастика" },
-  { value: "містика", label: "Містика" },
-  { value: "документальний", label: "Документальний" }
-];
-
-const content: IPreview = {
-  name: "Клинок, який знищує демонів",
-  dataType: DataTypeEnum.anime,
-  contentType: ContentTypeEnum.anime,
-  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-  genres: ["Genre1", "Genre2", "Genre3"],
-  ageRestriction: "16+",
-  country: "Японія",
-  status: StatusEnum.announcement,
-  directedBy: ["DirectedBy"],
-  studio: "Studio",
-  posterUrl: "https://m.media-amazon.com/images/I/712sDu2sccL._AC_SL1500_.jpg",
-  bannerUrl: "https://cdn.dribbble.com/userupload/5204024/file/original-cbe25308c60226cf953ebed8944836d0.png"
-}
 
 const DeveloperPage: FC = () => {
   return (
     <div className={styles.verticalContainer}>
-
-      <ContentCarousel contentList={[content, content, content, content]}/>
-
-      <CardGrid>
-        <ContentCard content={content}/>
-        <ContentCard content={content}/>
-        <ContentCard content={content}/>
-        <ContentCard content={content}/>
-        <ContentCard content={content}/>
-        <ContentCard content={content}/>
-        <ContentCard content={content}/>
-        <ContentCard content={content}/>
-        <ContentCard content={content}/>
-        <ContentCard content={content}/>
-        <ContentCard content={content}/>
-      </CardGrid>
-
 
       <div className={styles.horizontalContainer}>
         <Button type="default" color="primary" text="Дивитися" icon={<AiOutlinePlayCircle/>}/>
@@ -104,8 +49,6 @@ const DeveloperPage: FC = () => {
         <RoundButton color="danger" icon={<AiOutlineDelete/>}/>
       </div>
 
-      <RangeSlider min={1990} max={2024}/>
-
       <div className={styles.horizontalContainer} style={{alignItems: "center"}}>
         <CheckboxTag text="Check box"/>
         <Switch/>
@@ -136,18 +79,6 @@ const DeveloperPage: FC = () => {
         </Alert>
       </div>
 
-      <div className={styles.horizontalContainer}>
-        <Select placeholder="Select" options={genres} styles={{width: 250}}/>
-        <Select placeholder="Select" options={genres} disabled styles={{width: 250}}/>
-        <Select placeholder="Select" options={genres} error="Some error message" styles={{width: 250}}/>
-      </div>
-
-      <div className={styles.horizontalContainer}>
-        <Select placeholder="Multi Select" isMulti options={genres} styles={{width: 250}}/>
-        <Select placeholder="Select with Search" isSearchable options={genres} styles={{width: 250}}/>
-        <Select placeholder="Creatable" isSearchable isCreatable options={genres} styles={{width: 250}}/>
-      </div>
-
 
       <div className={styles.verticalContainer}>
         <TextArea text="Text"/>
@@ -155,40 +86,20 @@ const DeveloperPage: FC = () => {
         <TextArea text="Text" error={"Some error message"}/>
       </div>
 
-      <InputWithLabel label="Пошук">
-        <Input placeholder="Text" icon={<AiOutlineSearch/>}/>
-      </InputWithLabel>
-
-      <InputWithLabel label="Пошук" type="inline">
-        <Input placeholder="Text" icon={<AiOutlineSearch/>}/>
-      </InputWithLabel>
-
-      <div className={styles.horizontalContainer}>
-        <Input placeholder="Text" icon={<AiOutlineSearch/>}/>
-        <Input placeholder="Text" disabled icon={<AiOutlineSearch/>}/>
-        <Input placeholder="Text" error="Some error message" icon={<AiOutlineSearch/>}/>
-      </div>
-
-      <div className={styles.horizontalContainer}>
-        <Input placeholder="Text"/>
-        <Input placeholder="Text" disabled/>
-        <Input placeholder="Text" error="Some error message"/>
-      </div>
-
 
       <Divider color="primary"/>
       <Divider color="secondary"/>
 
       <div className={styles.horizontalContainer}>
-        <Link size="default" color="primary" text="Наші контакти" href="/"/>
-        <Link size="default" color="accent" text="Наші контакти" href="/"/>
-        <Link size="default" color="danger" text="Наші контакти" href="/"/>
+        <Link size="default" color="primary" text="Наші контакти" to="/"/>
+        <Link size="default" color="accent" text="Наші контакти" to="/"/>
+        <Link size="default" color="danger" text="Наші контакти" to="/"/>
       </div>
 
       <div className={styles.horizontalContainer}>
-        <Link size="small" color="primary" text="Наші контакти" href="/"/>
-        <Link size="small" color="accent" text="Наші контакти" href="/"/>
-        <Link size="small" color="danger" text="Наші контакти" href="/"/>
+        <Link size="small" color="primary" text="Наші контакти" to="/"/>
+        <Link size="small" color="accent" text="Наші контакти" to="/"/>
+        <Link size="small" color="danger" text="Наші контакти" to="/"/>
       </div>
 
     </div>

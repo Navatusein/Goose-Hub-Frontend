@@ -1,0 +1,18 @@
+.link {
+  font-size: 24px;
+  font-weight: lighter;
+
+  &.active {
+    font-size: 32px;
+    font-weight: bold;
+  }
+
+}
+
+.content-grid {
+  width: 80%;
+}
+
+.filter-card {
+  width: 20%;
+}

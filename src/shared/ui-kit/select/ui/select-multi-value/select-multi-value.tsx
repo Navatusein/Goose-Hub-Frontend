@@ -1,21 +1,26 @@
-import {Dispatch, FC, SetStateAction, MouseEvent} from 'react';
+import {FC, MouseEvent, useMemo} from 'react';
 import {Tag} from "@/shared/ui-kit";
-import {IValue} from "@/shared/ui-kit/select/model/types.ts";
+import {IValue, ValueType} from "@/shared/ui-kit/select/model/types.ts";
 
 interface IProps {
-  selectedValues: IValue[];
-  setSelectedValues: Dispatch<SetStateAction<IValue[]>>;
+  options: IValue[];
+  values: ValueType;
+  setValues: (value: ValueType) => void;
 }
 
 const SelectMultiValue: FC<IProps> = (props) => {
   const removeSelect = (event: MouseEvent, value: IValue) => {
     event.stopPropagation();
-    props.setSelectedValues(props.selectedValues.filter(x => x.value != value.value));
+    props.setValues(props.values.filter(x => x !== value.value));
   }
+
+  const selected = useMemo(() => {
+    return props.options.filter(x => props.values.find(y => y === x.value) !== undefined);
+  }, [props.options, props.values]);
 
   return (
     <>
-      {props.selectedValues.map((value, index) =>
+      {selected.map((value, index) =>
         <Tag key={index} color="accent" size="auto" onClose={(event) => removeSelect(event, value)}>
           {value.label}
         </Tag>

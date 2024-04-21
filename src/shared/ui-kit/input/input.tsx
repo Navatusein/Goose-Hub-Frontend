@@ -9,7 +9,8 @@ interface IProps {
   error?: string;
   styles?: CSSProperties;
   className?: string;
-  onChange?: ChangeEventHandler<HTMLInputElement>;
+  value: string;
+  onChange: ChangeEventHandler<HTMLInputElement>;
 }
 
 const Input: FC<IProps> = (props) => {
@@ -25,6 +26,7 @@ const Input: FC<IProps> = (props) => {
           type={props.type ?? "text"}
           placeholder={props.placeholder}
           disabled={props.disabled}
+          value={props.value}
           onChange={props.onChange}
         />
       </label>

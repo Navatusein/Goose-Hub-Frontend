@@ -10,7 +10,11 @@ export const router = createBrowserRouter([
     errorElement: <div>Error</div>,
     children: [
       {
-        path: "",
+        path: "/",
+        element: <MainPage/>
+      },
+      {
+        path: "/content/:contentType?",
         element: <MainPage/>
       },
       {

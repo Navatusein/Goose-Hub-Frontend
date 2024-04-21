@@ -24,11 +24,11 @@ export interface IQuery {
   page: number;
   pageSize: number;
   genres: string[];
-  query?: string;
+  query: string;
   yearStart?: number;
   yearEnd?: number;
-  contentType: ContentTypeEnum;
-  status: StatusEnum[];
+  contentType?: ContentTypeEnum;
+  statuses: StatusEnum[];
   animeTypes: AnimeTypeEnum[];
   sort: SortParamEnum;
 }
