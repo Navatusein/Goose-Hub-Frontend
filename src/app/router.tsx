@@ -1,8 +1,8 @@
 import {createBrowserRouter} from "react-router-dom";
 import BaseLayout from "@/app/layouts/base-layout/base-layout.tsx";
 import ProtectedLayout from "@/app/layouts/protected-layout/protected-layout.tsx";
-// import {DeveloperPage} from "@/pages/developer";
-// import {MainPage} from "@/pages/main";
+import {DeveloperPage} from "@/pages/developer";
+import {MainPage} from "@/pages/main";
 import {ErrorPage} from "@/pages/error";
 
 export const router = createBrowserRouter([
