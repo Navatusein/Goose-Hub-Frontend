@@ -64,6 +64,7 @@ const FilterCard: FC<IProps> = (props) => {
           placeholder="Жанр"
           isMulti
           isSearchable
+          isCreatable
           options={genresOptions}
           values={props.query.genres}
           setValues={(values) => props.setQuery({...props.query, genres: (values as string[])})}
