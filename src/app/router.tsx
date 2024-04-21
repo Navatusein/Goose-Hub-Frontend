@@ -4,53 +4,47 @@ import ProtectedLayout from "@/app/layouts/protected-layout/protected-layout.tsx
 // import {DeveloperPage} from "@/pages/developer";
 // import {MainPage} from "@/pages/main";
 import {ErrorPage} from "@/pages/error";
-import DebugLayout from "@/app/layouts/debug-layout/debug-layout.tsx";
 
 export const router = createBrowserRouter([
   {
-    element: <DebugLayout/>,
+    element: <BaseLayout/>,
+    errorElement: <ErrorPage/>,
     children: [
       {
-        element: <BaseLayout/>,
-        errorElement: <ErrorPage/>,
+        path: "/",
+        element: <Navigate to="/content" replace/>
+      },
+      {
+        path: "/content/:contentType?",
+        element: <div>Main</div>
+      },
+      {
+        path: "/dev",
+        element: <div>Dev</div>
+      },
+      {
+        path: "/login",
+        element: <div>Login</div>
+      },
+      {
+        element: <ProtectedLayout requiredRoles={["User", "Admin"]}/>,
         children: [
           {
-            path: "/",
-            element: <Navigate to="/content" replace/>
-          },
-          {
-            path: "/content/:contentType?",
-            element: <div>Main</div>
-          },
-          {
-            path: "/dev",
-            element: <div>Dev</div>
-          },
-          {
-            path: "/login",
-            element: <div>Login</div>
-          },
-          {
-            element: <ProtectedLayout requiredRoles={["User", "Admin"]}/>,
-            children: [
-              {
-                path: "/auth",
-                element: <div>Auth</div>,
-              }
-            ]
-          },
-          {
-            element: <ProtectedLayout requiredRoles={["Admin"]}/>,
-            children: [
-              {
-                path: "/admin",
-                element: <div>Admin</div>,
-              }
-            ]
+            path: "/auth",
+            element: <div>Auth</div>,
           }
-        ],
+        ]
+      },
+      {
+        element: <ProtectedLayout requiredRoles={["Admin"]}/>,
+        children: [
+          {
+            path: "/admin",
+            element: <div>Admin</div>,
+          }
+        ]
       }
-    ]
+    ],
   }
 ])
 
