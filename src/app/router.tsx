@@ -1,4 +1,4 @@
-import {createBrowserRouter} from "react-router-dom";
+import {createBrowserRouter, Navigate} from "react-router-dom";
 import BaseLayout from "@/app/layouts/base-layout/base-layout.tsx";
 import ProtectedLayout from "@/app/layouts/protected-layout/protected-layout.tsx";
 import {DeveloperPage} from "@/pages/developer";
@@ -11,8 +11,8 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage/>,
     children: [
       {
-        path: "",
-        element: <MainPage/>
+        path: "/",
+        element: <Navigate to="/content" replace/>
       },
       {
         path: "/content/:contentType?",
