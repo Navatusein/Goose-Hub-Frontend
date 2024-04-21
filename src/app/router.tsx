@@ -1,7 +1,7 @@
-import {createBrowserRouter, Navigate} from "react-router-dom";
+import {createBrowserRouter} from "react-router-dom";
 import BaseLayout from "@/app/layouts/base-layout/base-layout.tsx";
 import ProtectedLayout from "@/app/layouts/protected-layout/protected-layout.tsx";
-// import {DeveloperPage} from "@/pages/developer";
+import {DeveloperPage} from "@/pages/developer";
 import {MainPage} from "@/pages/main";
 import {ErrorPage} from "@/pages/error";
 
@@ -12,7 +12,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Navigate to="/content" replace/>
+        element: <MainPage/>
       },
       {
         path: "/content/:contentType?",
@@ -20,7 +20,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dev",
-        element: <div>Dev</div>
+        element: <DeveloperPage/>
       },
       {
         path: "/login",

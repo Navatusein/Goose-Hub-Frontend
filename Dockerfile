@@ -1,8 +1,7 @@
-FROM node:18-alpine as build
+FROM node:20.12.2-alpine as build
 WORKDIR /app
-ADD package.json .
-RUN npm install
 ADD ./ ./
+RUN npm install
 RUN npm run build
 
 FROM nginx:alpine
