@@ -25,16 +25,18 @@ const baseQueryWithRefresh: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQu
 
   if (result?.error?.status === 401 && user !== undefined) {
     const refreshResult = await baseQuery({
-      url: "/authentication-api/v1/login/refresh",
+      url: "/authentication-api/v1/refresh",
+      method: "POST",
       body: user
     }, api, extraOptions)
 
-    if (refreshResult?.error)
+    if (refreshResult?.error) {
+      console.log(refreshResult.error)
       return result;
+    }
 
     user = (refreshResult.data) as IUser;
 
-    (api.getState() as RootState).user.user = user;
     api.dispatch(setUser(user!))
 
     result = await baseQuery(args, api, extraOptions)

@@ -1,6 +1,6 @@
 import {combineReducers, configureStore, ThunkMiddleware} from "@reduxjs/toolkit";
 import {animeApi} from "@/entities/anime";
-import {commonApi} from "@/entities/common";
+import {commonApi, uploadCommonPictureApi} from "@/entities/common";
 import {franchiseApi} from "@/entities/franchise";
 import {infoApi} from "@/entities/info";
 import {movieApi} from "@/entities/movie";
@@ -18,6 +18,7 @@ const rootReducer = combineReducers({
   [userProfileApi.reducerPath]: userProfileApi.reducer,
   [wishListApi.reducerPath]: wishListApi.reducer,
   [commonApi.reducerPath]: commonApi.reducer,
+  [uploadCommonPictureApi.reducerPath]: uploadCommonPictureApi.reducer,
   [animeApi.reducerPath]: animeApi.reducer,
   [movieApi.reducerPath]: movieApi.reducer,
   [serialApi.reducerPath]: serialApi.reducer,
@@ -31,6 +32,7 @@ const middlewares: ThunkMiddleware[] = [
   userProfileApi.middleware,
   wishListApi.middleware,
   commonApi.middleware,
+  uploadCommonPictureApi.middleware,
   animeApi.middleware,
   movieApi.middleware,
   serialApi.middleware,

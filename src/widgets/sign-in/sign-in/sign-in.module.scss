@@ -1,0 +1,12 @@
+.sign-in {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: var(--color-secondary);
+  padding: 20px;
+  border-radius: $border-radius-default;
+}
+
+.name {
+  padding: 10px
+}

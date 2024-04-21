@@ -3,6 +3,10 @@
   align-items: center;
   user-select: none;
 
+  &.clickable {
+    cursor: pointer;
+  }
+
   .text {
     font-size: 32px;
     color: var(--color-logo-text);

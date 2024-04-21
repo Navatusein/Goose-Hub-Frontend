@@ -22,7 +22,7 @@ const Input: FC<IProps> = (props) => {
       <label className={styles.label}>
         {props.icon && <div className={styles.icon}>{props.icon}</div>}
         <input
-          className={`${styles.field} ${props.error && styles.error}`}
+          className={`${styles.field} ${props.error !== undefined && styles.error}`}
           type={props.type ?? "text"}
           placeholder={props.placeholder}
           disabled={props.disabled}

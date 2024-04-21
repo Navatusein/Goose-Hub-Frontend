@@ -83,3 +83,8 @@ export enum ContentQuality {
   hd, 
   fullHD
 }
+
+export interface IUploadCommon {
+  contentId: string;
+
+}

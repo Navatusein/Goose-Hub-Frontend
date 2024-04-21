@@ -12,19 +12,21 @@ import {
   TextArea
 } from "@/shared/ui-kit";
 import {AiOutlineComment, AiOutlineDelete, AiOutlinePlayCircle} from "react-icons/ai";
-import {SignUp} from "@/features/sign-up";
-import {SignIn} from "@/features/sign-in";
 import styles from "./developer-page.module.scss";
+import {uploadCommonPictureApi} from "@/entities/common";
 
 
 const DeveloperPage: FC = () => {
+  const [deleteBanner] = uploadCommonPictureApi.useDeleteBannerMutation();
+
+  const onClick = () => {
+    deleteBanner("65f4b18bc968cbe19a723dd2");
+  };
+
   return (
     <div className={styles.verticalContainer}>
 
-      <div className={styles.verticalContainer}>
-        <SignUp/>
-        <SignIn/>
-      </div>
+      <Button type="default" color="primary" text="Delete" icon={<AiOutlinePlayCircle/>} onClick={onClick}/>
 
       <div className={styles.horizontalContainer}>
         <Button type="default" color="primary" text="Дивитися" icon={<AiOutlinePlayCircle/>}/>
@@ -64,13 +66,13 @@ const DeveloperPage: FC = () => {
 
       <div className={styles.horizontalContainer}>
         <Tag color="primary">
-          Tag: Text
+          Tag: Paragraph
         </Tag>
         <Tag color="accent">
-          Tag: Text
+          Tag: Paragraph
         </Tag>
         <Tag color="danger">
-          Tag: Text
+          Tag: Paragraph
         </Tag>
       </div>
 
@@ -88,9 +90,9 @@ const DeveloperPage: FC = () => {
 
 
       <div className={styles.verticalContainer}>
-        <TextArea text="Text"/>
-        <TextArea text="Text" disabled/>
-        <TextArea text="Text" error={"Some error message"}/>
+        <TextArea text="Paragraph"/>
+        <TextArea text="Paragraph" disabled/>
+        <TextArea text="Paragraph" error={"Some error message"}/>
       </div>
 
 

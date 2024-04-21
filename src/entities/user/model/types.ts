@@ -1,5 +1,16 @@
 export type UserRoles = "User" | "Admin";
 
+export interface ILoginData {
+  email: string;
+  password: string;
+}
+
+export interface IRegisterData {
+  email: string;
+  password: string;
+  name: string;
+}
+
 export interface IUser {
   jwtToken: string;
   userId: string;

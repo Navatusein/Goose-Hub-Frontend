@@ -1,25 +1,35 @@
 import {createApi} from "@reduxjs/toolkit/query/react";
 import {baseQueryWithRefresh} from "@/shared/api/base-query.ts";
-import {IUser} from "@/entities/user";
+import {ILoginData, IRegisterData, IUser} from "@/entities/user";
 import {logout, setUser} from "@/entities/user/model/user-slice.ts";
 
 export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: baseQueryWithRefresh,
   endpoints: (builder) => ({
-    loginUser: builder.mutation<IUser, void>({
-      query: () => ({
+    loginUser: builder.mutation<IUser, ILoginData>({
+      query: (loginData) => ({
         url: '/authentication-api/v1/login',
         method: 'POST',
+        body: loginData
       }),
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
-        try {
-          const { data } = await queryFulfilled;
-          dispatch(setUser(data));
-        }
-        catch (error) {
-          dispatch(logout());
-        }
+        queryFulfilled
+          .then(data => dispatch(setUser(data.data)))
+          .catch(() => logout())
+      },
+    }),
+
+    registerUser: builder.mutation<IUser, IRegisterData>({
+      query: (registerData) => ({
+        url: '/authentication-api/v1/register',
+        method: 'POST',
+        body: registerData
+      }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        queryFulfilled
+          .then(data => dispatch(setUser(data.data)))
+          .catch(() => logout())
       },
     })
   })

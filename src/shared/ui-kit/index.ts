@@ -16,6 +16,7 @@ import Logo from "./logo/logo.tsx";
 import CardGrid from "./card-grid/card-grid.tsx";
 import FlexContainer from "./flex-container/flex-container.tsx";
 import PageContainer from "./page-container/page-container.tsx";
+import Paragraph from "@/shared/ui-kit/paragraph/paragraph.tsx";
 
 export {
   Button,
@@ -35,5 +36,6 @@ export {
   Logo,
   CardGrid,
   FlexContainer,
-  PageContainer
+  PageContainer,
+  Paragraph
 };

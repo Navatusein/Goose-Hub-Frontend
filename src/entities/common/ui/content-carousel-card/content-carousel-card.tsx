@@ -1,7 +1,7 @@
 import {CSSProperties, FC} from 'react';
 import styles from "./content-carousel-card.module.scss";
 import {IPreview} from "@/entities/common";
-import {Button} from "@/shared/ui-kit";
+import {Button, Paragraph} from "@/shared/ui-kit";
 import {AiOutlinePlayCircle} from "react-icons/ai";
 
 interface IProps {
@@ -16,7 +16,7 @@ const ContentCarouselCard: FC<IProps> = (props) => {
       <img src={props.content.bannerUrl} alt={props.content.name}/>
       <div className={styles.information}>
         <h1>{props.content.name}</h1>
-        <p>{props.content.description}</p>
+        <Paragraph>{props.content.description}</Paragraph>
         <Button text="Дивитись" icon={<AiOutlinePlayCircle/>} className={styles.button} color="accent"/>
       </div>
     </section>

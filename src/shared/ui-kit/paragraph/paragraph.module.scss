@@ -1,0 +1,35 @@
+.text {
+  font-size: $font-size-default;
+  color: var(--color-text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-wrap: pretty;
+
+  &.secondary-color {
+    color: var(--color-text-secondary);
+  }
+
+  &.accent-color {
+    color: var(--color-accent);
+  }
+
+  &.danger-color {
+    color: var(--color-danger);
+  }
+
+  &.small {
+    font-size: $font-size-small;
+  }
+
+  &.medium {
+    font-size: $font-size-medium;
+  }
+
+  &.large {
+    font-size: $font-size-large;
+  }
+
+  &.extra-large {
+    font-size: $font-size-extra-large;
+  }
+}
