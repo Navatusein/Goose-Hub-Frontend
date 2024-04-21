@@ -12,12 +12,19 @@ import {
   TextArea
 } from "@/shared/ui-kit";
 import {AiOutlineComment, AiOutlineDelete, AiOutlinePlayCircle} from "react-icons/ai";
+import {SignUp} from "@/features/sign-up";
+import {SignIn} from "@/features/sign-in";
 import styles from "./developer-page.module.scss";
 
 
 const DeveloperPage: FC = () => {
   return (
     <div className={styles.verticalContainer}>
+
+      <div className={styles.verticalContainer}>
+        <SignUp/>
+        <SignIn/>
+      </div>
 
       <div className={styles.horizontalContainer}>
         <Button type="default" color="primary" text="Дивитися" icon={<AiOutlinePlayCircle/>}/>

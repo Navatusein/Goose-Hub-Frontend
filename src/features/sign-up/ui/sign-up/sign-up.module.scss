@@ -1,0 +1,22 @@
+.sign-up {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: var(--color-secondary);
+  padding: 20px;
+  border-radius: 10px;
+  h1 {
+    font-size: 24px;
+  }
+  p {
+    font-size: 14px;
+    &.small {
+      font-size: 12px;
+      color: var(--color-text-secondary);
+    }
+  }
+}
+
+.name {
+  padding: 10px;
+}
