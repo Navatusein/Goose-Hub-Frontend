@@ -44,6 +44,7 @@ const SignIn: FC<IProps> = (props) => {
         <InputWithLabel label="Пароль">
           <Input
             placeholder="Пароль"
+            type="password"
             value={loginData.password}
             onChange={(e) => {setLoginData({...loginData, password: e.target.value})}}
             error={error}

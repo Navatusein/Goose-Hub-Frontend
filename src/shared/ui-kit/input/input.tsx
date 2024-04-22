@@ -3,7 +3,7 @@ import styles from "./input.module.scss";
 
 interface IProps {
   placeholder?: string;
-  type?: "text";
+  type?: string;
   icon?: ReactNode;
   disabled?: boolean;
   error?: string;

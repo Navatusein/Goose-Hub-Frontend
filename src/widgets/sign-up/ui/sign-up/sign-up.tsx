@@ -1,16 +1,44 @@
-import {ChangeEvent, CSSProperties, FC} from "react";
+import {ChangeEvent, CSSProperties, FC, useState} from "react";
 import styles from "./sign-up.module.scss";
 import {InputWithLabel, Input, Checkbox, Link, Button, FlexContainer, Paragraph} from "@/shared/ui-kit";
+import {IRegisterData, userApi} from "@/entities/user";
 
 interface IProps {
   className?: string;
   style?: CSSProperties;
 }
 
+interface IError {
+  email: string | undefined;
+  repeatPassword: string | undefined;
+  name: string | undefined;
+
+}
+
 const SignUp: FC<IProps> = (props) => {
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    console.log("New value", event.target.value);
-  };
+  const [registerData, setRegisterData] = useState<IRegisterData>({email: "", password: "", name: ""});
+  const [error, setError] = useState<IError>(
+    {email: undefined, name: undefined, repeatPassword: undefined}
+  );
+
+  const [repeatPassword, setRepeatPassword] = useState("");
+
+  const [registerUser] = userApi.useRegisterUserMutation();
+
+  const comparePasswords = (e:  ChangeEvent<HTMLInputElement>) => {
+    setRepeatPassword(e.target.value);
+    if(registerData.password !== e.target.value){
+      setError({...error, repeatPassword: "Паролі не співпадають"})
+    }
+    else if (registerData.password === e.target.value) {
+      setError({...error, repeatPassword: undefined})
+    }
+  }
+
+  const register = async () => {
+    await registerUser(registerData);
+  }
+
   return (
     <div
       className={`${styles.signUp} ${props.className ?? ""}`}
@@ -23,16 +51,34 @@ const SignUp: FC<IProps> = (props) => {
 
       <FlexContainer gap={10} justify="start" align="center" vertical>
         <InputWithLabel label="Пошта">
-          <Input placeholder="Пошта" value="" onChange={handleChange}/>
+          <Input
+            placeholder="Пошта"
+            value={registerData.email}
+            error={error.email}
+            onChange={(e) => {setRegisterData({...registerData, email: e.target.value})}}/>
         </InputWithLabel>
         <InputWithLabel label="Нікнейм">
-          <Input placeholder="Нікнейм" value="" onChange={handleChange}/>
+          <Input
+            placeholder="Нікнейм"
+            value={registerData.name}
+            error={error.name}
+            onChange={(e) => {setRegisterData({...registerData, name: e.target.value})}}/>
         </InputWithLabel>
         <InputWithLabel label="Пароль">
-          <Input placeholder="Пароль" value="" onChange={handleChange}/>
+          <Input
+            type="password"
+            placeholder="Пароль"
+            value={registerData.password}
+            onChange={(e) => {setRegisterData({...registerData, password: e.target.value})}}/>
         </InputWithLabel>
         <InputWithLabel label="Повторіть пароль">
-          <Input placeholder="Повторіть пароль" value="" onChange={handleChange}/>
+          <Input
+            type="password"
+            placeholder="Повторіть пароль"
+            value={repeatPassword}
+            onChange={(e) => {comparePasswords(e)}}
+            error={error.repeatPassword}
+          />
         </InputWithLabel>
       </FlexContainer>
 
@@ -42,7 +88,7 @@ const SignUp: FC<IProps> = (props) => {
         <Link text="Правилами користування" size="small" color="accent" to="#"/>
       </FlexContainer>
 
-      <Button color="accent" text="Зареєструватися"/>
+      <Button color="accent" text="Зареєструватися" onClick={() => register()} />
 
       <FlexContainer className={styles.name} align="center" gap={10} justify="center" warp>
         <Paragraph>Вже зареєстровані?</Paragraph>
