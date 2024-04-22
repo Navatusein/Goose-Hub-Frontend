@@ -3,21 +3,26 @@
 
   @include clickable;
 
-  height: $height-control-default;
+  height: $height-control-md;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: $gap-sm;
   border-radius: $border-radius-default;
-  padding: $padding-default;
-  font-size: 16px;
+  padding: $padding;
+  font-size: $font-size-md;
+
+  &.square-type {
+    padding: 0;
+    aspect-ratio: 1/1;
+  }
 
   &.small-size {
     --icon-size: 18px;
 
-    height: $height-control-small;
-    font-size: 14px;
-    gap: 5px;
+    height: $height-control-sm;
+    font-size: $font-size-sm;
+    gap: $gap-xs;
   }
 
   .icon {

@@ -9,12 +9,12 @@
   .button {
     @include clickable;
 
-    width: $height-control-large;
-    height: $height-control-large;
+    width: $height-control-lg;
+    height: $height-control-lg;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: $height-control-default;
+    border-radius: $height-control-md;
     padding: 5px 5px;
 
     .icon {

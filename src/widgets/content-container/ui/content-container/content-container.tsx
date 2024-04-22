@@ -1,9 +1,9 @@
 import {FC, useEffect, useState} from "react";
 import styles from "./content-container.module.scss";
 import {commonApi, ContentCard, ContentTypeEnum, IQuery, SortParamEnum} from "@/entities/common";
-import {CardGrid, FlexContainer, Input, Link} from "@/shared/ui-kit";
+import {Button, CardGrid, FlexContainer, Input, Link, Modal} from "@/shared/ui-kit";
 import {FilterCard} from "@/features/filter-card";
-import {AiOutlineSearch} from "react-icons/ai";
+import {AiOutlineControl, AiOutlineSearch} from "react-icons/ai";
 import {useParams} from "react-router-dom";
 import {Pagination} from "@/features/pagination";
 
@@ -25,6 +25,7 @@ const ContentContainer: FC = () => {
   const {contentType} = useParams<PathParams>();
 
   const [query, setQuery] = useState<IQuery>(defaultQuery)
+  const [showFilterModal, setShowFilterModal] = useState(false)
 
   const content = commonApi.useFetchContentQueryQuery(query);
 
@@ -45,8 +46,8 @@ const ContentContainer: FC = () => {
 
   return (
     <FlexContainer vertical gap={30}>
-      <FlexContainer justify="space-between">
-        <FlexContainer align="center">
+      <FlexContainer justify="space-between" className={styles.navigationBar}>
+        <FlexContainer align="center" className={styles.linkContainer}>
           <Link
             text="ВСІ"
             className={`${styles.link} ${query.contentType === undefined && styles.active}`}
@@ -78,13 +79,20 @@ const ContentContainer: FC = () => {
             to="/content/anime"
           />
         </FlexContainer>
-        <Input
-          placeholder="Пошук"
-          icon={<AiOutlineSearch/>}
-          styles={{width: 500}}
-          value={query.query}
-          onChange={(e) => setQuery({...query, query: e.target.value})}
-        />
+        <FlexContainer className={styles.inputContainer}>
+          <Input
+            placeholder="Пошук"
+            icon={<AiOutlineSearch/>}
+            value={query.query}
+            onChange={(e) => setQuery({...query, query: e.target.value})}
+          />
+          <Button
+            type="square"
+            icon={<AiOutlineControl/>}
+            className={styles.filterMenuButton}
+            onClick={() => setShowFilterModal(!showFilterModal)}
+          />
+        </FlexContainer>
       </FlexContainer>
       <FlexContainer gap={20}>
         <CardGrid className={styles.contentGrid}>
@@ -95,11 +103,18 @@ const ContentContainer: FC = () => {
             <ContentCard content={content} key={content.id}/>
           ))}
         </CardGrid>
-        <FilterCard
-          query={query}
-          setQuery={setQuery}
-          className={styles.filterCard}
-        />
+
+        <Modal isOpen={showFilterModal} setIsOpen={setShowFilterModal} className={styles.modal}>
+          <FilterCard
+            query={query}
+            setQuery={setQuery}
+            className={styles.filterCard}
+          />
+        </Modal>
+
+        {/*<div className={styles.modal} aria-hidden={!showFilterModal}>*/}
+        {/*  */}
+        {/*</div>*/}
       </FlexContainer>
       <Pagination
         currentPage={query.page}

@@ -4,11 +4,15 @@
   grid-auto-rows: min-content;
   grid-gap: 20px;
 
-  @include desktop {
+  @include respond-below(1700px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include respond-below(xl) {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  @include desktop {
-    grid-template-columns: repeat(3, 1fr);
+  @include respond-below(sm) {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

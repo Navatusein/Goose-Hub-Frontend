@@ -1,17 +1,28 @@
-$padding-default: 5px 10px;
-$padding-body-default: 200px;
-$padding-body-large: 100px;
-$padding-body-small: 10px;
+$padding: 5px 10px;
+
+
+$padding-body-xl: 200px;
+$padding-body-lg: 100px;
+$padding-body-sm: 10px;
 
 $border-radius-default: 10px;
 $border-radius-circle: 100%;
 
-$height-control-large: 50px;
-$height-control-default: 45px;
-$height-control-small: 32px;
+$height-control-lg: 50px;
+$height-control-md: 45px;
+$height-control-sm: 32px;
 
-$font-size-extra-large: 32px;
-$font-size-large: 24px;
-$font-size-default: 16px;
-$font-size-medium: 14px;
-$font-size-small: 12px;
+$font-size-max: 42px;
+$font-size-xxxl: 36px;
+$font-size-xxl: 32px;
+$font-size-xl: 24px;
+$font-size-lg: 18px;
+$font-size-md: 16px;
+$font-size-sm: 14px;
+$font-size-xs: 12px;
+
+$gap-xl: 30px;
+$gap-lg: 20px;
+$gap-md: 15px;
+$gap-sm: 10px;
+$gap-xs: 5px;

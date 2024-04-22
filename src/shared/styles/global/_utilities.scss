@@ -5,13 +5,13 @@
 }
 
 .hidden-mobile {
-  @include utilities.mobile {
+  @include utilities.respond-below(xs) {
     display: none !important;
   }
 }
 
 .visible-mobile {
-  @include utilities.mobile-above {
+  @include utilities.respond-above(xs) {
     display: none !important;
   }
 }

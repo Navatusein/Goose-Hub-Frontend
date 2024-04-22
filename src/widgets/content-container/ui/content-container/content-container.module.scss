@@ -1,18 +1,71 @@
-.link {
-  font-size: 24px;
-  font-weight: lighter;
+.navigation-bar {
+  .link-container {
+    .link {
+      font-size: $font-size-xl;
+      font-weight: lighter;
 
-  &.active {
-    font-size: 32px;
-    font-weight: bold;
+      @include respond-below(xxs) {
+        font-size: $font-size-sm;
+        font-weight: normal;
+      }
+
+      &.active {
+        font-size: $font-size-xxl;
+        font-weight: bold;
+
+        @include respond-below(xxs) {
+          font-size: $font-size-md;
+        }
+      }
+    }
+
+    @include respond-below(sm) {
+      flex-wrap: wrap;
+    }
+  }
+  .input-container {
+    width: 500px;
+
+    .filterMenuButton {
+      display: none;
+
+      @include respond-below(md) {
+        display: flex;
+      }
+    }
+
+    @include respond-below(md) {
+      width: 100%;
+    }
   }
 
+  @include respond-below(md) {
+    flex-direction: column;
+  }
 }
 
 .content-grid {
   width: 80%;
+
+  @include respond-below(md) {
+    width: 100%;
+  }
 }
 
-.filter-card {
+
+.modal {
+  display: contents;
   width: 20%;
+
+  @include respond-below(md) {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    &[aria-hidden=false] {
+      display: flex;
+    }
+  }
 }

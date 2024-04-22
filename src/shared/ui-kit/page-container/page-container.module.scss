@@ -1,15 +1,15 @@
 .page-container {
-  padding: 10px $padding-body-default;
+  padding: 10px $padding-body-xl;
   display: flex;
   flex-direction: column;
   gap: 30px;
 
-  @include desktop {
-    padding: 10px $padding-body-large;
+  @include respond-below(lg) {
+    padding: 10px $padding-body-lg;
   }
 
-  @include mobile {
-    padding: 10px $padding-body-small;
+  @include respond-below(sm) {
+    padding: 10px $padding-body-sm;
     gap: 15px;
   }
 }

@@ -17,6 +17,7 @@ import CardGrid from "./card-grid/card-grid.tsx";
 import FlexContainer from "./flex-container/flex-container.tsx";
 import PageContainer from "./page-container/page-container.tsx";
 import Paragraph from "@/shared/ui-kit/paragraph/paragraph.tsx";
+import Modal from "./modal/modal.tsx";
 
 export {
   Button,
@@ -37,5 +38,6 @@ export {
   CardGrid,
   FlexContainer,
   PageContainer,
-  Paragraph
+  Paragraph,
+  Modal
 };

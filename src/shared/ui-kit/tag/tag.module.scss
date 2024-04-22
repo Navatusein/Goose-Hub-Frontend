@@ -1,9 +1,9 @@
 .tag {
-  height: $height-control-small;
+  height: $height-control-sm;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: $padding-default;
+  padding: $padding;
   background-color: var(--color-primary);
   color: var(--color-text-primary);
   border: solid 1px var(--color-primary);

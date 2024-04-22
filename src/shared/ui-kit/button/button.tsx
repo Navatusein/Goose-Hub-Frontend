@@ -8,12 +8,12 @@ interface IProps {
   className?: string;
   onClick?: MouseEventHandler;
   color?: "primary" | "accent" | "danger";
-  type?: "default" | "outline" | "round";
+  type?: "default" | "outline" | "round" | "square";
   size?: "default" | "small";
 }
 
 const Button: FC<IProps> = (props) => {
-  const types = {"default": "", "outline": styles.outlineType, "round": styles.roundType};
+  const types = {"default": "", "outline": styles.outlineType, "round": styles.roundType, "square": styles.squareType};
   const colors = {"primary": "", "accent": styles.accentColor, "danger": styles.dangerColor};
   const sizes = {"default": "", "small": styles.smallSize}
 

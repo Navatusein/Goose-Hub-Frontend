@@ -1,42 +1,43 @@
 .footer {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 10px $padding-body-default;
+  gap: $gap-sm;
+  padding: 10px $padding-body-xl;
 
   .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: $gap-md;
 
-    @include tablet {
+    @include respond-below(sm) {
       flex-direction: column;
     }
   }
 
   .link-container {
     display: flex;
-    gap: 20px;
+    gap: $gap-lg;
     align-items: center;
 
     .link {
-      font-size: 18px;
+      font-size: $font-size-lg;
 
-      @include desktop {
-        font-size: 16px;
+      @include respond-below(lg) {
+        font-size: $font-size-sm;
       }
     }
 
-    @include tablet {
+    @include respond-below(sm) {
       flex-direction: column;
     }
   }
 
-  @include desktop {
-    padding: 10px $padding-body-large;
+  @include respond-below(lg) {
+    padding: 10px $padding-body-lg;
   }
 
-  @include tablet {
-    padding: 10px $padding-body-small;
+  @include respond-below(sm) {
+    padding: 10px $padding-body-sm;
   }
 }
