@@ -1,41 +1,112 @@
-import {ChangeEvent, CSSProperties, FC, useState} from "react";
+import {CSSProperties, FC, useState} from "react";
 import styles from "./sign-up.module.scss";
 import {InputWithLabel, Input, Checkbox, Link, Button, FlexContainer, Paragraph} from "@/shared/ui-kit";
-import {IRegisterData, userApi} from "@/entities/user";
+import {IRegisterData, IUser, userApi} from "@/entities/user";
+import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
+import {IError} from "@/entities/error";
+import {SerializedError} from "@reduxjs/toolkit";
+import {useNavigate} from "react-router-dom";
 
 interface IProps {
   className?: string;
   style?: CSSProperties;
 }
 
-interface IError {
+interface IFormData extends IRegisterData {
+  repeatPassword: string;
+}
+
+interface IFormError {
   email: string | undefined;
   repeatPassword: string | undefined;
+  password: string | undefined;
   name: string | undefined;
 }
 
-const SignUp: FC<IProps> = (props) => {
-  const [registerData, setRegisterData] = useState<IRegisterData>({email: "", password: "", name: ""});
-  const [error, setError] = useState<IError>(
-    {email: undefined, name: undefined, repeatPassword: undefined}
-  );
+const defaultFormData: IFormData = {
+  email: "",
+  password: "",
+  repeatPassword: "",
+  name: ""
+}
 
-  const [repeatPassword, setRepeatPassword] = useState("");
+const defaultFormError: IFormError = {
+  email: undefined,
+  repeatPassword: undefined,
+  password: undefined,
+  name: undefined
+}
+
+const SignUp: FC<IProps> = (props) => {
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState<IFormData>(defaultFormData);
+  const [error, setError] = useState<IFormError>(defaultFormError);
+  const [isChecked, setIsChecked] = useState<boolean>(false);
 
   const [registerUser] = userApi.useRegisterUserMutation();
 
-  const comparePasswords = (e:  ChangeEvent<HTMLInputElement>) => {
-    setRepeatPassword(e.target.value);
-    if(registerData.password !== e.target.value){
-      setError({...error, repeatPassword: "Паролі не співпадають"})
-    }
-    else if (registerData.password === e.target.value) {
-      setError({...error, repeatPassword: undefined})
-    }
-  }
-
   const register = async () => {
-    await registerUser(registerData);
+    setError(() => {
+      return {...defaultFormError}
+    });
+
+    const emailRegular = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+    if (!emailRegular.test(formData.email)) {
+      setError((prevState) => {
+        return {...prevState, email: "Невірна почта"}
+      });
+      return;
+    }
+
+    let errorPasswordMessage = "";
+    if (formData.password.length < 6) {
+      errorPasswordMessage += "Мінімальна довжина 6 символів\n";
+    }
+
+    if (!/[A-Za-z]/.test(formData.password)) {
+      errorPasswordMessage += "Має містити букви\n";
+    }
+
+    if (!/\d/.test(formData.password)) {
+      errorPasswordMessage += "Має містити цифри\n";
+    }
+
+    if (!/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(formData.password)) {
+      errorPasswordMessage += "Має містити спеціальні символи\n";
+    }
+
+    if (errorPasswordMessage.length > 0) {
+      setError((prevState) => {
+        return {...prevState, password: errorPasswordMessage}
+      });
+      return;
+    }
+
+    if (formData.password !== formData.repeatPassword) {
+      setError((prevState) => {
+        return {...prevState, repeatPassword: "Паролі не співпадають"}
+      });
+      return;
+    }
+
+    const registerData: IRegisterData = {
+      email: formData.email,
+      name: formData.name,
+      password: formData.password
+    }
+    //TODO Fix this type shit
+    const result: {data?: IUser, error?: FetchBaseQueryError | SerializedError} = await registerUser(registerData);
+
+    if ((result.error as FetchBaseQueryError)?.data !== undefined) {
+      console.log((result.error as FetchBaseQueryError).data);
+      setError((prevState) => {
+        return {...prevState, email: ((result.error as FetchBaseQueryError).data as IError)?.message}
+      });
+      return;
+    }
+
+    navigate("/content");
   }
 
   return (
@@ -44,7 +115,7 @@ const SignUp: FC<IProps> = (props) => {
       style={props.style}
     >
       <FlexContainer gap={10} justify="start" align="center" vertical>
-        <h3>Реєстрація</h3>
+        <h2>Реєстрація</h2>
         <Paragraph color="secondary">Вітаємо Вас на нашому сайті!</Paragraph>
       </FlexContainer>
 
@@ -52,42 +123,48 @@ const SignUp: FC<IProps> = (props) => {
         <InputWithLabel label="Пошта">
           <Input
             placeholder="Пошта"
-            value={registerData.email}
+            value={formData.email}
             error={error.email}
-            onChange={(e) => {setRegisterData({...registerData, email: e.target.value})}}/>
+            name="email"
+            onChange={(e) => {
+              setFormData({...formData, email: e.target.value, });
+              setError({...error, email: undefined});
+            }}/>
         </InputWithLabel>
         <InputWithLabel label="Нікнейм">
           <Input
             placeholder="Нікнейм"
-            value={registerData.name}
+            value={formData.name}
             error={error.name}
-            onChange={(e) => {setRegisterData({...registerData, name: e.target.value})}}/>
+            name="nickname"
+            onChange={(e) => {setFormData({...formData, name: e.target.value})}}/>
         </InputWithLabel>
         <InputWithLabel label="Пароль">
           <Input
             type="password"
             placeholder="Пароль"
-            value={registerData.password}
-            onChange={(e) => {setRegisterData({...registerData, password: e.target.value})}}/>
+            value={formData.password}
+            error={error.password}
+            onChange={(e) => {setFormData({...formData, password: e.target.value})}}/>
         </InputWithLabel>
         <InputWithLabel label="Повторіть пароль">
           <Input
             type="password"
             placeholder="Повторіть пароль"
-            value={repeatPassword}
-            onChange={(e) => {comparePasswords(e)}}
+            value={formData.repeatPassword}
+            onChange={(e) => {setFormData({...formData, repeatPassword: e.target.value})}}
             error={error.repeatPassword}
           />
         </InputWithLabel>
       </FlexContainer>
 
       <FlexContainer align="center" gap={10} warp>
-        <Checkbox/>
+        <Checkbox onChange={(e) => {setIsChecked(e.target.checked)}} />
         <Paragraph fontSize="medium">Погоджуюся з</Paragraph>
         <Link text="Правилами користування" size="small" color="accent" to="#"/>
       </FlexContainer>
 
-      <Button color="accent" text="Зареєструватися" onClick={() => register()} />
+      <Button color="accent" disabled={!isChecked} text="Зареєструватися" onClick={() => register()} />
 
       <FlexContainer className={styles.name} align="center" gap={10} justify="center" warp>
         <Paragraph>Вже зареєстровані?</Paragraph>

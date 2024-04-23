@@ -9,9 +9,6 @@ interface IProps {
 }
 
 const UserAvatar: FC<IProps> = (props) => {
-
-  console.log(props.userProfile);
-
   return (
     <div className={`${styles.avatar} ${props.className ?? ""}`} style={props.style}>
       {props.userProfile.avatarUrl !== null && (

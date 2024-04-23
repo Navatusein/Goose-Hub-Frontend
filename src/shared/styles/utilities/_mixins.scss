@@ -153,7 +153,6 @@
 
     &.error {
       border: solid 1px var(--color-danger);
-
       &::placeholder, & P.placeholder {
         color: var(--color-danger);
       }
@@ -165,6 +164,7 @@
   }
 
   &:has(.field.error) {
+    white-space: pre;
     color: var(--color-danger);
   }
 }
