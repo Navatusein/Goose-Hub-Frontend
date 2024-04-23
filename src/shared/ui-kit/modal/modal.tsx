@@ -1,4 +1,4 @@
-import {CSSProperties, FC, ReactNode, useRef} from "react";
+import {CSSProperties, FC, ReactNode, useEffect, useRef} from "react";
 import styles from "./modal.module.scss";
 import {useClickOutside} from "@/shared/hooks/use-click-outside.ts";
 
@@ -14,6 +14,11 @@ const Modal: FC<IProps> = (props) => {
   const ref = useRef(null);
 
   useClickOutside(ref, () => {props.setIsOpen(false)});
+
+  useEffect(() => {
+    const body = document.querySelector('body')!;
+    body.style.overflow = props.isOpen ? "hidden" : "auto";
+  }, [props.isOpen])
 
   return (
     <>
