@@ -36,6 +36,12 @@
   border: solid 1px var(--clickable-border-color);
   cursor: pointer;
 
+  &:disabled {
+    background-color: var(--color-disabled);
+    border-color: var(--color-disabled);
+    color: var(--color-text-secondary);
+  }
+
   &.secondary-color {
     --clickable-background-color: var(--color-secondary);
     --clickable-border-color: var(--color-secondary);
@@ -98,7 +104,7 @@
     border: solid 1px var(--clickable-hover-border-color);
   }
 
-  &:active:is([aria-disabled=false], :not([aria-disabled])) {
+  &:active:is([aria-disabled=false], :not([aria-disabled])),  {
     color: var(--clickable-active-color);
     background-color: var(--clickable-active-background-color);
     border: solid 1px var(--clickable-active-border-color);

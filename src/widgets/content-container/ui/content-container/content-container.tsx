@@ -87,7 +87,7 @@ const ContentContainer: FC = () => {
             onChange={(e) => setQuery({...query, query: e.target.value})}
           />
           <Button
-            type="square"
+            shape="square"
             icon={<AiOutlineControl/>}
             className={styles.filterMenuButton}
             onClick={() => setShowFilterModal(!showFilterModal)}
@@ -111,10 +111,6 @@ const ContentContainer: FC = () => {
             className={styles.filterCard}
           />
         </Modal>
-
-        {/*<div className={styles.modal} aria-hidden={!showFilterModal}>*/}
-        {/*  */}
-        {/*</div>*/}
       </FlexContainer>
       <Pagination
         currentPage={query.page}

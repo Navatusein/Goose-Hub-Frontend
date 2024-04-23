@@ -17,9 +17,12 @@ const SignIn: FC<IProps> = (props) => {
   const login = async () => {
     const result = await loginUser(loginData);
 
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    setError(result.error.data.message ?? undefined);
+    if (result.error !== undefined) {
+      setError(result?.error?.data.message ?? undefined);
+      return
+    }
+
+    setError(undefined);
   }
 
   return (
@@ -36,6 +39,7 @@ const SignIn: FC<IProps> = (props) => {
         <InputWithLabel label="Пошта" >
           <Input
             placeholder="Пошта"
+            name="email"
             value={loginData.email}
             onChange={(e) => {setLoginData({...loginData, email: e.target.value})}}
             error={error}
@@ -44,6 +48,7 @@ const SignIn: FC<IProps> = (props) => {
         <InputWithLabel label="Пароль">
           <Input
             placeholder="Пароль"
+            name="password"
             type="password"
             value={loginData.password}
             onChange={(e) => {setLoginData({...loginData, password: e.target.value})}}

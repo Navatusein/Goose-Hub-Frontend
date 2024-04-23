@@ -1,7 +1,7 @@
 import {commonApi} from "./api/common-api";
 import {uploadCommonPictureApi} from "./api/upload-common-picture-api";
 import ContentCard from "./ui/content-card/content-card";
-import ContentCarouselCard from "@/entities/common/ui/content-carousel-card/content-carousel-card.tsx";
+import ContentCarouselCard from "./ui/content-carousel-card/content-carousel-card.tsx";
 import {
   IPreview,
   IQuery,

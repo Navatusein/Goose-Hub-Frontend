@@ -12,6 +12,18 @@
     z-index: 1;
   }
 
+  .menu-container {
+    @include respond-below(sm) {
+      display: none !important;
+    }
+  }
+
+  .burger-menu-container {
+    @include respond-above(sm) {
+      display: none !important;
+    }
+  }
+
   @include respond-below(lg) {
     padding: 10px $padding-body-lg;
   }

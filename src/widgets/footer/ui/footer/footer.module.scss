@@ -12,6 +12,7 @@
 
     @include respond-below(sm) {
       flex-direction: column;
+      gap: $gap-sm;
     }
   }
 
@@ -24,12 +25,13 @@
       font-size: $font-size-lg;
 
       @include respond-below(lg) {
-        font-size: $font-size-sm;
+        font-size: $font-size-md;
       }
     }
 
     @include respond-below(sm) {
       flex-direction: column;
+      gap: $gap-sm;
     }
   }
 

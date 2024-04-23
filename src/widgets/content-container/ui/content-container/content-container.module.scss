@@ -5,8 +5,8 @@
       font-weight: lighter;
 
       @include respond-below(xxs) {
-        font-size: $font-size-sm;
-        font-weight: normal;
+        font-size: $font-size-md;
+        //font-weight: normal;
       }
 
       &.active {
@@ -14,7 +14,7 @@
         font-weight: bold;
 
         @include respond-below(xxs) {
-          font-size: $font-size-md;
+          font-size: $font-size-lg;
         }
       }
     }

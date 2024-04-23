@@ -12,7 +12,6 @@ interface IError {
   email: string | undefined;
   repeatPassword: string | undefined;
   name: string | undefined;
-
 }
 
 const SignUp: FC<IProps> = (props) => {

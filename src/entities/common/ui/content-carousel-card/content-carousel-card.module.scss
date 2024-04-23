@@ -8,6 +8,7 @@
 
   & img {
     object-fit: cover;
+    object-position: top;
     width: 100%;
     height: 100%;
   }
@@ -49,7 +50,7 @@
       width: 60%;
     }
 
-    @include respond-below(xs) {
+    @include respond-below(sm) {
       left: 0;
       padding: 0 $padding-body-sm;
       width: 100%;
