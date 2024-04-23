@@ -3,8 +3,9 @@ import styles from "./header.module.scss"
 import {Button, FlexContainer, Logo} from "@/shared/ui-kit";
 import {AiOutlineBell, AiOutlineFolder, AiOutlineMenu, AiOutlineUser} from "react-icons/ai";
 import {useNavigate} from "react-router-dom";
-import {useAppSelector} from "@/shared/hooks/use-app-selector.ts";
+import {useAppDispatch, useAppSelector} from "@/shared/hooks/use-app-selector.ts";
 import {UserAvatar, userProfileApi} from "@/entities/user-profile";
+import {logout} from "@/entities/user/model/user-slice.ts";
 
 interface IProps {
   isAbsolute?: boolean;
@@ -14,10 +15,11 @@ interface IProps {
 
 const Header: FC<IProps> = (props) => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const {user} = useAppSelector(state => state.user);
 
-  const userProfile = userProfileApi.useFetchByTokenQuery(undefined, {skip: user === undefined});
+  const userProfile = userProfileApi.useFetchQuery(user?.userId ?? "", {skip: user === undefined});
 
   return (
     <header
@@ -29,12 +31,12 @@ const Header: FC<IProps> = (props) => {
         {user === undefined && (
           <Button text="Вхід" type="outline" icon={<AiOutlineUser/>} onClick={() => navigate("/login")}/>
         )}
-        {userProfile.data !== undefined && (
+        {(user !== undefined && userProfile.data !== undefined) && (
           <>
             <Button type="outline" shape="square" icon={<AiOutlineFolder/>}/>
             <Button type="outline" shape="square" icon={<AiOutlineBell/>}/>
             <FlexContainer align="center">
-              <UserAvatar userProfile={userProfile!.data}/>
+              <UserAvatar userProfile={userProfile!.data} onClick={() => {dispatch(logout())}}/>
               {userProfile.data?.name}
             </FlexContainer>
           </>

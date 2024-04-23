@@ -26,12 +26,7 @@ const FlexContainer: FC<IProps> = (props) => {
     "center": styles.alignCenter
   }
 
-  const configStyles = `
-    ${props.justify && justify[props.justify]} 
-    ${props.align && align[props.align]} 
-    ${props.vertical === true && styles.vertical}
-    ${props.warp === true && styles.warp}
-  `;
+  const configStyles = `${props.justify && justify[props.justify]} ${props.align && align[props.align]} ${props.vertical === true && styles.vertical} ${props.warp === true && styles.warp}`;
 
   return (
     <div

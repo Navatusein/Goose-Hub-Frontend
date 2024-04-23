@@ -1,5 +1,6 @@
-import {CSSProperties, FC, ReactNode} from "react";
+import {CSSProperties, FC, ReactNode, useRef} from "react";
 import styles from "./modal.module.scss";
+import {useClickOutside} from "@/shared/hooks/use-click-outside.ts";
 
 interface IProps {
   isOpen: boolean;
@@ -10,9 +11,20 @@ interface IProps {
 }
 
 const Modal: FC<IProps> = (props) => {
+  const ref = useRef(null);
+
+  useClickOutside(ref, () => {props.setIsOpen(false)});
+
   return (
     <>
-      <div className={`${styles.modalRoot} ${props.className}`} style={props.style}>
+      <div
+        className={`${styles.modalBackground} ${!props.isOpen && styles.hidden}`}
+      />
+      <div
+        className={`${styles.modal} ${props.className} ${!props.isOpen && styles.hidden}`}
+        style={props.style}
+        ref={ref}
+      >
         {props.children}
       </div>
     </>

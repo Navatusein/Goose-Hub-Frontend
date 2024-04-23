@@ -52,20 +52,9 @@
   }
 }
 
-
 .modal {
-  display: contents;
-  width: 20%;
-
-  @include respond-below(md) {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    &[aria-hidden=false] {
-      display: flex;
-    }
+  @include respond-above(md) {
+    display: contents !important;
+    width: 20%;
   }
 }

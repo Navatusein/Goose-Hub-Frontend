@@ -1,7 +1,11 @@
 import {CSSProperties, FC, useState} from "react";
 import {InputWithLabel, Input, Link, Button, FlexContainer, Paragraph} from "@/shared/ui-kit";
 import styles from "./sign-in.module.scss";
-import {ILoginData, userApi} from "@/entities/user";
+import {ILoginData, IUser, userApi} from "@/entities/user";
+import {FetchBaseQueryError} from "@reduxjs/toolkit/query";
+import {SerializedError} from "@reduxjs/toolkit";
+import {IError} from "@/entities/error";
+import {useNavigate} from "react-router-dom";
 
 interface IProps {
   className?: string;
@@ -9,20 +13,24 @@ interface IProps {
 }
 
 const SignIn: FC<IProps> = (props) => {
+  const navigate = useNavigate();
+
   const [loginData, setLoginData] = useState<ILoginData>({email: "", password: ""});
   const [error, setError] = useState<string | undefined>(undefined);
 
   const [loginUser] = userApi.useLoginUserMutation();
 
   const login = async () => {
-    const result = await loginUser(loginData);
+    //TODO Fix this type shit
+    const result: {data?: IUser, error?: FetchBaseQueryError | SerializedError} = await loginUser(loginData);
 
-    if (result.error !== undefined) {
-      setError(result?.error?.data.message ?? undefined);
-      return
+    if ((result.error as FetchBaseQueryError).data !== undefined) {
+      setError(((result.error as FetchBaseQueryError).data as IError)?.message ?? undefined);
+      return;
     }
 
     setError(undefined);
+    navigate("/login")
   }
 
   return (

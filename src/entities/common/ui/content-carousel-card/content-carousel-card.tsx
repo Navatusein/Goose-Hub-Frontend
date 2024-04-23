@@ -17,7 +17,7 @@ const ContentCarouselCard: FC<IProps> = (props) => {
       <div className={styles.information}>
         <h1>{props.content.name}</h1>
         <Paragraph>{props.content.description}</Paragraph>
-        <Button text="Дивитись" disabled icon={<AiOutlinePlayCircle/>} className={styles.button} color="accent"/>
+        <Button text="Дивитись" icon={<AiOutlinePlayCircle/>} className={styles.button} color="accent"/>
       </div>
     </section>
   );

@@ -12,7 +12,7 @@ const ContentCard: FC<IProps> = (props) => {
   const contentType = ["Movie", "Serial", "Cartoon", "Anime"];
 
   return (
-    <div className={`${styles.cardContainer} ${props.className ?? ""}`} style={props.styles} onClick={() => {console.log(props.content.id)}}>
+    <div className={`${styles.cardContainer} ${props.className ?? ""}`} style={props.styles}>
       <div className={styles.poster}>
         {props.content.posterUrl && (
           <img src={props.content.posterUrl} alt={props.content.name}/>

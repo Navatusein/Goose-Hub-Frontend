@@ -6,6 +6,7 @@ import {FilterCard} from "@/features/filter-card";
 import {AiOutlineControl, AiOutlineSearch} from "react-icons/ai";
 import {useParams} from "react-router-dom";
 import {Pagination} from "@/features/pagination";
+import useMediaQuery from "@/shared/hooks/use-media-query.ts";
 
 type PathParams = {
   contentType?: "movie" | "serial" | "cartoon" | "anime";
@@ -23,6 +24,8 @@ const defaultQuery: IQuery = {
 
 const ContentContainer: FC = () => {
   const {contentType} = useParams<PathParams>();
+
+  const closeFilterMenu = useMediaQuery("(max-width: 1024px)")
 
   const [query, setQuery] = useState<IQuery>(defaultQuery)
   const [showFilterModal, setShowFilterModal] = useState(false)
@@ -103,8 +106,7 @@ const ContentContainer: FC = () => {
             <ContentCard content={content} key={content.id}/>
           ))}
         </CardGrid>
-
-        <Modal isOpen={showFilterModal} setIsOpen={setShowFilterModal} className={styles.modal}>
+        <Modal isOpen={showFilterModal && closeFilterMenu} setIsOpen={setShowFilterModal} className={styles.modal}>
           <FilterCard
             query={query}
             setQuery={setQuery}

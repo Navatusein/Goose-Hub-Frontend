@@ -3,6 +3,7 @@ import styles from "./pagination.module.scss";
 import {Button, FlexContainer} from "@/shared/ui-kit";
 import {AiOutlineEllipsis, AiOutlineLeft, AiOutlineRight} from "react-icons/ai";
 import {DOTS, usePagination} from "@/features/pagination/hooks/usePagination.ts";
+import useMediaQuery from "@/shared/hooks/use-media-query.ts";
 
 interface IProps {
   currentPage: number;
@@ -14,7 +15,9 @@ interface IProps {
 
 const Pagination: FC<IProps> = (props) => {
 
-  const paginationRange = usePagination(props.total, props.currentPage)!;
+  const sibling = useMediaQuery("(max-width: 460px)");
+  const paginationRange = usePagination(props.total, props.currentPage, sibling ? 0 : 1)!;
+
 
   if (paginationRange.length < 2) {
     return null;
@@ -35,28 +38,30 @@ const Pagination: FC<IProps> = (props) => {
   };
 
   return (
-    <FlexContainer className={`${props.className ?? ""}`} styles={props.styles}>
-      <Button icon={<AiOutlineLeft/>} className={styles.button} onClick={onPrevious}/>
-
-      {paginationRange.map((pageNumber, index) => (
-        <div key={index}>
-          {pageNumber === DOTS && (
-            <div className={styles.dots}>
-              <AiOutlineEllipsis/>
-            </div>
-          )}
-          {pageNumber !== DOTS && (
-            <Button
-              text={pageNumber.toString()}
-              className={styles.button}
-              color={pageNumber === props.currentPage ? "accent" : "primary"}
-              onClick={() => props.setCurrentPage(pageNumber)}
-            />
-          )}
-        </div>
-      ))}
-
-      <Button icon={<AiOutlineRight/>} className={styles.button} onClick={onNext}/>
+    <FlexContainer className={`${styles.container} ${props.className ?? ""}`} styles={props.styles}>
+      <FlexContainer className={styles.buttonsContainer}>
+        {paginationRange.map((pageNumber, index) => (
+          <div key={index} className={styles.buttonContainer}>
+            {pageNumber === DOTS && (
+              <div className={styles.button}>
+                <AiOutlineEllipsis/>
+              </div>
+            )}
+            {pageNumber !== DOTS && (
+              <Button
+                text={pageNumber.toString()}
+                className={styles.button}
+                color={pageNumber === props.currentPage ? "accent" : "primary"}
+                onClick={() => props.setCurrentPage(pageNumber)}
+              />
+            )}
+          </div>
+        ))}
+      </FlexContainer>
+      <FlexContainer className={styles.controlsContainer}>
+        <Button icon={<AiOutlineLeft/>} className={`${styles.button} ${styles.flexLeft}`} onClick={onPrevious}/>
+        <Button icon={<AiOutlineRight/>} className={`${styles.button} ${styles.flexRight}`} onClick={onNext}/>
+      </FlexContainer>
     </FlexContainer>
   );
 };

@@ -6,9 +6,9 @@ export const userProfileApi = createApi({
   reducerPath: "userProfileApi",
   baseQuery: baseQueryWithRefresh,
   endpoints: (builder) => ({
-    fetchByToken: builder.query<IUserProfile, void>({
-      query: () => ({
-        url: `/user-profile-api/v1/profile/`,
+    fetch: builder.query<IUserProfile, string>({
+      query: (userId) => ({
+        url: `/user-profile-api/v1/profile/${userId}`,
         method: "GET"
       })
     }),
