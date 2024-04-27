@@ -111,6 +111,42 @@
   }
 }
 
+@mixin infoPage {
+  .container {
+    padding-inline: 200px;
+    padding-block: 10px;
+    @include respond-below(xl) {
+      padding-inline: 100px;
+    }
+    @include respond-below(md) {
+      padding-inline: 50px;
+    }
+
+    @include respond-below(sm) {
+      padding-inline: 15px;
+    }
+  }
+
+  .content {
+    padding: 30px;
+    background-color: var(--color-secondary);
+    border-radius: $border-radius-default;
+
+    ol {
+      list-style: decimal;
+      list-style-position: inside;
+    }
+    ul {
+      list-style-type: disc;
+      margin-left: 30px;
+    }
+  }
+
+  h1{
+    margin-inline: 15px;
+  }
+}
+
 @mixin input {
   display: flex;
   flex-direction: column;

@@ -6,6 +6,8 @@ import {MainPage} from "@/pages/main";
 import {ErrorPage} from "@/pages/error";
 import {SignInPage} from "@/pages/sign-in";
 import {SignUpPage} from "@/pages/sign-up";
+import {LawmakersPage} from "@/pages/lawmakers"
+import {PrivacyPolicyPage} from "@/pages/privacy-policy";
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +33,14 @@ export const router = createBrowserRouter([
       {
         path: "/register",
         element: <SignUpPage/>
+      },
+      {
+        path: "/lawmakers",
+        element: <LawmakersPage/>
+      },
+      {
+        path: "/privacy-policy",
+        element: <PrivacyPolicyPage/>
       },
       {
         element: <ProtectedLayout requiredRoles={["User", "Admin"]}/>,
