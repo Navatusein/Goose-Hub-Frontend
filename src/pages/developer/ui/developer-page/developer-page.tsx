@@ -13,20 +13,16 @@ import {
 } from "@/shared/ui-kit";
 import {AiOutlineComment, AiOutlineDelete, AiOutlinePlayCircle} from "react-icons/ai";
 import styles from "./developer-page.module.scss";
-import {uploadCommonPictureApi} from "@/entities/common";
+import {useHeaderAbsolute} from "@/shared/hooks/use-header-absolute.ts";
 
 
 const DeveloperPage: FC = () => {
-  const [deleteBanner] = uploadCommonPictureApi.useDeleteBannerMutation();
-
-  const onClick = () => {
-    deleteBanner("65f4b18bc968cbe19a723dd2");
-  };
+  useHeaderAbsolute();
 
   return (
     <div className={styles.verticalContainer}>
 
-      <Button type="default" color="primary" text="Delete" icon={<AiOutlinePlayCircle/>} onClick={onClick}/>
+      <Button type="default" color="primary" text="Delete" icon={<AiOutlinePlayCircle/>}/>
 
       <div className={styles.horizontalContainer}>
         <Button type="default" color="primary" text="Дивитися" icon={<AiOutlinePlayCircle/>}/>

@@ -1,17 +1,19 @@
 import {CSSProperties, FC, ReactNode} from "react";
 import styles from "./page-container.module.scss";
+import {FlexContainer} from "@/shared/ui-kit";
 
 interface IProps {
   children: ReactNode;
   styles?: CSSProperties;
   className?: string;
+  horizontal?: boolean;
 }
 
 const PageContainer: FC<IProps> = (props) => {
   return (
-    <div className={`${styles.pageContainer} ${props.className ?? ""}`} style={props.styles}>
+    <FlexContainer className={`${styles.pageContainer} ${props.className ?? ""}`} styles={props.styles} vertical={!props.horizontal}>
       {props.children}
-    </div>
+    </FlexContainer>
   );
 };
 

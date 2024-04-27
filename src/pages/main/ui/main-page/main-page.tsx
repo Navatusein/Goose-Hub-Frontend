@@ -1,17 +1,12 @@
-import {FC, useEffect} from "react";
+import {FC} from "react";
 // import styles from "./main-page.module.scss"
-import {useOutletContext} from "react-router-dom";
-import {IContext} from "@/shared/types/types.ts";
 import {FlexContainer, PageContainer} from "@/shared/ui-kit";
 import {ContentContainer} from "@/widgets/content-container";
 import {ContentCarousel} from "@/widgets/content-carousel";
+import {useHeaderAbsolute} from "@/shared/hooks/use-header-absolute.ts";
 
 const MainPage: FC = () => {
-  const {setIsHeaderAbsolute} = useOutletContext<IContext>();
-
-  useEffect(() => {
-    setIsHeaderAbsolute(true);
-  })
+  useHeaderAbsolute(true);
 
   return (
     <FlexContainer gap={30} vertical>

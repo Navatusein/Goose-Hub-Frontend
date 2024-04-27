@@ -8,6 +8,7 @@ import {SignInPage} from "@/pages/sign-in";
 import {SignUpPage} from "@/pages/sign-up";
 import {LawmakersPage} from "@/pages/lawmakers"
 import {PrivacyPolicyPage} from "@/pages/privacy-policy";
+import {PlayerPage} from "@/pages/player";
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
       {
         path: "/content/:contentType?",
         element: <MainPage/>
+      },
+      {
+        path: "/content/:contentType/:contentId/",
+        element: <PlayerPage/>
       },
       {
         path: "/dev",

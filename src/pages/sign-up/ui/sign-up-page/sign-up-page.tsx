@@ -1,17 +1,12 @@
-import {FC, useEffect} from "react";
+import {FC} from "react";
 import styles from "./sign-up-page.module.scss";
 import {FlexContainer} from "@/shared/ui-kit";
-import {useOutletContext} from "react-router-dom";
-import {IContext} from "@/shared/types/types.ts";
 import {SignUp} from "@/widgets/sign-up";
+import {useHeaderAbsolute} from "@/shared/hooks/use-header-absolute.ts";
 
 
 const SignUpPage: FC = () => {
-  const {setIsHeaderAbsolute} = useOutletContext<IContext>();
-
-  useEffect(() => {
-    setIsHeaderAbsolute(false);
-  })
+  useHeaderAbsolute();
 
   return (
     <FlexContainer vertical gap={30} justify="center" align="center" className={styles.container}>

@@ -30,7 +30,7 @@ const ContentContainer: FC = () => {
   const [query, setQuery] = useState<IQuery>(defaultQuery)
   const [showFilterModal, setShowFilterModal] = useState(false)
 
-  const content = commonApi.useFetchContentQueryQuery(query);
+  const content = commonApi.useFetchByFilterQuery(query);
 
   useEffect(() => {
     const contentTypeList = {

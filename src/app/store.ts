@@ -51,4 +51,4 @@ export const store = configureStore({
 
 export type RootState = ReturnType<typeof rootReducer>
 export type AppStore = ReturnType<typeof configureStore>
-export type AppDispatch = AppStore['dispatch']
+export type AppDispatch = typeof store.dispatch

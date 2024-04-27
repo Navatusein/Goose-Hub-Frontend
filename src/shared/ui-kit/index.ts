@@ -18,6 +18,7 @@ import FlexContainer from "./flex-container/flex-container.tsx";
 import PageContainer from "./page-container/page-container.tsx";
 import Paragraph from "@/shared/ui-kit/paragraph/paragraph.tsx";
 import Modal from "./modal/modal.tsx";
+import Card from "./card/card.tsx";
 
 export {
   Button,
@@ -39,5 +40,6 @@ export {
   FlexContainer,
   PageContainer,
   Paragraph,
-  Modal
+  Modal,
+  Card
 };

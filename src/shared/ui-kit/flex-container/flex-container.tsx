@@ -31,7 +31,7 @@ const FlexContainer: FC<IProps> = (props) => {
   return (
     <div
       className={`${styles.flexContainer} ${configStyles} ${props.className ?? ""}`}
-      style={{gap: props.gap ?? 10, ...props.styles}}
+      style={{gap: typeof(props.gap) === "number" ? props.gap : 10, ...props.styles}}
     >
       {props.children}
     </div>

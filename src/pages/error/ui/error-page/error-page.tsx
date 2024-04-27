@@ -1,14 +1,17 @@
 import {FC} from "react";
-import {useRouteError} from "react-router-dom";
+import {isRouteErrorResponse, useRouteError} from "react-router-dom";
 
 const ErrorPage: FC = () => {
-  console.error(useRouteError());
+  const error = useRouteError();
 
-  return (
-    <div>
-      Error
-    </div>
-  );
+  console.error(error);
+
+  if (isRouteErrorResponse(error)) {
+    switch (error.status) {
+      case 404:
+        return "Page not found";
+    }
+  }
 };
 
 export default ErrorPage;
