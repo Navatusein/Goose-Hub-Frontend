@@ -1,6 +1,8 @@
 import {createBrowserRouter} from "react-router-dom";
 import BaseLayout from "@/app/layouts/base-layout/base-layout.tsx";
 import ProtectedLayout from "@/app/layouts/protected-layout/protected-layout.tsx";
+import ProfileLayout from "@/app/layouts/profile-layout/profile-layout.tsx";
+import ProfileCommentsPage from "@/pages/profile-comments-page";
 import {DeveloperPage} from "@/pages/developer";
 import {MainPage} from "@/pages/main";
 import {ErrorPage} from "@/pages/error";
@@ -51,8 +53,13 @@ export const router = createBrowserRouter([
         element: <ProtectedLayout requiredRoles={["User", "Admin"]}/>,
         children: [
           {
-            path: "/auth",
-            element: <div>Auth</div>,
+            element: <ProfileLayout/>,
+            children: [
+              {
+                path: "/profile/comments",
+                element: <ProfileCommentsPage/>
+              }
+            ]
           }
         ]
       },
@@ -64,7 +71,8 @@ export const router = createBrowserRouter([
             element: <div>Admin</div>,
           }
         ]
-      }
+      },
+
     ],
   }
 ])

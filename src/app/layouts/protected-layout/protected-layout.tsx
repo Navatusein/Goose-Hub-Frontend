@@ -3,6 +3,7 @@ import {Navigate, Outlet} from "react-router-dom";
 import {UserRoles} from "@/entities/user";
 import {useAppSelector} from "@/shared/hooks/use-app-selector.ts";
 import {jwtDecoder} from "@/shared/helpers/jwt-decoder.ts";
+import {useHeaderAbsolute} from "@/shared/hooks/use-header-absolute.ts";
 
 
 interface IPros {
@@ -10,6 +11,7 @@ interface IPros {
 }
 
 const ProtectedLayout: FC<IPros> = ({requiredRoles}) => {
+  useHeaderAbsolute();
   const {user} = useAppSelector(state => state.user);
 
   const jwtPayload = useMemo(() => {

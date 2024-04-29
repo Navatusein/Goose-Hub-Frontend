@@ -8,33 +8,33 @@ export const commentApi = createApi({
   endpoints: (builder) => ({
     delete: builder.query<void, string>({
       query: (id) => ({
-        url: `/api/comment-api/v1/comment/${id}`,
+        url: `/comment-api/v1/comment/${id}`,
         method: "DELETE"
       }),
     }),
     fetchContentById: builder.query<IComment, string>({
       query: (id) => ({
-        url: `/api/comment-api/v1/content/${id}`,
+        url: `/comment-api/v1/content/${id}`,
         method: "GET"
       }),
     }),
-    createContentById: builder.query<IComment, {id: string, comment: IComment}>({
+    createContentById: builder.mutation<IComment, {id: string, comment: IComment}>({
         query: ({id, comment}) => ({
-          url: `/api/comment-api/v1/content/${id}`,
+          url: `/comment-api/v1/content/${id}`,
           method: "POST",
           body: comment
         }),
     }),
     createReplyById: builder.query<IComment, {commentId: string, comment: IComment}>({
       query: ({commentId, comment}) => ({
-        url: `/api/comment-api/v1/reply/${commentId}`,
+        url: `/comment-api/v1/reply/${commentId}`,
         method: "POST",
         body: comment
       }),
     }),
-    fetchUser: builder.query<IComment, void>({
+    fetchUser: builder.query<IComment[], void>({
       query: () => ({
-        url: `/api/comment-api/v1/user`,
+        url: `/comment-api/v1/user`,
         method: "GET"
       }),
     }),

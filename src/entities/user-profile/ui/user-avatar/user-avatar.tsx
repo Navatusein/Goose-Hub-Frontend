@@ -4,14 +4,20 @@ import {IUserProfile} from "@/entities/user-profile";
 
 interface IProps {
   userProfile: IUserProfile;
+  size?: "small" | "medium";
   className?: string;
   style?: CSSProperties;
   onClick?: MouseEventHandler<HTMLDivElement>;
 }
 
 const UserAvatar: FC<IProps> = (props) => {
+  const sizes = {"small": "", "medium": styles.medium}
   return (
-    <div className={`${styles.avatar} ${props.className ?? ""}`} style={props.style} onClick={props.onClick}>
+    <div
+      className={`${styles.avatar} ${sizes[props.size ?? "small"]} ${props.className ?? ""}`}
+      style={props.style}
+      onClick={props.onClick}
+    >
       {props.userProfile.avatarUrl !== null && (
         <img src={props.userProfile.avatarUrl} alt={props.userProfile.name}/>
       )}

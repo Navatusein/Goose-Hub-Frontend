@@ -1,8 +1,8 @@
 export interface IComment{
-    id: string;
+    id?: string;
     userId: string;
     contentId: string;
-    dispatch: Date;
+    dispatch: string;
     message: string;
-    thread: Comment[];
+    thread: IComment[];
 }

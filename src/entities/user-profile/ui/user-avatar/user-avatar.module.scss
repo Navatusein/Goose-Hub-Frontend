@@ -6,7 +6,13 @@
   justify-content: center;
   background-color: var(--color-secondary);
   border-radius: $border-radius-circle;
-
+  &.medium {
+    width: 128px;
+    height: 128px;
+    .text {
+      font-size: 60px;
+    }
+  }
   img {
     width: 100%;
     height: 100%;
