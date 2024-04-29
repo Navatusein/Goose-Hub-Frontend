@@ -8,7 +8,6 @@ import {commonApi} from "@/entities/common";
 const ProfileComment: FC<{comment: IComment}> = ({comment}) => {
   const data = commonApi.useFetchByIdQuery(comment.contentId!);
 
-
   return (
     <FlexContainer className={styles.commentCard} justify="space-between" align="end" gap={10}>
       <FlexContainer styles={{padding: 10}} gap={10} vertical>

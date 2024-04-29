@@ -3,6 +3,7 @@ import BaseLayout from "@/app/layouts/base-layout/base-layout.tsx";
 import ProtectedLayout from "@/app/layouts/protected-layout/protected-layout.tsx";
 import ProfileLayout from "@/app/layouts/profile-layout/profile-layout.tsx";
 import ProfileCommentsPage from "@/pages/profile-comments-page";
+import {ProfileHistoryPage} from "@/pages/profile-history-page";
 import {DeveloperPage} from "@/pages/developer";
 import {MainPage} from "@/pages/main";
 import {ErrorPage} from "@/pages/error";
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
               {
                 path: "/profile/comments",
                 element: <ProfileCommentsPage/>
+              },
+              {
+                path: "/profile/history",
+                element: <ProfileHistoryPage/>
               }
             ]
           }

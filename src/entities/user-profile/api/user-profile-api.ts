@@ -18,7 +18,7 @@ export const userProfileApi = createApi({
         method: "GET"
       })
     }),
-    update: builder.query<IUserProfile, IUserProfile>({
+    update: builder.mutation<IUserProfile, IUserProfile>({
       query: (userProfileDto) => ({
         url: `/user-profile-api/v1/profile`,
         method: "PUT",

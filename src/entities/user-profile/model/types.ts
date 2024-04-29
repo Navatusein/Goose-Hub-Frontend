@@ -7,8 +7,8 @@ export interface IUserProfile {
     avatarUrl: string;
     avatarPath: string;
     wishList: IWishList[];
-    historyList: IHistory[];
-    notificationList: INotification[];
+    history: IHistory[];
+    notification: INotification[];
     isPrivate: boolean;
 }
 
@@ -21,7 +21,7 @@ export interface IUserProfilePreview {
 
 export interface IHistory {
     contentId: string;
-    viewDate: Date;
+    viewDate: string;
 }
 
 export interface INotification {
