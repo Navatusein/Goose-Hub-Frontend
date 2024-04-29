@@ -1,0 +1,49 @@
+.player-container {
+  width: 100%;
+
+  aspect-ratio: 16/9;
+  position: relative;
+  border-radius: $border-radius-default;
+
+  .react-player {
+    border-radius: $border-radius-default !important;
+    background-color: var(--color-secondary);
+    overflow: hidden;
+  }
+
+  .controls-container {
+    .header-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      padding: 10px;
+      gap: 10px;
+    }
+
+    .middle-container {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      transform: translateY(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .bottom-container {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      padding: 10px;
+    }
+  }
+
+  .select {
+    max-width: 150px;
+  }
+}

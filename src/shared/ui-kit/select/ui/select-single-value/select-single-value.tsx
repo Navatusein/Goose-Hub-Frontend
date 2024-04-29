@@ -1,9 +1,9 @@
 import {FC, useMemo} from "react";
-import {IValue, ValueType} from "@/shared/ui-kit/select/model/types.ts";
+import {IOption, ValueType} from "@/shared/ui-kit/select/model/types.ts";
 import styles from "./select-single-value.module.scss"
 
 interface IProps {
-  options: IValue[];
+  options: IOption[];
   values: ValueType;
 }
 

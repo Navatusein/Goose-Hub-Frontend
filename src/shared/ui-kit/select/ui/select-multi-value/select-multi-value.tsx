@@ -1,15 +1,15 @@
 import {FC, MouseEvent, useMemo} from 'react';
 import {Tag} from "@/shared/ui-kit";
-import {IValue, ValueType} from "@/shared/ui-kit/select/model/types.ts";
+import {CallBackType, IOption, ValueType} from "@/shared/ui-kit/select/model/types.ts";
 
 interface IProps {
-  options: IValue[];
+  options: IOption[];
   values: ValueType;
-  setValues: (value: ValueType) => void;
+  setValues: CallBackType;
 }
 
 const SelectMultiValue: FC<IProps> = (props) => {
-  const removeSelect = (event: MouseEvent, value: IValue) => {
+  const removeSelect = (event: MouseEvent, value: IOption) => {
     event.stopPropagation();
     props.setValues(props.values.filter(x => x !== value.value));
   }

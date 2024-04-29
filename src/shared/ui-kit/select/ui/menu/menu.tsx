@@ -1,17 +1,18 @@
-import {Dispatch, FC, SetStateAction, useMemo, useState} from "react";
+import {Dispatch, FC, RefObject, SetStateAction, useMemo, useState} from "react";
 import styles from "./menu.module.scss";
-import {Input} from "@/shared/ui-kit";
-import {IValue, ValueType} from "@/shared/ui-kit/select/model/types.ts";
+import {Dropdown, Input} from "@/shared/ui-kit";
+import {CallBackType, IOption, ValueType} from "@/shared/ui-kit/select/model/types.ts";
 
 interface IProps {
-  options?: IValue[];
+  options?: IOption[];
   values: ValueType;
-  setValues: (value: ValueType) => void;
+  setValues: CallBackType;
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   isSearchable: boolean;
   isCreatable: boolean;
   isMulti: boolean;
+  parentRef: RefObject<HTMLElement>;
 }
 
 const Menu: FC<IProps> = (props) => {
@@ -29,14 +30,16 @@ const Menu: FC<IProps> = (props) => {
     return filtered;
   }, [query, props.options, props.isCreatable])
 
-  const toggleSelect = (selectedValue: IValue) => {
+  const isSelected = (value: IOption): boolean => {
+    return props.values.find(x => x === value.value) != undefined;
+  }
+
+  const toggleSelect = (selectedValue: IOption) => {
     if (props.isMulti) {
-      if (isSelected(selectedValue)) {
-        props.setValues(props.values.filter(x => x !== selectedValue.value));
-      }
-      else {
-        props.setValues([...props.values, selectedValue.value]);
-      }
+      const updatedValues = isSelected(selectedValue)
+        ? props.values.filter(x => x !== selectedValue.value)
+        : [...props.values, selectedValue.value];
+      props.setValues(updatedValues);
     }
     else {
       props.setValues([selectedValue.value]);
@@ -45,12 +48,8 @@ const Menu: FC<IProps> = (props) => {
     props.setIsOpen(false);
   }
 
-  const isSelected = (value: IValue): boolean => {
-    return props.values.find(x => x === value.value) != undefined;
-  }
-
   return (
-    <div className={`${styles.menu} ${!props.isOpen && styles.hidden}`}>
+    <Dropdown isOpen={props.isOpen} setIsOpen={props.setIsOpen} parentRef={props.parentRef}>
       {props.isSearchable && (
         <Input placeholder="Пошук" value={query} onChange={e => setQuery(e.target.value)}/>
       )}
@@ -71,7 +70,7 @@ const Menu: FC<IProps> = (props) => {
           )}
         </ul>
       )}
-    </div>
+    </Dropdown>
   );
 };
 

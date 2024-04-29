@@ -6,24 +6,24 @@ export const commonApi = createApi({
   reducerPath: "commonApi",
   baseQuery: baseQueryWithRefresh,
   endpoints: (builder) => ({
-    fetchByFranchiseId: builder.query<IPreview, string>({
+    fetchPreviewByFranchiseId: builder.query<IPreview, string>({
       query: (id) => ({
-        url: `/movie-api/v1/content/franchise/${id}`,
+        url: `/movie-api/v1/content/preview/franchise/${id}`,
         method: "GET"
       })
     }),
 
-    fetchByFilter: builder.query<IPagination, IQuery>({
+    fetchPreviewByFilter: builder.query<IPagination, IQuery>({
       query: (query) => ({
-        url: `/movie-api/v1/content/query`,
+        url: `/movie-api/v1/content/preview/query`,
         method: "POST",
         body: query
       })
     }),
 
-    fetchByIds: builder.query<IPreview[], string[]>({
+    fetchPreviewByIds: builder.query<IPreview[], string[]>({
       query: (ids) => ({
-        url: `/movie-api/v1/content/ids`,
+        url: `/movie-api/v1/content/preview/ids`,
         method: "POST",
         body: ids
       })
@@ -31,7 +31,7 @@ export const commonApi = createApi({
 
     fetchById: builder.query<IPreview, string>({
       query: (id) => ({
-        url: `/movie-api/v1/content/test/${id}`,
+        url: `/movie-api/v1/content/${id}`,
         method: "POST"
       })
     }),

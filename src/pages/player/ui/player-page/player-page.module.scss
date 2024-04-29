@@ -1,0 +1,15 @@
+.container {
+  gap: $gap-xl !important;
+  height: 100%;
+
+  .info-card {
+    max-width: 350px;
+    min-width: 250px;
+    width: 30%;
+  }
+
+  .player-container {
+    width: 100%;
+    gap: $gap-xl !important;
+  }
+}

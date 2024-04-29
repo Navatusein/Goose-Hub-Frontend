@@ -17,7 +17,7 @@ const IDS = [
 const ContentCarousel: FC<IProps> = (props) => {
   const [contentIndex, setContentIndex] = useState(0)
 
-  const contentList = commonApi.useFetchByIdsQuery(IDS);
+  const contentList = commonApi.useFetchPreviewByIdsQuery(IDS);
 
   return (
     <section className={`${styles.carousel} ${props.className ?? ""}`} style={props.styles}>

@@ -10,9 +10,10 @@ export interface IPreview {
   bannerPath?: string;
   bannerUrl?: string;
   name: string;
+  originalName: string;
   description: string;
   genres: string[];
-  release?: Date;
+  release?: string;
   ageRestriction: string;
   country: string;
   status: StatusEnum;

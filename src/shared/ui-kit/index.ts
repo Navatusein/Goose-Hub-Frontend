@@ -19,6 +19,10 @@ import PageContainer from "./page-container/page-container.tsx";
 import Paragraph from "@/shared/ui-kit/paragraph/paragraph.tsx";
 import Modal from "./modal/modal.tsx";
 import Card from "./card/card.tsx";
+import {IOption} from "./select/model/types.ts";
+import Dropdown from "./dropdown/dropdown.tsx";
+
+export type {IOption};
 
 export {
   Button,
@@ -41,5 +45,6 @@ export {
   PageContainer,
   Paragraph,
   Modal,
-  Card
+  Card,
+  Dropdown
 };
