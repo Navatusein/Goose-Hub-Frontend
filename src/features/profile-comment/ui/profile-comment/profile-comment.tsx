@@ -13,7 +13,7 @@ const ProfileComment: FC<{comment: IComment}> = ({comment}) => {
       <FlexContainer styles={{padding: 10}} gap={10} vertical>
         <FlexContainer>
           <Paragraph color="primary" >{data.data?.name}</Paragraph>
-          <Paragraph color="secondary" >{comment.dispatch}</Paragraph>
+          <Paragraph color="secondary" >{comment.dispatch.split("T")[0]}</Paragraph>
         </FlexContainer>
         <Paragraph color="secondary">{comment.message}</Paragraph>
       </FlexContainer>
