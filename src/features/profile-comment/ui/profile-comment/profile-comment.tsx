@@ -9,7 +9,7 @@ const ProfileComment: FC<{comment: IComment}> = ({comment}) => {
   const data = commonApi.useFetchByIdQuery(comment.contentId!);
 
   return (
-    <FlexContainer className={styles.commentCard} justify="space-between" align="end" gap={10}>
+    <FlexContainer className={styles.commentCard} justify="space-between" align="center" gap={10}>
       <FlexContainer styles={{padding: 10}} gap={10} vertical>
         <FlexContainer>
           <Paragraph color="primary" >{data.data?.name}</Paragraph>
@@ -17,7 +17,7 @@ const ProfileComment: FC<{comment: IComment}> = ({comment}) => {
         </FlexContainer>
         <Paragraph color="secondary">{comment.message}</Paragraph>
       </FlexContainer>
-      <FlexContainer className={styles.forButton} gap={10} vertical>
+      <FlexContainer className={styles.forButton} justify="end" gap={10} vertical>
         <Button size="small" text="Перейти до" />
       </FlexContainer>
     </FlexContainer>

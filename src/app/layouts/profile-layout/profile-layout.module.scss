@@ -5,11 +5,13 @@
 
   .content {
     display: flex;
-    flex-direction: row;
-    justify-content: start;
-    align-items: start;
-    gap: 30px;
-    padding-inline: 200px;
-    padding-block: 10px;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+}
+
+.page {
+  @include respond-below(sm) {
+    flex-direction: column;
   }
 }
