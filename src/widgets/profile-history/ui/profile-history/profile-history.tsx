@@ -26,7 +26,7 @@ const ProfileHistory: FC= () => {
 
   const previewList = useMemo(() => {
     if (contentList.data === undefined)
-      return
+      return [];
 
     return Object.fromEntries(contentList.data!.map(item => {
       return [[item.id!.toString()], item];

@@ -7,14 +7,10 @@ interface IProps {
   className?: string;
 }
 
-const IDS: string[] = [
-
-]
-
 const ContentCarousel: FC<IProps> = (props) => {
   const [contentIndex, setContentIndex] = useState(0)
 
-  const contentList = commonApi.useFetchPreviewByIdsQuery(IDS);
+  const contentList = commonApi.useFetchPreviewByIdsQuery(import.meta.env.VITE_CONTENT_CAROUSEL_IDS.split(","));
 
   return (
     <section className={`${styles.carousel} ${props.className ?? ""}`} style={props.styles}>

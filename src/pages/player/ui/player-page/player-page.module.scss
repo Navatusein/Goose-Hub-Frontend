@@ -8,8 +8,31 @@
     width: 30%;
   }
 
-  .player-container {
+  .player-card {
     width: 100%;
     gap: $gap-xl !important;
+  }
+
+  @include respond-below(md) {
+    flex-direction: column;
+
+    .info-card {
+      width: 100%;
+      max-width: 100%;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .player-card {
+      display: contents;
+    }
+  }
+
+  @include respond-below(500px) {
+    .info-card {
+      flex-direction: column;
+      align-items: normal;
+    }
   }
 }

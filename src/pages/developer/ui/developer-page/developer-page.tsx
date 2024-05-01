@@ -86,9 +86,9 @@ const DeveloperPage: FC = () => {
 
 
       <div className={styles.verticalContainer}>
-        <TextArea text="Paragraph"/>
-        <TextArea text="Paragraph" disabled/>
-        <TextArea text="Paragraph" error={"Some error message"}/>
+        <TextArea placeholder="Paragraph"/>
+        <TextArea placeholder="Paragraph" disabled/>
+        <TextArea placeholder="Paragraph" error={"Some error message"}/>
       </div>
 
 

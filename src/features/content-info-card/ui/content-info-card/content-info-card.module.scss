@@ -11,6 +11,14 @@
     display: block;
     border-radius: $border-radius-default;
 
+    @include respond-below(md) {
+      max-width: 200px;
+    }
+
+    @include respond-below(500px) {
+      max-width: none;
+    }
+
     & img {
       height: 100%;
       width: 100%;

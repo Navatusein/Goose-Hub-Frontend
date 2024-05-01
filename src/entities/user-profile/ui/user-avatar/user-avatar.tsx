@@ -1,9 +1,9 @@
 import {CSSProperties, FC, MouseEventHandler} from "react";
 import styles from "./user-avatar.module.scss";
-import {IUserProfile} from "@/entities/user-profile";
+import {IUserProfile, IUserProfilePreview} from "@/entities/user-profile";
 
 interface IProps {
-  userProfile: IUserProfile;
+  userProfile: IUserProfile | IUserProfilePreview;
   size?: "small" | "medium";
   className?: string;
   style?: CSSProperties;
@@ -23,7 +23,7 @@ const UserAvatar: FC<IProps> = (props) => {
       )}
       {props.userProfile.avatarPath === null && (
         <div className={styles.text}>
-          {props.userProfile.name.substring(0, 1)}
+          {props.userProfile.name.substring(0, 1).toUpperCase()}
         </div>
       )}
     </div>

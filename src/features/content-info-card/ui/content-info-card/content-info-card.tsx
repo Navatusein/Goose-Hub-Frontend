@@ -24,7 +24,7 @@ const ContentInfoCard: FC<IProps> = (props) => {
   const animeContent = props.content as IAnime;
 
   return (
-    <div className={`${styles.card} ${props.className ?? ""}`} style={props.styles}>
+    <FlexContainer vertical className={`${styles.card} ${props.className ?? ""}`} styles={props.styles}>
       <div className={styles.poster}>
         {props.content?.posterUrl && (
           <img src={props.content.posterUrl} alt={props.content.name}/>
@@ -109,7 +109,7 @@ const ContentInfoCard: FC<IProps> = (props) => {
           </>
         )}
       </FlexContainer>
-    </div>
+    </FlexContainer>
   );
 };
 

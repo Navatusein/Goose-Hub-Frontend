@@ -36,4 +36,12 @@
   &.warp {
     flex-wrap: wrap;
   }
+
+  &.page-gap {
+    gap: 30px;
+
+    @include respond-below(sm) {
+      gap: 15px;
+    }
+  }
 }

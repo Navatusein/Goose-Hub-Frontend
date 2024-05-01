@@ -1,7 +1,7 @@
 .text {
   font-size: $font-size-md;
   color: var(--color-text-primary);
-  overflow: hidden;
+  //overflow: hidden;
   text-overflow: ellipsis;
   text-wrap: pretty;
 

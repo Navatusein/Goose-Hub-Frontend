@@ -24,13 +24,13 @@ const SignIn: FC<IProps> = (props) => {
     //TODO Fix this type shit
     const result: {data?: IUser, error?: FetchBaseQueryError | SerializedError} = await loginUser(loginData);
 
-    if ((result.error as FetchBaseQueryError).data !== undefined) {
+    if ((result.error as FetchBaseQueryError)?.data !== undefined) {
       setError(((result.error as FetchBaseQueryError).data as IError)?.message ?? undefined);
       return;
     }
 
     setError(undefined);
-    navigate("/login")
+    navigate("/content");
   }
 
   return (

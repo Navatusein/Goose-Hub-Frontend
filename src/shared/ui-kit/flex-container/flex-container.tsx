@@ -1,11 +1,11 @@
-import {CSSProperties, FC, ReactNode} from "react";
+import {CSSProperties, FC, ReactNode, useMemo} from "react";
 import styles from "./flex-container.module.scss"
 
 interface IProps {
   children: ReactNode;
   styles?: CSSProperties;
   className?: string;
-  gap?: number | "Page";
+  gap?: number | "page";
   vertical?: boolean;
   justify?: "start" | "end" | "center" | "space-between";
   align?: "start" | "end" | "center";
@@ -26,12 +26,22 @@ const FlexContainer: FC<IProps> = (props) => {
     "center": styles.alignCenter
   }
 
-  const configStyles = `${props.justify && justify[props.justify]} ${props.align && align[props.align]} ${props.vertical === true && styles.vertical} ${props.warp === true && styles.warp}`;
+  const configStyles = `${props.justify && justify[props.justify]} ${props.align && align[props.align]} ${props.vertical === true && styles.vertical} ${props.warp === true && styles.warp} ${props.gap === "page" && styles.pageGap}`;
+
+  const gap = useMemo(() => {
+    if (props.gap === undefined)
+      return 10;
+
+    if (props.gap === "page")
+      return undefined
+
+    return props.gap
+  }, [props.gap])
 
   return (
     <div
       className={`${styles.flexContainer} ${configStyles} ${props.className ?? ""}`}
-      style={{gap: typeof(props.gap) === "number" ? props.gap : 10, ...props.styles}}
+      style={{gap: gap, ...props.styles}}
     >
       {props.children}
     </div>

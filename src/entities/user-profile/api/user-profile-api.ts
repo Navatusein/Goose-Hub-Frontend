@@ -12,10 +12,11 @@ export const userProfileApi = createApi({
         method: "GET"
       })
     }),
-    fetchById: builder.query<IUserProfilePreview, string>({
-      query: (id) => ({
-        url: `/user-profile-api/v1/profile/${id}`,
-        method: "GET"
+    fetchByIds: builder.query<IUserProfilePreview[], string[]>({
+      query: (ids) => ({
+        url: `/user-profile-api/v1/profile/ids`,
+        method: "POST",
+        body: ids
       })
     }),
     update: builder.mutation<IUserProfile, IUserProfile>({

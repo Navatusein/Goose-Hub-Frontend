@@ -1,3 +1,3 @@
-import Player from "./ui/player";
+import Player from "./ui/player/player.tsx";
 
 export {Player};
