@@ -1,4 +1,4 @@
-import {IContent, IEpisode, IPreview} from "@/entities/common";
+import {IEpisode, IPreview} from "@/entities/common";
 
 export interface IAnime extends IPreview {
   time: string;
@@ -7,7 +7,8 @@ export interface IAnime extends IPreview {
   screenshotPath: string[];
   animeType: AnimeTypeEnum;
   studio: string;
-  content?: IContent[];
+  contentPath?: string;
+  contentUrl?: string;
   episodes?: IEpisode[];
 }
 

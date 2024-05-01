@@ -38,13 +38,8 @@ export interface IEpisode {
   id?: string;
   index: number;
   name?: string;
-  content?: IContent[];
-}
-
-export interface IContent {
-  quality: ContentQuality;
-  path: string;
-  url: string;
+  contentPath?: string;
+  contentUrl?: string;
 }
 
 export interface IPagination {

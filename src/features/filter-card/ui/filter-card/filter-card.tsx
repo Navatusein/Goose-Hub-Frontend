@@ -25,7 +25,7 @@ const FilterCard: FC<IProps> = (props) => {
     return genres.data?.map((genre) => {
       return {label: genre, value: genre};
     })
-  }, [genres.data])
+  }, [genres.data]);
 
   const toggleStatusValue = (event: ChangeEvent<HTMLInputElement>, value: StatusEnum) => {
     if (!event.target.checked) {

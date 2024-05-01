@@ -7,11 +7,8 @@ interface IProps {
   className?: string;
 }
 
-const IDS = [
-  "65f4ae2ead787fc1e52d0d93",
-  "65f4ae51ad787fc1e52d0d94",
-  "65f62c67811382f28610c651",
-  "660952b44026b4a14f928767"
+const IDS: string[] = [
+
 ]
 
 const ContentCarousel: FC<IProps> = (props) => {

@@ -7,7 +7,6 @@ import {
   IQuery,
   IEpisode,
   IPagination,
-  IContent,
   DataTypeEnum,
   ContentTypeEnum,
   StatusEnum,
@@ -32,7 +31,6 @@ export type {
   IQuery,
   IEpisode,
   IPagination,
-  IContent,
   ContentQuality
 }
 
