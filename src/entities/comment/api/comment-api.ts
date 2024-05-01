@@ -12,7 +12,7 @@ export const commentApi = createApi({
         method: "GET"
       }),
     }),
-    fetchByUserId: builder.query<IComment[], void>({
+    fetchByUser: builder.query<IComment[], void>({
       query: () => ({
         url: `/comment-api/v1/user`,
         method: "GET"

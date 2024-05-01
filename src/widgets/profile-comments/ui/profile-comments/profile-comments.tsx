@@ -3,7 +3,7 @@ import {ProfileComment} from "@/features/profile-comment";
 import {commentApi} from "@/entities/comment";
 
 const ProfileComments: FC= () => {
-  const comments = commentApi.useFetchUserQuery();
+  const comments = commentApi.useFetchByUserQuery();
 
   return (
     (comments ? (
