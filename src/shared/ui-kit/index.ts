@@ -16,11 +16,14 @@ import Logo from "./logo/logo.tsx";
 import CardGrid from "./card-grid/card-grid.tsx";
 import FlexContainer from "./flex-container/flex-container.tsx";
 import PageContainer from "./page-container/page-container.tsx";
-import Paragraph from "@/shared/ui-kit/paragraph/paragraph.tsx";
+import Paragraph from "./paragraph/paragraph.tsx";
 import Modal from "./modal/modal.tsx";
 import Card from "./card/card.tsx";
 import {IOption} from "./select/model/types.ts";
 import Dropdown from "./dropdown/dropdown.tsx";
+import {ProfileSettingsFormHeader} from "./profile-settings-form-header";
+import {TextWithLabel} from "./text-with-label";
+
 
 export type {IOption};
 
@@ -46,5 +49,7 @@ export {
   Paragraph,
   Modal,
   Card,
-  Dropdown
+  Dropdown,
+  ProfileSettingsFormHeader,
+  TextWithLabel
 };

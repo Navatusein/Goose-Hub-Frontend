@@ -10,7 +10,7 @@ interface IProps {
   styles?: CSSProperties;
   className?: string;
   name?: string;
-  value: string;
+  value: string | undefined;
   onChange: ChangeEventHandler<HTMLInputElement>;
 }
 

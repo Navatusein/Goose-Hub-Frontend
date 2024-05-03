@@ -1,6 +1,6 @@
 import {createApi} from "@reduxjs/toolkit/query/react";
 import {baseQueryWithRefresh} from "@/shared/api/base-query.ts";
-import {ILoginData, IRegisterData, IUser} from "@/entities/user";
+import {ILoginData, IRegisterData, IUpdateUser, IUser} from "@/entities/user";
 import {logout, setUser} from "@/entities/user/model/user-slice.ts";
 
 export const userApi = createApi({
@@ -25,6 +25,19 @@ export const userApi = createApi({
         url: '/authentication-api/v1/register',
         method: 'POST',
         body: registerData
+      }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        queryFulfilled
+          .then(data => dispatch(setUser(data.data)))
+          .catch(() => logout())
+      },
+    }),
+
+    updateUser: builder.mutation<void, IUpdateUser>({
+      query: (updateData) => ({
+        url: '/authentication-api/v1/update-user',
+        method: 'PUT',
+        body: updateData
       }),
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         queryFulfilled

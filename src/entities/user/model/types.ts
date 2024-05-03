@@ -21,3 +21,9 @@ export interface IJwtPayload {
   role: UserRoles;
   userId: string;
 }
+
+export interface IUpdateUser {
+  email: string;
+  oldPassword: string;
+  newPassword?: string;
+}

@@ -1,11 +1,12 @@
 import { IWishList } from "@/entities/wish-list";
 
 export interface IUserProfile {
-    id: number;
+    id?: number;
     name: string;
     email: string;
-    avatarUrl: string;
-    avatarPath: string;
+    avatarUrl?: string;
+    avatarPath?: string;
+    birthday?: string;
     wishList: IWishList[];
     history: IHistory[];
     notification: INotification[];

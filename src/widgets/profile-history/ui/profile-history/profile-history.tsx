@@ -39,6 +39,9 @@ const ProfileHistory: FC= () => {
     }
 
     return userProfile.data.history.reduce((groups: GroupedByDate, obj) => {
+      if (!previewList[obj.contentId]) {
+        return groups;
+      }
       const date = obj.viewDate.split("T")[0];
       groups[date] = groups[date] || [];
       groups[date].push(previewList[obj.contentId]);
@@ -59,8 +62,8 @@ const ProfileHistory: FC= () => {
     (groupedByDate ? (
       <>
         {Object.entries(groupedByDate!).map(([date, items]) => (
-          <>
-            <h2 key={date}>{date}</h2>
+          <div key={date}>
+            <h2 >{date}</h2>
             <FlexContainer warp gap={20}>
               <CardGrid>
                 {items.map((item, index) => (
@@ -70,7 +73,7 @@ const ProfileHistory: FC= () => {
                 ))}
               </CardGrid>
             </FlexContainer>
-          </>
+          </div>
         ))}
       </>
     ) :

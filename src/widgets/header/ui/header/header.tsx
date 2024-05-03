@@ -3,9 +3,8 @@ import styles from "./header.module.scss"
 import {Button, FlexContainer, Logo} from "@/shared/ui-kit";
 import {AiOutlineBell, AiOutlineFolder, AiOutlineMenu, AiOutlineUser} from "react-icons/ai";
 import {useNavigate} from "react-router-dom";
-import {useAppDispatch, useAppSelector} from "@/shared/hooks/use-app-selector.ts";
+import {useAppSelector} from "@/shared/hooks/use-app-selector.ts";
 import {UserAvatar, userProfileApi} from "@/entities/user-profile";
-import {logout} from "@/entities/user/model/user-slice.ts";
 
 interface IProps {
   isAbsolute?: boolean;
@@ -15,7 +14,6 @@ interface IProps {
 
 const Header: FC<IProps> = (props) => {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
   const {user} = useAppSelector(state => state.user);
 
@@ -36,7 +34,7 @@ const Header: FC<IProps> = (props) => {
             <Button type="outline" shape="square" icon={<AiOutlineFolder/>}/>
             <Button type="outline" shape="square" icon={<AiOutlineBell/>}/>
             <FlexContainer align="center">
-              <UserAvatar userProfile={userProfile!.data} onClick={() => {dispatch(logout())}}/>
+              <UserAvatar userProfile={userProfile!.data} onClick={() => navigate("/profile/settings")}/>
               {userProfile.data?.name}
             </FlexContainer>
           </>
