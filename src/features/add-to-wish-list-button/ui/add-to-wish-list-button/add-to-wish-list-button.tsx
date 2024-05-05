@@ -29,7 +29,7 @@ const AddToWishListButton: FC<IProps> = (props) => {
       options = [...options, {label: "Видалити", value: "delete"}];
 
     return options;
-  }, [userProfile.data]);
+  }, [userProfile.data, wishListId]);
 
   useEffect(() => {
     if (userProfile.data == undefined)
