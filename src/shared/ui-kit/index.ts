@@ -21,9 +21,8 @@ import Modal from "./modal/modal.tsx";
 import Card from "./card/card.tsx";
 import {IOption} from "./select/model/types.ts";
 import Dropdown from "./dropdown/dropdown.tsx";
-import {ProfileSettingsFormHeader} from "./profile-settings-form-header";
-import {TextWithLabel} from "./text-with-label";
-
+import TextWithLabel from "./text-with-label/text-with-label.tsx";
+import CardStack from "./card-stack/card-stack.tsx";
 
 export type {IOption};
 
@@ -50,6 +49,6 @@ export {
   Modal,
   Card,
   Dropdown,
-  ProfileSettingsFormHeader,
-  TextWithLabel
+  TextWithLabel,
+  CardStack
 };

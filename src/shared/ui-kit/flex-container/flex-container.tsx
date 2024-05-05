@@ -1,4 +1,4 @@
-import {CSSProperties, FC, ReactNode, useMemo} from "react";
+import {CSSProperties, FC, MouseEventHandler, ReactNode, useMemo} from "react";
 import styles from "./flex-container.module.scss"
 
 interface IProps {
@@ -10,6 +10,7 @@ interface IProps {
   justify?: "start" | "end" | "center" | "space-between";
   align?: "start" | "end" | "center";
   warp?: boolean;
+  onClick?: MouseEventHandler<HTMLDivElement>;
 }
 
 const FlexContainer: FC<IProps> = (props) => {
@@ -42,6 +43,7 @@ const FlexContainer: FC<IProps> = (props) => {
     <div
       className={`${styles.flexContainer} ${configStyles} ${props.className ?? ""}`}
       style={{gap: gap, ...props.styles}}
+      onClick={props.onClick}
     >
       {props.children}
     </div>

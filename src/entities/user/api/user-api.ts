@@ -38,12 +38,7 @@ export const userApi = createApi({
         url: '/authentication-api/v1/update-user',
         method: 'PUT',
         body: updateData
-      }),
-      async onQueryStarted(_, { dispatch, queryFulfilled }) {
-        queryFulfilled
-          .then(data => dispatch(setUser(data.data)))
-          .catch(() => logout())
-      },
+      })
     })
   })
 })

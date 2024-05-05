@@ -97,7 +97,7 @@ const ContentContainer: FC = () => {
           />
         </FlexContainer>
       </FlexContainer>
-      <FlexContainer gap={20}>
+      <FlexContainer gap={20} className={styles.content}>
         <CardGrid className={styles.contentGrid}>
           {content.data?.returnedCount === 0 && (
             <h1>Нічого не знайдено</h1>
@@ -106,13 +106,11 @@ const ContentContainer: FC = () => {
             <ContentCard content={content} key={content.id}/>
           ))}
         </CardGrid>
-        <Modal isOpen={showFilterModal && closeFilterMenu} setIsOpen={setShowFilterModal} className={styles.modal}>
-          <FilterCard
-            query={query}
-            setQuery={setQuery}
-            className={styles.filterCard}
-          />
-        </Modal>
+        <FilterCard
+          query={query}
+          setQuery={setQuery}
+          className={styles.filterCard}
+        />
       </FlexContainer>
       <Pagination
         currentPage={query.page}
@@ -120,6 +118,12 @@ const ContentContainer: FC = () => {
         total={Math.ceil((content.data?.totalCount ?? 1) / (content.data?.pageSize ?? 1))}
         styles={{alignSelf: "center"}}
       />
+      <Modal isOpen={showFilterModal && closeFilterMenu} setIsOpen={setShowFilterModal} className={styles.modal}>
+        <FilterCard
+          query={query}
+          setQuery={setQuery}
+        />
+      </Modal>
     </FlexContainer>
   );
 };

@@ -5,38 +5,28 @@ import {IComment} from "@/entities/comment";
 export const commentApi = createApi({
   reducerPath: "commentApi",
   baseQuery: baseQueryWithRefresh,
+  tagTypes: ["comments"],
   endpoints: (builder) => ({
     fetchByContentId: builder.query<IComment[], string>({
       query: (id) => ({
-        url: `/comment-api/v1/content/${id}`,
+        url: `/comment-api/v1/comments/content/${id}`,
         method: "GET"
       }),
+      providesTags: () => ["comments"]
     }),
     fetchByUser: builder.query<IComment[], void>({
       query: () => ({
-        url: `/comment-api/v1/user`,
+        url: `/comment-api/v1/comments/user`,
         method: "GET"
       }),
     }),
-    createByContentId: builder.mutation<IComment, {contentId: string, comment: IComment}>({
-        query: ({contentId, comment}) => ({
-          url: `/comment-api/v1/content/${contentId}`,
-          method: "POST",
-          body: comment
-        }),
-    }),
-    createReplyById: builder.mutation<IComment, {commentId: string, comment: IComment}>({
-      query: ({commentId, comment}) => ({
-        url: `/comment-api/v1/reply/${commentId}`,
+    create: builder.mutation<IComment, IComment>({
+      query: (comment) => ({
+        url: `/comment-api/v1/comments/content`,
         method: "POST",
         body: comment
       }),
-    }),
-    delete: builder.mutation<void, string>({
-      query: (id) => ({
-        url: `/comment-api/v1/comment/${id}`,
-        method: "DELETE"
-      }),
+      invalidatesTags: ["comments"]
     }),
   })
 })

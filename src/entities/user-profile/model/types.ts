@@ -7,7 +7,7 @@ export interface IUserProfile {
     avatarUrl?: string;
     avatarPath?: string;
     birthday?: string;
-    wishList: IWishList[];
+    wishLists: IWishList[];
     history: IHistory[];
     notification: INotification[];
     isPrivate: boolean;

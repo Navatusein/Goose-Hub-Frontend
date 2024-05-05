@@ -1,9 +1,11 @@
-import {CSSProperties, FC} from "react";
+import {ChangeEventHandler, CSSProperties, FC} from "react";
 import styles from "./switch.module.scss";
 
 interface IProps {
   styles?: CSSProperties;
   className?: string;
+  checked?: boolean;
+  onChange?: ChangeEventHandler<HTMLInputElement>;
 }
 
 const Switch: FC<IProps> = (props) => {
@@ -12,7 +14,10 @@ const Switch: FC<IProps> = (props) => {
       <input
         type="checkbox"
         style={props.styles}
-        className={props.className}/>
+        className={props.className}
+        onChange={props.onChange}
+        checked={props.checked}
+      />
       <span className={styles.slider}></span>
     </label>
 

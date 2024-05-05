@@ -11,7 +11,7 @@ interface IProps {
 
 const PageContainer: FC<IProps> = (props) => {
   return (
-    <FlexContainer className={`${styles.pageContainer} ${props.className ?? ""}`} styles={props.styles} vertical={!props.horizontal}>
+    <FlexContainer className={`${styles.pageContainer} ${props.className ?? ""}`} gap="page" styles={props.styles} vertical={!props.horizontal}>
       {props.children}
     </FlexContainer>
   );

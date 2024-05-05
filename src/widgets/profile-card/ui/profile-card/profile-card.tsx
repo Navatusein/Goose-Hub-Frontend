@@ -17,17 +17,17 @@ const ProfileCard:FC = () => {
   const navigate = useNavigate();
 
   return (
-    <FlexContainer gap={20} align="center" vertical>
-      {(user !== undefined && userProfile.data !== undefined) && (
-        <>
-          <UserAvatar size="medium" userProfile={userProfile!.data} />
+    <FlexContainer className={styles.container} gap={20} align="center" vertical>
+      {userProfile.data !== undefined && (
+        <FlexContainer align="center" vertical>
+          <UserAvatar size="medium" userProfile={userProfile!.data}/>
           <h2>{userProfile.data?.name}</h2>
-        </>
+        </FlexContainer>
       )}
       <FlexContainer className={styles.menu} align="start" vertical>
         <Button
-          color={location.pathname === "/profile/lists" ? "accent" : "primary"}
-          onClick={() => navigate("/profile/lists")}
+          color={location.pathname.includes("/profile/wish-list") ? "accent" : "primary"}
+          onClick={() => navigate("/profile/wish-list")}
           type="outline" text="Списки" icon={<AiOutlineSave />}/>
         <Divider />
         <Button
@@ -45,7 +45,7 @@ const ProfileCard:FC = () => {
           onClick={() => navigate("/profile/settings")}
           type="outline" text="Налаштування"  icon={<AiOutlineSetting />}/>
         <Divider/>
-        <Button type="outline" text="Вихід" onClick={() => {dispatch(logout())}} icon={<AiOutlineLogout />}/>
+        <Button type="outline" text="Вихід" onClick={() => {dispatch(logout())}} icon={<AiOutlineLogout/>}/>
       </FlexContainer>
     </FlexContainer>
   );

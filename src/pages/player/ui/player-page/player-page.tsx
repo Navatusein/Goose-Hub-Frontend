@@ -22,7 +22,7 @@ const PlayerPage: FC = () => {
 
   return (
     <PageContainer styles={{height: "100%"}}>
-      <FlexContainer className={styles.container}>
+      <FlexContainer className={styles.container} gap="page">
         <ContentInfoCard content={data.data} className={styles.infoCard}/>
         <ContentPlayerCard content={data.data} className={styles.playerCard}/>
       </FlexContainer>

@@ -5,6 +5,7 @@ import {Divider, FlexContainer, Paragraph, Tag} from "@/shared/ui-kit";
 import {IAnime} from "@/entities/anime";
 // import {ISerial} from "@/entities/serial";
 import {IMovie} from "@/entities/movie";
+import {AddToWishListButton} from "@/features/add-to-wish-list-button";
 
 interface IProps {
   content?: IPreview;
@@ -31,6 +32,9 @@ const ContentInfoCard: FC<IProps> = (props) => {
         )}
       </div>
       <FlexContainer vertical>
+
+        <AddToWishListButton contentId={props.content.id!}/>
+
         <Divider/>
         <FlexContainer align="center" justify="space-between">
           <Paragraph>

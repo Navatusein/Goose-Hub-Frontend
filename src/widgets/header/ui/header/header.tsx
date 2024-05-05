@@ -31,10 +31,19 @@ const Header: FC<IProps> = (props) => {
         )}
         {(user !== undefined && userProfile.data !== undefined) && (
           <>
-            <Button type="outline" shape="square" icon={<AiOutlineFolder/>}/>
+            <Button
+              type="outline"
+              shape="square"
+              icon={<AiOutlineFolder/>}
+              onClick={() => navigate("/profile/wish-list")}
+            />
             <Button type="outline" shape="square" icon={<AiOutlineBell/>}/>
-            <FlexContainer align="center">
-              <UserAvatar userProfile={userProfile!.data} onClick={() => navigate("/profile/settings")}/>
+            <FlexContainer
+              align="center"
+              className={`${styles.userProfile} ${styles.outlineType}`}
+              onClick={() => navigate("/profile/settings")}
+            >
+              <UserAvatar userProfile={userProfile!.data}/>
               {userProfile.data?.name}
             </FlexContainer>
           </>

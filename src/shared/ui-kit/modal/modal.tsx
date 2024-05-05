@@ -1,9 +1,10 @@
-import {CSSProperties, FC, ReactNode, useEffect, useRef} from "react";
+import {CSSProperties, FC, ReactNode} from "react";
 import styles from "./modal.module.scss";
-import {useClickOutside} from "@/shared/hooks/use-click-outside.ts";
+import ReactDOM from "react-dom";
 
 interface IProps {
   isOpen: boolean;
+  constShow?: boolean;
   setIsOpen: (isOpen: boolean) => void;
   children: ReactNode;
   className?: string;
@@ -11,28 +12,17 @@ interface IProps {
 }
 
 const Modal: FC<IProps> = (props) => {
-  const ref = useRef(null);
+  if (!props.isOpen)
+    return null;
 
-  useClickOutside(ref, () => {props.setIsOpen(false)});
-
-  useEffect(() => {
-    const body = document.querySelector('body')!;
-    body.style.overflow = props.isOpen ? "hidden" : "auto";
-  }, [props.isOpen])
-
-  return (
-    <>
-      <div
-        className={`${styles.modalBackground} ${!props.isOpen && styles.hidden}`}
-      />
-      <div
-        className={`${styles.modal} ${props.className} ${!props.isOpen && styles.hidden}`}
-        style={props.style}
-        ref={ref}
-      >
+  return ReactDOM.createPortal(
+    <dialog open={props.isOpen}>
+      <div className={styles.modalBackground} onClick={() => props.setIsOpen(false)}/>
+      <div className={`${styles.modal} ${props.className}`} style={props.style}>
         {props.children}
       </div>
-    </>
+    </dialog>,
+    document.getElementById('modal-root')!
   );
 };
 

@@ -1,0 +1,23 @@
+.screenshot-container {
+  display: flex;
+  max-height: 250px;
+  width: 100%;
+  background-color: var(--color-secondary);
+  padding: $padding-card-md;
+  border-radius: $border-radius-default;
+
+  .screenshot-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    height: 100%;
+
+    .screenshot {
+      aspect-ratio: 16/9;
+
+      img {
+        object-fit: cover;
+        height: 100%;
+      }
+    }
+  }
+}

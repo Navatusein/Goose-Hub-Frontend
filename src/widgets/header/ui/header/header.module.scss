@@ -13,6 +13,11 @@
   }
 
   .menu-container {
+
+    .user-profile {
+      @include clickable;
+    }
+
     @include respond-below(sm) {
       display: none !important;
     }

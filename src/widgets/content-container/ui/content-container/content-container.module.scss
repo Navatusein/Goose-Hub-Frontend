@@ -44,17 +44,19 @@
   }
 }
 
-.content-grid {
-  width: 80%;
+.content {
+  .content-grid {
+    width: 80%;
+
+    @include respond-below(md) {
+      width: 100%;
+    }
+  }
 
   @include respond-below(md) {
-    width: 100%;
+    .filter-card {
+      display: none;
+    }
   }
 }
 
-.modal {
-  @include respond-above(md) {
-    display: contents !important;
-    width: 20%;
-  }
-}

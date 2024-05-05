@@ -41,7 +41,9 @@
     gap: 30px;
 
     @include respond-below(sm) {
-      gap: 15px;
+      &.page-gap {
+        gap: 15px;
+      }
     }
   }
 }

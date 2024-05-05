@@ -28,25 +28,46 @@ const FilterCard: FC<IProps> = (props) => {
   }, [genres.data]);
 
   const toggleStatusValue = (event: ChangeEvent<HTMLInputElement>, value: StatusEnum) => {
-    if (!event.target.checked) {
-      props.setQuery({...props.query, statuses: props.query.statuses.filter(x => x != value)});
-    }
-    else {
-      props.setQuery({...props.query, statuses: [...props.query.statuses, value]});
-    }
+    const isChecked = event.target.checked;
+
+    const updated = isChecked
+      ? [...props.query.statuses, value]
+      : props.query.statuses.filter(x => x !== value);
+
+    props.setQuery({ ...props.query, statuses: updated });
   };
 
+  const isStatusValueChecked = (value: StatusEnum) => {
+    return props.query.statuses.find(x => x === value) != undefined;
+  }
+
   const toggleAnimeTypeValue = (event: ChangeEvent<HTMLInputElement>, value: AnimeTypeEnum) => {
-    if (!event.target.checked) {
-      props.setQuery({...props.query, animeTypes: props.query.animeTypes.filter(x => x != value)});
-    }
-    else {
-      props.setQuery({...props.query, animeTypes: [...props.query.animeTypes, value]});
-    }
+    const isChecked = event.target.checked;
+
+    const updated = isChecked
+      ? [...props.query.animeTypes, value]
+      : props.query.animeTypes.filter(x => x !== value);
+
+    props.setQuery({ ...props.query, animeTypes: updated });
   };
+
+  const isAnimeTypeValueChecked = (value: AnimeTypeEnum) => {
+    return props.query.animeTypes.find(x => x === value) != undefined;
+  }
 
   const setYearValue = (value: number[]) => {
     props.setQuery({...props.query, yearStart: Math.min(...value), yearEnd: Math.max(...value)});
+  }
+
+  const clear = () => {
+    props.setQuery({
+      ...props.query,
+      genres: [],
+      statuses: [],
+      animeTypes: [],
+      yearStart: years.data?.minYear,
+      yearEnd: years.data?.maxYear
+    })
   }
 
   return (
@@ -72,20 +93,56 @@ const FilterCard: FC<IProps> = (props) => {
       </InputWithLabel>
       <InputWithLabel label="Статус">
         <FlexContainer warp>
-          <CheckboxTag text="Aнонс" onChange={(e) => toggleStatusValue(e, StatusEnum.announcement)}/>
-          <CheckboxTag text="Виходить" onChange={(e) => toggleStatusValue(e, StatusEnum.ongoing)}/>
-          <CheckboxTag text="На паузі" onChange={(e) => toggleStatusValue(e, StatusEnum.paused)}/>
-          <CheckboxTag text="Завершено" onChange={(e) => toggleStatusValue(e, StatusEnum.completed)}/>
+          <CheckboxTag
+            text="Aнонс"
+            onChange={(e) => toggleStatusValue(e, StatusEnum.announcement)}
+            checked={isStatusValueChecked(StatusEnum.announcement)}
+          />
+          <CheckboxTag
+            text="Виходить"
+            onChange={(e) => toggleStatusValue(e, StatusEnum.ongoing)}
+            checked={isStatusValueChecked(StatusEnum.ongoing)}
+          />
+          <CheckboxTag
+            text="На паузі"
+            onChange={(e) => toggleStatusValue(e, StatusEnum.paused)}
+            checked={isStatusValueChecked(StatusEnum.paused)}
+          />
+          <CheckboxTag
+            text="Завершено"
+            onChange={(e) => toggleStatusValue(e, StatusEnum.completed)}
+            checked={isStatusValueChecked(StatusEnum.completed)}
+          />
         </FlexContainer>
       </InputWithLabel>
       {props.query.contentType === ContentTypeEnum.anime && (
         <InputWithLabel label="Тип">
           <FlexContainer warp>
-            <CheckboxTag text="Спешл" onChange={(e) => toggleAnimeTypeValue(e, AnimeTypeEnum.special)}/>
-            <CheckboxTag text="Фільм" onChange={(e) => toggleAnimeTypeValue(e, AnimeTypeEnum.film)}/>
-            <CheckboxTag text="OVA" onChange={(e) => toggleAnimeTypeValue(e, AnimeTypeEnum.ova)}/>
-            <CheckboxTag text="ONA" onChange={(e) => toggleAnimeTypeValue(e, AnimeTypeEnum.ona)}/>
-            <CheckboxTag text="TV Серіал" onChange={(e) => toggleAnimeTypeValue(e, AnimeTypeEnum.tv)}/>
+            <CheckboxTag
+              text="Спешл"
+              onChange={(e) => toggleAnimeTypeValue(e, AnimeTypeEnum.special)}
+              checked={isAnimeTypeValueChecked(AnimeTypeEnum.special)}
+            />
+            <CheckboxTag
+              text="Фільм"
+              onChange={(e) => toggleAnimeTypeValue(e, AnimeTypeEnum.film)}
+              checked={isAnimeTypeValueChecked(AnimeTypeEnum.film)}
+            />
+            <CheckboxTag
+              text="OVA"
+              onChange={(e) => toggleAnimeTypeValue(e, AnimeTypeEnum.ova)}
+              checked={isAnimeTypeValueChecked(AnimeTypeEnum.ova)}
+            />
+            <CheckboxTag
+              text="ONA"
+              onChange={(e) => toggleAnimeTypeValue(e, AnimeTypeEnum.ona)}
+              checked={isAnimeTypeValueChecked(AnimeTypeEnum.ona)}
+            />
+            <CheckboxTag
+              text="TV Серіал"
+              onChange={(e) => toggleAnimeTypeValue(e, AnimeTypeEnum.tv)}
+              checked={isAnimeTypeValueChecked(AnimeTypeEnum.tv)}
+            />
           </FlexContainer>
         </InputWithLabel>
       )}
@@ -97,7 +154,7 @@ const FilterCard: FC<IProps> = (props) => {
           max={years.data?.maxYear ?? 2000}
         />
       </InputWithLabel>
-      <Button icon={<AiOutlineDelete/>} text="Очистити"/>
+      <Button icon={<AiOutlineDelete/>} text="Очистити" onClick={() => clear()}/>
     </div>
   );
 };

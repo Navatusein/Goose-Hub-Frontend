@@ -5,12 +5,14 @@ import {IUserProfile, IUserProfilePreview} from "@/entities/user-profile";
 export const userProfileApi = createApi({
   reducerPath: "userProfileApi",
   baseQuery: baseQueryWithRefresh,
+  tagTypes: ["userProfile"],
   endpoints: (builder) => ({
     fetch: builder.query<IUserProfile, string>({
       query: (userId) => ({
         url: `/user-profile-api/v1/profile/${userId}`,
         method: "GET"
-      })
+      }),
+      providesTags: () => ["userProfile"],
     }),
     fetchByIds: builder.query<IUserProfilePreview[], string[]>({
       query: (ids) => ({
@@ -24,7 +26,8 @@ export const userProfileApi = createApi({
         url: `/user-profile-api/v1/profile`,
         method: "PUT",
         body: userProfileDto
-      })
+      }),
+      invalidatesTags: ["userProfile"]
     }),
   })
 })

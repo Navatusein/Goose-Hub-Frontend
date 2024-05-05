@@ -7,6 +7,7 @@ import {IAnime} from "@/entities/anime";
 import {ISerial} from "@/entities/serial";
 import {Player} from "@/features/player";
 import {ContentCommentContainer} from "@/widgets/content-comment-container";
+import {ScreenshotContainer} from "@/features/screenshot-container";
 
 interface IProps {
   content: IPreview;
@@ -41,14 +42,16 @@ const ContentPlayerCard: FC<IProps> = (props) => {
   const [player, setPlayer] = useState<"player" | "trailer">(contentSrc === undefined ? "trailer" : "player");
 
   return (
-    <FlexContainer vertical className={`${props.className ?? ""}`} styles={props.styles}>
+    <FlexContainer vertical className={`${styles.container} ${props.className ?? ""}`} styles={props.styles} gap="page">
       <FlexContainer className={styles.title} vertical>
         <h1>{props.content.name}</h1>
         <h2>{props.content.originalName}</h2>
       </FlexContainer>
 
-      <Divider/>
+      <Divider className={styles.divider}/>
+      <ScreenshotContainer content={props.content}/>
 
+      <Divider/>
       <FlexContainer>
         {contentSrc !== undefined && (
           <CheckboxTag text="Плеер" checked={player === "player"} onChange={() => setPlayer("player")}/>

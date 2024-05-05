@@ -1,5 +1,4 @@
 .container {
-  gap: $gap-xl !important;
   height: 100%;
 
   .info-card {
@@ -10,7 +9,6 @@
 
   .player-card {
     width: 100%;
-    gap: $gap-xl !important;
   }
 
   @include respond-below(md) {

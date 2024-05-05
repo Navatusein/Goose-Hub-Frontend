@@ -1,4 +1,4 @@
-import {CSSProperties, FC, useState} from "react";
+import {CSSProperties, FC, useMemo, useState} from "react";
 import styles from "./comment-card.module.scss";
 import {IUserProfilePreview, UserAvatar} from "@/entities/user-profile";
 import {IComment} from "@/entities/comment";
@@ -9,6 +9,7 @@ import {useAppSelector} from "@/shared/hooks/use-app-selector.ts";
 interface IProps {
   userPreviews: {[key: string]: IUserProfilePreview};
   comment: IComment;
+  comments: IComment[];
   styles?: CSSProperties;
   className?: string;
   closePrevent?: () => void;
@@ -22,8 +23,12 @@ const CommentCard: FC<IProps> = (props) => {
 
   const userPreview = props.userPreviews[props.comment.userId!];
 
+  const thread = useMemo(() => {
+    return props.comments.filter(x => x.parentId === props.comment.id);
+  }, [props.comment, props.comments])
+
   const closPrevent = () => {
-    setThreadCommentModal(false);
+    // setThreadCommentModal(false);
   }
 
   return (
@@ -43,15 +48,15 @@ const CommentCard: FC<IProps> = (props) => {
               onClick={() => setAnswerCommentModal(true)}
               disabled={user === undefined}
             />
-            {props.comment.thread.length !== 0 && (
+            {props.comment.replies?.length !== 0 && (
               <Button
                 text="Інші відповіді" size="small"
                 type="outline"
                 onClick={() => {
-                  setThreadCommentModal(true);
-
                   if (props.closePrevent !== undefined)
                     props.closePrevent();
+
+                  setThreadCommentModal(true);
                 }}
               />
             )}
@@ -70,8 +75,14 @@ const CommentCard: FC<IProps> = (props) => {
       <Modal isOpen={threadCommentModal} setIsOpen={setThreadCommentModal}>
         <Card>
           <FlexContainer vertical>
-            {props.comment.thread.map(item => (
-              <CommentCard key={item.id} userPreviews={props.userPreviews} comment={item} closePrevent={closPrevent}/>
+            {thread.map(item => (
+              <CommentCard
+                key={item.id}
+                userPreviews={props.userPreviews}
+                comment={item}
+                comments={props.comments}
+                closePrevent={closPrevent}
+              />
             ))}
           </FlexContainer>
         </Card>

@@ -1,3 +1,13 @@
+.container {
+  overflow: hidden;
+
+  @include respond-below(md) {
+    .divider {
+      display: none;
+    }
+  }
+}
+
 .title {
   order: -1;
 

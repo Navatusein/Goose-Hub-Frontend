@@ -14,8 +14,7 @@ interface IProps {
 const CommentFrom: FC<IProps> = (props) => {
   const {user} = useAppSelector(state => state.user);
 
-  const [createByContentId] = commentApi.useCreateByContentIdMutation();
-  const [createReplyById] = commentApi.useCreateReplyByIdMutation();
+  const [create] = commentApi.useCreateMutation();
 
   const [text, setText] = useState("")
   const [error, serError] = useState("");
@@ -28,18 +27,13 @@ const CommentFrom: FC<IProps> = (props) => {
 
     const newComment: IComment = {
       contentId: props.contentId,
+      parentId: props.replayCommentId,
       userId: user!.userId,
       dispatch: new Date().toISOString().split('T')[0],
-      message: text,
-      thread: []
-    }
+      message: text
+    };
 
-    if (props.replayCommentId === undefined) {
-      createByContentId({contentId: props.contentId, comment: newComment})
-    }
-    else {
-      createReplyById({commentId: props.replayCommentId, comment: newComment});
-    }
+    create(newComment);
 
     setText("");
   }

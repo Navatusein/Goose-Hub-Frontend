@@ -4,6 +4,10 @@
   background-color: var(--color-secondary);
   border-radius: $border-radius-default;
   color: var(--color-text-secondary);
+
+  @include respond-below(xs) {
+    flex-direction: column;
+  }
 }
 
 .for-button {
