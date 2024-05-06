@@ -1,28 +1,29 @@
 import Button from "./button/button";
-import CheckboxTag from "./checkbox-tag/checkbox-tag.tsx";
-import RangeSlider from "./range-slider/range-slider.tsx";
-import Tag from "./tag/tag.tsx";
-import RoundButton from "./round-button/round-button.tsx";
-import Link from "./link/link.tsx";
-import Alert from "./alert/alert.tsx";
-import TextArea from "./text-area/text-area.tsx";
-import InputWithLabel from "./input-with-label/input-with-label.tsx";
-import Input from "./input/input.tsx";
-import Divider from "./divider/divider.tsx";
-import Select from "./select/select.tsx";
-import Checkbox from "./checkbox/checkbox.tsx";
-import Switch from "./switch/switch.tsx";
-import Logo from "./logo/logo.tsx";
-import CardGrid from "./card-grid/card-grid.tsx";
-import FlexContainer from "./flex-container/flex-container.tsx";
-import PageContainer from "./page-container/page-container.tsx";
-import Paragraph from "./paragraph/paragraph.tsx";
-import Modal from "./modal/modal.tsx";
-import Card from "./card/card.tsx";
+import CheckboxTag from "./checkbox-tag/checkbox-tag";
+import RangeSlider from "./range-slider/range-slider";
+import Tag from "./tag/tag";
+import RoundButton from "./round-button/round-button";
+import Link from "./link/link";
+import Alert from "./alert/alert";
+import TextArea from "./text-area/text-area";
+import InputWithLabel from "./input-with-label/input-with-label";
+import Input from "./input/input";
+import Divider from "./divider/divider";
+import Select from "./select/select";
+import Checkbox from "./checkbox/checkbox";
+import Switch from "./switch/switch";
+import Logo from "./logo/logo";
+import CardGrid from "./card-grid/card-grid";
+import FlexContainer from "./flex-container/flex-container";
+import PageContainer from "./page-container/page-container";
+import Paragraph from "./paragraph/paragraph";
+import Modal from "./modal/modal";
+import Card from "./card/card";
 import {IOption} from "./select/model/types.ts";
-import Dropdown from "./dropdown/dropdown.tsx";
-import TextWithLabel from "./text-with-label/text-with-label.tsx";
-import CardStack from "./card-stack/card-stack.tsx";
+import Dropdown from "./dropdown/dropdown";
+import TextWithLabel from "./text-with-label/text-with-label";
+import CardStack from "./card-stack/card-stack";
+import FileUpload from "./file-upload/file-upload";
 
 export type {IOption};
 
@@ -50,5 +51,6 @@ export {
   Card,
   Dropdown,
   TextWithLabel,
-  CardStack
+  CardStack,
+  FileUpload
 };

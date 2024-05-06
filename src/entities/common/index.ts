@@ -1,7 +1,8 @@
-import {commonApi} from "./api/common-api";
-import {uploadCommonPictureApi} from "./api/upload-common-picture-api";
+import {previewApi} from "./api/preview-api";
+import {uploadApi} from "./api/upload-api";
+import {contentApi} from "./api/content-api";
 import ContentCard from "./ui/content-card/content-card";
-import ContentCarouselCard from "./ui/content-carousel-card/content-carousel-card.tsx";
+import ContentCarouselCard from "./ui/content-carousel-card/content-carousel-card";
 import {
   IPreview,
   IQuery,
@@ -15,7 +16,7 @@ import {
 } from "./model/types";
 
 
-export {commonApi, uploadCommonPictureApi};
+export {previewApi, uploadApi, contentApi};
 
 export {ContentCard, ContentCarouselCard};
 

@@ -15,7 +15,12 @@ const SelectMultiValue: FC<IProps> = (props) => {
   }
 
   const selected = useMemo(() => {
-    return props.options.filter(x => props.values.find(y => y === x.value) !== undefined);
+    const selected = props.options.filter(x => props.values.find(y => y === x.value) != undefined);
+    const notInOptions = props.values.filter(x => props.options.find(y => y.value === x) == undefined).map(x => {
+      return {value: x, label: x as string};
+    });
+
+    return [...selected, ...notInOptions];
   }, [props.options, props.values]);
 
   return (

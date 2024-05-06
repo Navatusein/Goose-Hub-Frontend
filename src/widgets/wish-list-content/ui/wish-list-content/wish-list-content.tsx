@@ -4,7 +4,7 @@ import styles from "./wish-list-content.module.scss";
 import {useAppSelector} from "@/shared/hooks/use-app-selector.ts";
 import {userProfileApi} from "@/entities/user-profile";
 import {useParams} from "react-router-dom";
-import {commonApi, ContentCard} from "@/entities/common";
+import {previewApi, ContentCard} from "@/entities/common";
 import WishListContentHeader
   from "@/widgets/wish-list-content/ui/wish-list-content-header/wish-list-content-header.tsx";
 
@@ -33,7 +33,7 @@ const WishListContent: FC = () => {
     return [...new Set(list)];
   }, [wishList])
 
-  const contentList = commonApi.useFetchPreviewByIdsQuery(ids!, {skip: ids === undefined});
+  const contentList = previewApi.useFetchPreviewByIdsQuery(ids!, {skip: ids === undefined});
 
   const previewList = useMemo(() => {
     if (contentList.data === undefined)

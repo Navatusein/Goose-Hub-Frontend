@@ -1,5 +1,6 @@
 .container {
   @include input;
+  width: 100%;
 
   .field {
     resize: none;

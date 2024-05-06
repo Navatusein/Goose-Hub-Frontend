@@ -14,7 +14,7 @@ interface IProps {
 const CommentFrom: FC<IProps> = (props) => {
   const {user} = useAppSelector(state => state.user);
 
-  const [create] = commentApi.useCreateMutation();
+  const [create] = commentApi.useCreateCommentMutation();
 
   const [text, setText] = useState("")
   const [error, serError] = useState("");

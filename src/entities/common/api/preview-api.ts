@@ -1,16 +1,14 @@
-import {createApi} from "@reduxjs/toolkit/query/react";
-import {baseQueryWithRefresh} from "@/shared/api/base-query.ts";
+import {baseApi} from "@/shared/api/base-query.ts";
 import {IPreview, IQuery, IPagination} from "@/entities/common";
 
-export const commonApi = createApi({
-  reducerPath: "commonApi",
-  baseQuery: baseQueryWithRefresh,
+export const previewApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     fetchPreviewByFranchiseId: builder.query<IPreview, string>({
       query: (id) => ({
         url: `/movie-api/v1/content/preview/franchise/${id}`,
         method: "GET"
-      })
+      }),
+      providesTags: () => ["content"]
     }),
 
     fetchPreviewByFilter: builder.query<IPagination, IQuery>({
@@ -18,7 +16,8 @@ export const commonApi = createApi({
         url: `/movie-api/v1/content/preview/query`,
         method: "POST",
         body: query
-      })
+      }),
+      providesTags: () => ["content"]
     }),
 
     fetchPreviewByIds: builder.query<IPreview[], string[]>({
@@ -26,14 +25,17 @@ export const commonApi = createApi({
         url: `/movie-api/v1/content/preview/ids`,
         method: "POST",
         body: ids
-      })
+      }),
+      providesTags: () => ["content"]
     }),
 
     fetchById: builder.query<IPreview, string>({
       query: (id) => ({
         url: `/movie-api/v1/content/${id}`,
         method: "POST"
-      })
-    }),
-  })
+      }),
+      providesTags: () => ["content"]
+    })
+  }),
+  overrideExisting: false
 })

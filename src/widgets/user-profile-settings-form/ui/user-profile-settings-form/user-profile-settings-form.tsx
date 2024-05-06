@@ -78,6 +78,7 @@ const UserProfileSettingsForm: FC<IProps> = (props) => {
           <Input
             value={formData.birthday}
             placeholder="Дата народження"
+            type="date"
             disabled={!isEdit}
             error={error.birthday}
             onChange={(e) => {setFormData({...formData, birthday: e.target.value})}}

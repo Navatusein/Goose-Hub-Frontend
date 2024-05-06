@@ -1,4 +1,4 @@
-import {CSSProperties, FC, ReactNode} from "react";
+import {CSSProperties, FC, ReactNode, useId} from "react";
 import styles from "./input-with-label.module.scss"
 
 interface IProps {
@@ -10,9 +10,11 @@ interface IProps {
 }
 
 const InputWithLabel: FC<IProps> = (props) => {
+  const id = useId();
   const types = {"default": "", "inline": styles.inline};
   return (
     <label
+      htmlFor={id}
       style={props.styles}
       className={`${styles.container} ${types[props.type ?? "default"]} ${props.className ?? ""}`}
     >

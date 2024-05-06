@@ -8,6 +8,9 @@ import {ISerial} from "@/entities/serial";
 import {Player} from "@/features/player";
 import {ContentCommentContainer} from "@/widgets/content-comment-container";
 import {ScreenshotContainer} from "@/features/screenshot-container";
+import {useAppSelector} from "@/shared/hooks/use-app-selector.ts";
+import {userProfileApi} from "@/entities/user-profile";
+import {Screenshot} from "@/features/screenshot";
 
 interface IProps {
   content: IPreview;
@@ -16,30 +19,51 @@ interface IProps {
 }
 
 const ContentPlayerCard: FC<IProps> = (props) => {
-  const movieContent = props.content as IMovie;
-  const serialContent = props.content as ISerial;
-  const animeContent = props.content as IAnime;
+  const {user} = useAppSelector(state => state.user);
+  const userProfile = userProfileApi.useFetchQuery(user?.userId ?? "", {skip: user === undefined});
+  const [updateProfile] = userProfileApi.useUpdateMutation();
+
+  const contentAsMovie = props.content as IMovie;
+  const contentAsSerial = props.content as ISerial;
+  const contentAsAnime = props.content as IAnime;
 
   const contentSrc = useMemo(() => {
     if (props.content.dataType === DataTypeEnum.movie) {
-      return movieContent.contentUrl;
+      return contentAsMovie.contentUrl;
     }
     else if (props.content.dataType === DataTypeEnum.serial) {
-      return serialContent.seasons[0].episodes[0].contentUrl;
+      return contentAsSerial.seasons[0]?.episodes[0]?.contentUrl;
     }
     else if (props.content.dataType === DataTypeEnum.anime) {
-      if (animeContent.contentUrl !== undefined) {
-        return animeContent.contentUrl;
+      if (contentAsAnime.contentUrl !== undefined) {
+        return contentAsAnime.contentUrl;
       }
-      else if (animeContent.episodes !== undefined) {
-        return animeContent.episodes[0].contentUrl;
+      else if (contentAsAnime.episodes !== undefined) {
+        return contentAsAnime.episodes[0].contentUrl;
       }
     }
 
     return undefined;
   }, [props.content])
 
-  const [player, setPlayer] = useState<"player" | "trailer">(contentSrc === undefined ? "trailer" : "player");
+  const isInHistory = useMemo(() => {
+    if (userProfile.data == undefined)
+      return true;
+
+    const date = new Date().toISOString().split('T')[0];
+
+    return userProfile.data.history.find(x => x.contentId == props.content.id && x.viewDate == date) != undefined;
+  }, [userProfile.data, props.content.id]);
+
+  const [player, setPlayer] = useState<"player" | "trailer">(contentSrc == undefined ? "trailer" : "player");
+
+  const addToHistory = () => {
+    if (isInHistory || userProfile.data == undefined)
+      return;
+
+    const date = new Date().toISOString().split('T')[0];
+    updateProfile({...userProfile.data, history: [...userProfile.data.history, {contentId: props.content.id!, viewDate: date}]})
+  }
 
   return (
     <FlexContainer vertical className={`${styles.container} ${props.className ?? ""}`} styles={props.styles} gap="page">
@@ -48,22 +72,30 @@ const ContentPlayerCard: FC<IProps> = (props) => {
         <h2>{props.content.originalName}</h2>
       </FlexContainer>
 
-      <Divider className={styles.divider}/>
-      <ScreenshotContainer content={props.content}/>
+      {contentAsMovie.screenshotUrls.length != 0 && (
+        <>
+          <Divider className={styles.divider}/>
+          <ScreenshotContainer>
+            {contentAsMovie.screenshotUrls.map(item => (
+              <Screenshot url={item} key={item}/>
+            ))}
+          </ScreenshotContainer>
+        </>
+      )}
 
       <Divider/>
       <FlexContainer>
-        {contentSrc !== undefined && (
+        {contentSrc != undefined && (
           <CheckboxTag text="Плеер" checked={player === "player"} onChange={() => setPlayer("player")}/>
         )}
         <CheckboxTag text="Трейлер" checked={player === "trailer"} onChange={() => setPlayer("trailer")}/>
       </FlexContainer>
 
       {player === "player" && (
-        <Player src={contentSrc}/>
+        <Player src={contentSrc} onPlay={() => addToHistory()}/>
       )}
       {player === "trailer" && (
-        <iframe style={{aspectRatio: "16/9", border: "none"}} src={movieContent.trailerUrl}/>
+        <iframe style={{aspectRatio: "16/9", border: "none"}} src={contentAsMovie.trailerUrl}/>
       )}
 
       <FlexContainer>

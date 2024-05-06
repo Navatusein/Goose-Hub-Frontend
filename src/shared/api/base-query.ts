@@ -1,7 +1,14 @@
-import {BaseQueryFn, FetchArgs, fetchBaseQuery, FetchBaseQueryError, FetchBaseQueryMeta} from "@reduxjs/toolkit/query";
+import {
+  BaseQueryFn,
+  FetchArgs,
+  fetchBaseQuery,
+  FetchBaseQueryError,
+  FetchBaseQueryMeta
+} from "@reduxjs/toolkit/query";
 import {RootState} from "@/app/store.ts";
 import {IUser} from "@/entities/user";
 import {setUser} from "@/entities/user/model/user-slice.ts";
+import {createApi} from "@reduxjs/toolkit/query/react";
 
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -45,4 +52,11 @@ const baseQueryWithRefresh: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQu
   return result;
 }
 
-export {baseQueryWithRefresh};
+const baseApi = createApi({
+  reducerPath: "baseApi",
+  baseQuery: baseQueryWithRefresh,
+  tagTypes: ["content", "info", "comments", "userProfile"],
+  endpoints: () => ({})
+});
+
+export {baseQueryWithRefresh, baseApi};

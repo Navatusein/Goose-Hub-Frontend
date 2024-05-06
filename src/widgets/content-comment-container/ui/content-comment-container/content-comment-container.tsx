@@ -11,7 +11,7 @@ interface IProps {
 }
 
 const ContentCommentContainer: FC<IProps> = (props) => {
-  const comments = commentApi.useFetchByContentIdQuery(props.contentId);
+  const comments = commentApi.useFetchCommentByContentIdQuery(props.contentId);
 
   const userIds = useMemo(() => {
     const list = comments.data?.map(x => {

@@ -1,7 +1,7 @@
 export interface IOption {
   label: string;
-  value: string | number;
+  value: string | number | undefined;
 }
 
-export type ValueType = (string | number)[];
+export type ValueType = (string | number | undefined)[];
 export type CallBackType = (value: ValueType) => void;

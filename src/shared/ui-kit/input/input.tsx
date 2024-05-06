@@ -1,9 +1,9 @@
-import {ChangeEventHandler, CSSProperties, FC, ReactNode} from "react";
+import {ChangeEventHandler, CSSProperties, FC, HTMLInputTypeAttribute, ReactNode} from "react";
 import styles from "./input.module.scss";
 
 interface IProps {
   placeholder?: string;
-  type?: string;
+  type?: HTMLInputTypeAttribute;
   icon?: ReactNode;
   disabled?: boolean;
   error?: string;

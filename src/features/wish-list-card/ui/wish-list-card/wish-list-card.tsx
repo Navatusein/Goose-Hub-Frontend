@@ -2,7 +2,7 @@ import {FC} from "react";
 import styles from "./wish-list-card.module.scss";
 import {IWishList} from "@/entities/wish-list";
 import {CardStack, FlexContainer, Paragraph} from "@/shared/ui-kit";
-import {commonApi} from "@/entities/common";
+import {previewApi} from "@/entities/common";
 import {useNavigate} from "react-router-dom";
 
 interface IProps {
@@ -14,7 +14,7 @@ const WishListCard: FC<IProps> = (props) => {
 
   const navigate = useNavigate();
 
-  const previews = commonApi.useFetchPreviewByIdsQuery([contentId!], {skip: contentId == undefined})
+  const previews = previewApi.useFetchPreviewByIdsQuery([contentId!], {skip: contentId == undefined})
 
   return (
     <FlexContainer className={styles.container} vertical>

@@ -1,11 +1,8 @@
-import {createApi} from "@reduxjs/toolkit/query/react";
-import {baseQueryWithRefresh} from "@/shared/api/base-query.ts";
+import {baseApi} from "@/shared/api/base-query.ts";
 import {ILoginData, IRegisterData, IUpdateUser, IUser} from "@/entities/user";
 import {logout, setUser} from "@/entities/user/model/user-slice.ts";
 
-export const userApi = createApi({
-  reducerPath: "userApi",
-  baseQuery: baseQueryWithRefresh,
+export const userApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     loginUser: builder.mutation<IUser, ILoginData>({
       query: (loginData) => ({
@@ -40,5 +37,6 @@ export const userApi = createApi({
         body: updateData
       })
     })
-  })
+  }),
+  overrideExisting: false
 })

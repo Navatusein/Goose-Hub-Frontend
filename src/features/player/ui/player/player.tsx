@@ -12,6 +12,7 @@ import MenuButton from "@/features/player/ui/menu-button/menu-button.tsx";
 
 interface IProps {
   src?: string;
+  onPlay?: () => void;
   styles?: CSSProperties;
   className?: string;
 }
@@ -70,6 +71,10 @@ const Player: FC<IProps> = (props) => {
   };
 
   const togglePlay = () => {
+
+    if (!playerState.isPlaying && props.onPlay)
+      props.onPlay();
+
     setPlayerState({...playerState, isPlaying: !playerState.isPlaying});
   }
 

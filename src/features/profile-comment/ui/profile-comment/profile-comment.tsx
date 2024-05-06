@@ -2,11 +2,11 @@ import {FC} from 'react';
 import {FlexContainer, Paragraph, Button} from "@/shared/ui-kit";
 import styles from "./profile-comment.module.scss";
 import {IComment} from "@/entities/comment";
-import {commonApi} from "@/entities/common";
+import {previewApi} from "@/entities/common";
 
 
 const ProfileComment: FC<{comment: IComment}> = ({comment}) => {
-  const data = commonApi.useFetchByIdQuery(comment.contentId!);
+  const data = previewApi.useFetchByIdQuery(comment.contentId!);
 
   return (
     <FlexContainer className={styles.commentCard} justify="space-between" align="center" gap={10}>

@@ -1,36 +1,31 @@
-import {createApi} from "@reduxjs/toolkit/query/react";
-import {baseQueryWithRefresh} from "@/shared/api/base-query.ts";
+import {baseApi} from "@/shared/api/base-query.ts";
 import {IMovie} from "@/entities/movie";
 
-export const movieApi = createApi({
-  reducerPath: "movieApi",
-  baseQuery: baseQueryWithRefresh,
+export const movieApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    fetchById: builder.query<IMovie, string>({
-      query: (id) => ({
-        url: `/movie-api/v1/movie/${id}`,
-        method: "GET"
-      })
-    }),
-    create: builder.query<IMovie, IMovie>({
-      query: (movieDto) => ({
+    createMovie: builder.mutation<IMovie, IMovie>({
+      query: (data) => ({
         url: `/movie-api/v1/movie/`,
         method: "POST",
-        body: movieDto
-      })
+        body: data
+      }),
+      invalidatesTags: ["content", "info"]
     }),
-    update: builder.query<IMovie, {id: string, movieDto: IMovie}>({
-      query: ({id, movieDto}) => ({
+    updateMovie: builder.mutation<IMovie, {id: string, data: IMovie}>({
+      query: ({id, data}) => ({
         url: `/movie-api/v1/movie/${id}`,
         method: "PUT",
-        body: movieDto
-      })
+        body: data
+      }),
+      invalidatesTags: ["content", "info"]
     }),
-    delete: builder.query<void, string>({
+    deleteMovie: builder.mutation<void, string>({
       query: (id) => ({
         url: `/movie-api/v1/movie/${id}`,
         method: "DELETE"
-      })
+      }),
+      invalidatesTags: ["content", "info"]
     }),
-  })
+  }),
+  overrideExisting: false
 })

@@ -1,6 +1,6 @@
 import {FC, useEffect, useState} from "react";
 import styles from "./content-container.module.scss";
-import {commonApi, ContentCard, ContentTypeEnum, IQuery, SortParamEnum} from "@/entities/common";
+import {previewApi, ContentCard, ContentTypeEnum, IQuery, SortParamEnum} from "@/entities/common";
 import {Button, CardGrid, FlexContainer, Input, Link, Modal} from "@/shared/ui-kit";
 import {FilterCard} from "@/features/filter-card";
 import {AiOutlineControl, AiOutlineSearch} from "react-icons/ai";
@@ -30,7 +30,7 @@ const ContentContainer: FC = () => {
   const [query, setQuery] = useState<IQuery>(defaultQuery)
   const [showFilterModal, setShowFilterModal] = useState(false)
 
-  const content = commonApi.useFetchPreviewByFilterQuery(query);
+  const content = previewApi.useFetchPreviewByFilterQuery(query);
 
   useEffect(() => {
     const contentTypeList = {

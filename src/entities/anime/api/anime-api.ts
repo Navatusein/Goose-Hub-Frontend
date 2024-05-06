@@ -1,36 +1,31 @@
-import {createApi} from "@reduxjs/toolkit/query/react";
-import {baseQueryWithRefresh} from "@/shared/api/base-query.ts";
+import {baseApi} from "@/shared/api/base-query.ts";
 import {IAnime} from "@/entities/anime";
 
-export const animeApi = createApi({
-  reducerPath: "animeApi",
-  baseQuery: baseQueryWithRefresh,
+export const animeApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    fetchById: builder.query<IAnime, string>({
-      query: (id) => ({
-        url: `/movie-api/v1/anime/${id}`,
-        method: "GET"
-      })
-    }),
-    create: builder.query<IAnime, IAnime>({
-      query: (animeDto) => ({
+    createAnime: builder.mutation<IAnime, IAnime>({
+      query: (data) => ({
         url: `/movie-api/v1/anime/`,
         method: "POST",
-        body: animeDto
-      })
+        body: data
+      }),
+      invalidatesTags: ["content", "info"]
     }),
-    update: builder.query<IAnime, {id: string, animeDto: IAnime}>({
-      query: ({id, animeDto}) => ({
+    updateAnime: builder.mutation<IAnime, {id: string, data: IAnime}>({
+      query: ({id, data}) => ({
         url: `/movie-api/v1/anime/${id}`,
         method: "PUT",
-        body: animeDto
-      })
+        body: data
+      }),
+      invalidatesTags: ["content", "info"]
     }),
-    delete: builder.query<void, string>({
+    deleteAnime: builder.mutation<void, string>({
       query: (id) => ({
         url: `/movie-api/v1/anime/${id}`,
         method: "DELETE"
-      })
+      }),
+      invalidatesTags: ["content", "info"]
     }),
-  })
+  }),
+  overrideExisting: false
 })

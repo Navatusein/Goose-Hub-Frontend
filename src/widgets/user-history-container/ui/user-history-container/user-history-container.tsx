@@ -3,7 +3,7 @@ import {CardGrid, FlexContainer} from "@/shared/ui-kit";
 import {ContentCard} from "@/entities/common";
 import {userProfileApi} from "@/entities/user-profile";
 import {useAppSelector} from "@/shared/hooks/use-app-selector.ts";
-import {commonApi, IPreview} from "@/entities/common";
+import {previewApi, IPreview} from "@/entities/common";
 
 interface GroupedByDate {
   [date: string]: IPreview[];
@@ -21,7 +21,7 @@ const UserHistoryContainer: FC= () => {
     return [...new Set(list)];
   }, [userProfile.data])
 
-  const contentList = commonApi.useFetchPreviewByIdsQuery(ids!, {skip: ids === undefined});
+  const contentList = previewApi.useFetchPreviewByIdsQuery(ids!, {skip: ids === undefined});
 
   const previewList = useMemo(() => {
     if (contentList.data === undefined)
@@ -61,8 +61,8 @@ const UserHistoryContainer: FC= () => {
     (groupedByDate ? (
       <>
         {Object.entries(groupedByDate!).map(([date, items]) => (
-          <div key={date}>
-            <h2 >{date}</h2>
+          <FlexContainer vertical gap="page" key={date}>
+            <h3>{date}</h3>
             <FlexContainer warp gap={20}>
               <CardGrid>
                 {items.map((item, index) => (
@@ -72,7 +72,7 @@ const UserHistoryContainer: FC= () => {
                 ))}
               </CardGrid>
             </FlexContainer>
-          </div>
+          </FlexContainer>
         ))}
       </>
     ) :

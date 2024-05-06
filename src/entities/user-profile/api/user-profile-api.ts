@@ -1,11 +1,7 @@
-import {createApi} from "@reduxjs/toolkit/query/react";
-import {baseQueryWithRefresh} from "@/shared/api/base-query.ts";
+import {baseApi} from "@/shared/api/base-query.ts";
 import {IUserProfile, IUserProfilePreview} from "@/entities/user-profile"; 
 
-export const userProfileApi = createApi({
-  reducerPath: "userProfileApi",
-  baseQuery: baseQueryWithRefresh,
-  tagTypes: ["userProfile"],
+export const userProfileApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     fetch: builder.query<IUserProfile, string>({
       query: (userId) => ({
@@ -29,5 +25,6 @@ export const userProfileApi = createApi({
       }),
       invalidatesTags: ["userProfile"]
     }),
-  })
+  }),
+  overrideExisting: false
 })

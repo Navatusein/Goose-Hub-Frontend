@@ -1,0 +1,17 @@
+.container {
+  overflow: hidden;
+
+  .full-width {
+    width: 100%;
+  }
+
+  .alert {
+    width: 100%;
+  }
+
+  .banner-container {
+    aspect-ratio: 16/9;
+    width: 100%;
+    border-radius: $border-radius-default;
+  }
+}

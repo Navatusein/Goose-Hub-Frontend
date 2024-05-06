@@ -1,0 +1,10 @@
+.screenshot {
+  aspect-ratio: 16/9;
+  border-radius: $border-radius-default;
+
+  img {
+    border-radius: $border-radius-default;
+    object-fit: cover;
+    height: 100%;
+  }
+}

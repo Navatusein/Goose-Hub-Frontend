@@ -1,36 +1,43 @@
-import {createApi} from "@reduxjs/toolkit/query/react";
-import {baseQueryWithRefresh} from "@/shared/api/base-query.ts";
+import {baseApi} from "@/shared/api/base-query.ts";
 import {IFranchise} from "@/entities/franchise";
 
-export const franchiseApi = createApi({
-  reducerPath: "franchiseApi",
-  baseQuery: baseQueryWithRefresh,
+export const franchiseApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    fetchById: builder.query<IFranchise, string>({
+    fetchFranchiseByFilter: builder.query<IFranchise[], string | undefined>({
+      query: (query) => ({
+        url: `/movie-api/v1/franchise/`,
+        method: "GET",
+        params: {
+          query: query,
+        }
+      })
+    }),
+    fetchFranchiseById: builder.query<IFranchise, string>({
       query: (id) => ({
         url: `/movie-api/v1/franchise/${id}`,
         method: "GET"
       })
     }),
-    create: builder.query<IFranchise, IFranchise>({
+    createFranchise: builder.query<IFranchise, IFranchise>({
       query: (franchiseDto) => ({
         url: `/movie-api/v1/franchise/`,
         method: "POST",
         body: franchiseDto
       })
     }),
-    update: builder.query<IFranchise, {id: string, franchiseDto: IFranchise}>({
+    updateFranchise: builder.query<IFranchise, {id: string, franchiseDto: IFranchise}>({
       query: ({id, franchiseDto}) => ({
         url: `/movie-api/v1/franchise/${id}`,
         method: "PUT",
         body: franchiseDto
       })
     }),
-    delete: builder.query<void, string>({
+    deleteFranchise: builder.query<void, string>({
       query: (id) => ({
         url: `/movie-api/v1/franchise/${id}`,
         method: "DELETE"
       })
     }),
-  })
+  }),
+  overrideExisting: false
 })

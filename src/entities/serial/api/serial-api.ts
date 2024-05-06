@@ -1,36 +1,31 @@
-import {createApi} from "@reduxjs/toolkit/query/react";
-import {baseQueryWithRefresh} from "@/shared/api/base-query.ts";
+import {baseApi} from "@/shared/api/base-query.ts";
 import {ISerial} from "@/entities/serial";
 
-export const serialApi = createApi({
-  reducerPath: "serialApi",
-  baseQuery: baseQueryWithRefresh,
+export const serialApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    fetchById: builder.query<ISerial, string>({
+    createSerial: builder.mutation<ISerial, ISerial>({
+      query: (data) => ({
+        url: `/movie-api/v1/serial/`,
+        method: "POST",
+        body: data
+      }),
+      invalidatesTags: ["content", "info"]
+    }),
+    updateSerial: builder.mutation<ISerial, {id: string, data: ISerial}>({
+      query: ({id, data}) => ({
+        url: `/movie-api/v1/serial/${id}`,
+        method: "PUT",
+        body: data
+      }),
+      invalidatesTags: ["content", "info"]
+    }),
+    deleteSerial: builder.mutation<void, string>({
       query: (id) => ({
-          url: `/movie-api/v1/serial/${id}`,
-          method: "GET"
-      })
+        url: `/movie-api/v1/serial/${id}`,
+        method: "DELETE"
+      }),
+      invalidatesTags: ["content", "info"]
     }),
-    create: builder.query<ISerial, ISerial>({
-      query: (serialDto) => ({
-          url: `/movie-api/v1/serial/`,
-          method: "POST",
-          body: serialDto
-      })
-    }),
-    update: builder.query<ISerial, {id: string, serialDto: ISerial}>({
-      query: ({id, serialDto}) => ({
-          url: `/movie-api/v1/serial/${id}`,
-          method: "PUT",
-          body: serialDto
-      })
-    }),
-    delete: builder.query<void, string>({
-      query: (id) => ({
-          url: `/movie-api/v1/serial/${id}`,
-          method: "DELETE"
-      })
-    }),
-  })
+  }),
+  overrideExisting: false
 })

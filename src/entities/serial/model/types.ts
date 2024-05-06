@@ -6,7 +6,7 @@ export interface ISerial extends IPreview{
   screenshotUrls: string[];
   screenshotPath: string[];
   episodesCount?: string;
-  nextEpisodeDate?: Date;
+  nextEpisodeDate?: string;
   seasons: ISeason[];
 }
 

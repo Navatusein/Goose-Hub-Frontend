@@ -1,12 +1,8 @@
-import {createApi} from "@reduxjs/toolkit/query/react";
-import {baseQueryWithRefresh} from "@/shared/api/base-query.ts";
-import {IFranchise} from "@/entities/franchise";
+import {baseApi} from "@/shared/api/base-query.ts";
 import {IYearsInfo} from "@/entities/info";
 import {ContentTypeEnum} from "@/entities/common";
 
-export const infoApi = createApi({
-  reducerPath: "infoApi",
-  baseQuery: baseQueryWithRefresh,
+export const infoApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     fetchDirectedBy: builder.query<string[], string>({
       query: (query) => ({
@@ -14,6 +10,7 @@ export const infoApi = createApi({
         method: "GET",
         params: {query: query}
       }),
+      providesTags: () => ["info"]
     }),
     fetchGenres: builder.query<string[], ContentTypeEnum | undefined>({
       query: (contentType) => ({
@@ -21,6 +18,7 @@ export const infoApi = createApi({
         method: "GET",
         params: {contentType: contentType}
       }),
+      providesTags: () => ["info"]
     }),
     fetchYears: builder.query<IYearsInfo, ContentTypeEnum | undefined>({
       query: (contentType) => ({
@@ -28,13 +26,8 @@ export const infoApi = createApi({
         method: "GET",
         params: {contentType: contentType}
       }),
+      providesTags: () => ["info"]
     }),
-    fetchFranchise: builder.query<IFranchise[], string>({
-      query: (query) => ({
-        url: "/movie-api/v1/info/franchise",
-        method: "GET",
-        params: {query: query}
-      }),
-    }),
-  })
+  }),
+  overrideExisting: false
 })

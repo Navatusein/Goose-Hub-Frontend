@@ -1,6 +1,6 @@
 import {CSSProperties, FC, useState} from 'react';
 import styles from "./content-carousel.module.scss";
-import {commonApi, ContentCarouselCard} from "@/entities/common";
+import {previewApi, ContentCarouselCard} from "@/entities/common";
 
 interface IProps {
   styles?: CSSProperties;
@@ -10,7 +10,7 @@ interface IProps {
 const ContentCarousel: FC<IProps> = (props) => {
   const [contentIndex, setContentIndex] = useState(0)
 
-  const contentList = commonApi.useFetchPreviewByIdsQuery(import.meta.env.VITE_CONTENT_CAROUSEL_IDS.split(","));
+  const contentList = previewApi.useFetchPreviewByIdsQuery(import.meta.env.VITE_CONTENT_CAROUSEL_IDS.split(","));
 
   return (
     <section className={`${styles.carousel} ${props.className ?? ""}`} style={props.styles}>

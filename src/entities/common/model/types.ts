@@ -18,7 +18,6 @@ export interface IPreview {
   country: string;
   status: StatusEnum;
   directedBy: string[];
-  studio: string;
 }
 
 export interface IQuery {
@@ -78,9 +77,4 @@ export enum ContentQuality {
   sd, 
   hd, 
   fullHD
-}
-
-export interface IUploadCommon {
-  contentId: string;
-
 }
