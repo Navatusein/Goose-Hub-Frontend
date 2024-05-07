@@ -79,7 +79,6 @@ const ContentInfoEditCard: FC<IProps> = (props) => {
   const contentAsAnime = props.content as IAnime;
 
   useEffect(() => {
-
     switch (props.content.contentType) {
       case ContentTypeEnum.movie:
         props.setContent({...props.content, dataType: DataTypeEnum.movie});
@@ -94,7 +93,6 @@ const ContentInfoEditCard: FC<IProps> = (props) => {
         props.setContent({...props.content, dataType: DataTypeEnum.anime});
         return;
     }
-
   }, [props.content.contentType]);
 
   const onPosterUpload = (files: FileList | null) => {
@@ -124,7 +122,7 @@ const ContentInfoEditCard: FC<IProps> = (props) => {
           result = await addMovie({...contentAsMovie, screenshotPath: [], screenshotUrls: []});
           break;
         case DataTypeEnum.serial:
-          result = await addSerial({...contentAsSerial, seasons: []});
+          result = await addSerial({...contentAsSerial, seasons: [], screenshotPath: [], screenshotUrls: []});
           break;
         case DataTypeEnum.anime:
           result = await addAnime({...contentAsAnime, screenshotPath: [], screenshotUrls: []});
@@ -169,8 +167,6 @@ const ContentInfoEditCard: FC<IProps> = (props) => {
 
     navigate(`/content`);
   }
-
-  console.log(contentAsSerial.nextEpisodeDate)
 
   return (
     <FlexContainer className={`${styles.card} ${props.className ?? ""}`} vertical>
