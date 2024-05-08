@@ -19,9 +19,9 @@ interface IFormError {
 
 const UserProfileSettingsForm: FC<IProps> = (props) => {
   const {user} = useAppSelector(state => state.user);
-  const userProfile = userProfileApi.useFetchQuery(user?.userId ?? "", {skip: user === undefined});
+  const userProfile = userProfileApi.useFetchUserProfileByIdQuery(user?.userId ?? "", {skip: user === undefined});
 
-  const [updateProfile] = userProfileApi.useUpdateMutation();
+  const [updateProfile] = userProfileApi.useUpdateUserProfileMutation();
 
   const [isEdit, setIsEdit] = useState(false);
   const [formData, setFormData] = useState<IUserProfile>({...userProfile.data!});
@@ -67,7 +67,7 @@ const UserProfileSettingsForm: FC<IProps> = (props) => {
       <>
         <InputWithLabel label="Нікнейм">
           <Input
-            value={formData.name}
+            value={formData.name ?? ""}
             placeholder="Нікнейм"
             disabled={!isEdit}
             error={error.nickname}
@@ -76,7 +76,7 @@ const UserProfileSettingsForm: FC<IProps> = (props) => {
         </InputWithLabel>
         <InputWithLabel label="Дата народження">
           <Input
-            value={formData.birthday}
+            value={formData.birthday ?? ""}
             placeholder="Дата народження"
             type="date"
             disabled={!isEdit}

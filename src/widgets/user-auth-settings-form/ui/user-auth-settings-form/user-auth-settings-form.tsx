@@ -36,13 +36,13 @@ const defaultFormError: IFormError = {
 
 const UserAuthSettingsForm: FC<IProps> = (props) => {
   const {user} = useAppSelector(state => state.user);
-  const userProfile = userProfileApi.useFetchQuery(user?.userId ?? "", {skip: user === undefined});
+  const userProfile = userProfileApi.useFetchUserProfileByIdQuery(user?.userId ?? "", {skip: user === undefined});
 
   const [isEdit, setIsEdit] = useState(false);
   const [formData, setFormData] = useState<IFormData>({email: "", oldPassword: "", newPassword: "", repeatPassword: ""});
   const [error, setError] = useState<IFormError>(defaultFormError);
 
-  const [updateProfile] = userProfileApi.useUpdateMutation();
+  const [updateProfile] = userProfileApi.useUpdateUserProfileMutation();
   const [updateUser] = userApi.useUpdateUserMutation();
 
   useEffect(() => {

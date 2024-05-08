@@ -125,7 +125,6 @@ const ContentPlayerEditCard: FC<IProps> = (props) => {
       )}
 
       {props.content.dataType == DataTypeEnum.serial && (
-
         <InputWithLabel label="Сезони">
           {props.content.id != undefined && (
             <SeasonModal

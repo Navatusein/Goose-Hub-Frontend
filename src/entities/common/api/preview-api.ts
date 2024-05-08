@@ -3,7 +3,7 @@ import {IPreview, IQuery, IPagination} from "@/entities/common";
 
 export const previewApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    fetchPreviewByFranchiseId: builder.query<IPreview, string>({
+    fetchPreviewByFranchiseId: builder.query<IPreview[], string>({
       query: (id) => ({
         url: `/movie-api/v1/content/preview/franchise/${id}`,
         method: "GET"

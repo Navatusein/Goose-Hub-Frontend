@@ -15,3 +15,18 @@
     color: var(--color-text-secondary);
   }
 }
+
+.franchise-container {
+  background-color: var(--color-secondary);
+  border-radius: $border-radius-default;
+  padding: 10px;
+
+  .franchise-card {
+    display: contents;
+    &:last-child {
+      .franchise-card-divider {
+        display: none;
+      }
+    }
+  }
+}

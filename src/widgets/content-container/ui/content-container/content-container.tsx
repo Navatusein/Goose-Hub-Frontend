@@ -13,7 +13,7 @@ type PathParams = {
 }
 
 const defaultQuery: IQuery = {
-  pageSize: 5,
+  pageSize: 20,
   page: 1,
   genres: [],
   statuses: [],

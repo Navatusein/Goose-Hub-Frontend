@@ -18,6 +18,7 @@ interface IProps {
   styles?: CSSProperties;
   className?: string;
   openPosition?: "up" | "down";
+  centerPosition?: "middle";
 }
 
 const Dropdown: FC<IProps> = (props) => {
@@ -27,12 +28,15 @@ const Dropdown: FC<IProps> = (props) => {
     props.setIsOpen(false)
   });
 
-  const positions = {"up": styles.up, "down": styles.down}
+  const positions = {"up": styles.openPositionUp, "down": styles.openPositionDown}
+  const center = {"": "", "middle": styles.centerMiddle}
+
+  const configStyles = `${positions[props.openPosition ?? "down"]} ${center[props.centerPosition ?? ""]}`;
 
   return (
     <div
       ref={dropdownRef}
-      className={`${styles.container} ${props.className ?? ""} ${positions[props.openPosition ?? "down"]} ${!props.isOpen && styles.hidden}`}
+      className={`${styles.container} ${props.className ?? ""} ${configStyles} ${!props.isOpen && styles.hidden}`}
     >
       {props.children}
     </div>

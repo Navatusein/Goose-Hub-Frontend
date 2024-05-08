@@ -9,8 +9,8 @@ import {IWishList} from "@/entities/wish-list";
 
 const ProfileWishListContainer: FC = () => {
   const {user} = useAppSelector(state => state.user);
-  const userProfile = userProfileApi.useFetchQuery(user?.userId ?? "", {skip: user === undefined});
-  const [updateProfile] = userProfileApi.useUpdateMutation();
+  const userProfile = userProfileApi.useFetchUserProfileByIdQuery(user?.userId ?? "", {skip: user === undefined});
+  const [updateProfile] = userProfileApi.useUpdateUserProfileMutation();
 
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [wishListName, setWishListName] = useState<string>("");

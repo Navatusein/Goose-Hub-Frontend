@@ -24,6 +24,7 @@ import Dropdown from "./dropdown/dropdown";
 import TextWithLabel from "./text-with-label/text-with-label";
 import CardStack from "./card-stack/card-stack";
 import FileUpload from "./file-upload/file-upload";
+import ScrollToAnchor from "./scroll-to-anchor/scroll-to-anchor.tsx";
 
 export type {IOption};
 
@@ -52,5 +53,6 @@ export {
   Dropdown,
   TextWithLabel,
   CardStack,
-  FileUpload
+  FileUpload,
+  ScrollToAnchor
 };

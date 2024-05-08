@@ -9,7 +9,7 @@ export interface IUserProfile {
     birthday?: string;
     wishLists: IWishList[];
     history: IHistory[];
-    notification: INotification[];
+    notifications: INotification[];
     isPrivate: boolean;
 }
 

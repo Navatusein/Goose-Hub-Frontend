@@ -14,7 +14,7 @@ interface IProps {
 const WishListContentHeader: FC<IProps> = (props) => {
   const navigate = useNavigate();
 
-  const [updateProfile] = userProfileApi.useUpdateMutation();
+  const [updateProfile] = userProfileApi.useUpdateUserProfileMutation();
 
   const [isEdit, setIsEdit] = useState<boolean>(false);
   const [wishList, setWishList] = useState<IWishList>({name: "", isPrivate: false, notify: false, contents: []})

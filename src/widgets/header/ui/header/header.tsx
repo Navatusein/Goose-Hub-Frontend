@@ -1,10 +1,11 @@
 import {CSSProperties, FC} from "react";
 import styles from "./header.module.scss"
 import {Button, FlexContainer, Logo} from "@/shared/ui-kit";
-import {AiOutlineBell, AiOutlineFolder, AiOutlineMenu, AiOutlineUser} from "react-icons/ai";
+import {AiOutlineFolder, AiOutlineUser} from "react-icons/ai";
 import {useNavigate} from "react-router-dom";
 import {useAppSelector} from "@/shared/hooks/use-app-selector.ts";
 import {UserAvatar, userProfileApi} from "@/entities/user-profile";
+import NotificationButton from "@/widgets/header/ui/notification-button/notification-button.tsx";
 
 interface IProps {
   isAbsolute?: boolean;
@@ -17,7 +18,7 @@ const Header: FC<IProps> = (props) => {
 
   const {user} = useAppSelector(state => state.user);
 
-  const userProfile = userProfileApi.useFetchQuery(user?.userId ?? "", {skip: user === undefined});
+  const userProfile = userProfileApi.useFetchUserProfileByIdQuery(user?.userId ?? "", {skip: user === undefined});
 
   return (
     <header
@@ -37,7 +38,7 @@ const Header: FC<IProps> = (props) => {
               icon={<AiOutlineFolder/>}
               onClick={() => navigate("/profile/wish-list")}
             />
-            <Button type="outline" shape="square" icon={<AiOutlineBell/>}/>
+            <NotificationButton userProfile={userProfile.data}/>
             <FlexContainer
               align="center"
               className={`${styles.userProfile} ${styles.outlineType}`}
@@ -50,7 +51,22 @@ const Header: FC<IProps> = (props) => {
         )}
       </FlexContainer>
       <FlexContainer align="center" className={styles.burgerMenuContainer}>
-        <Button type="outline" icon={<AiOutlineMenu/>}/>
+
+        {user === undefined && (
+          <Button text="Вхід" type="outline" icon={<AiOutlineUser/>} onClick={() => navigate("/login")}/>
+        )}
+        {(user !== undefined && userProfile.data !== undefined) && (
+          <>
+            <NotificationButton userProfile={userProfile.data}/>
+            <FlexContainer
+              align="center"
+              className={`${styles.userProfile} ${styles.outlineType}`}
+              onClick={() => navigate("/profile/settings")}
+            >
+              <UserAvatar userProfile={userProfile!.data}/>
+            </FlexContainer>
+          </>
+        )}
       </FlexContainer>
     </header>
   );

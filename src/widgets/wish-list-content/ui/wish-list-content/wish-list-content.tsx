@@ -17,7 +17,7 @@ const WishListContent: FC = () => {
   const params = useParams<PathParams>();
 
   const {user} = useAppSelector(state => state.user);
-  const userProfile = userProfileApi.useFetchQuery(user?.userId ?? "", {skip: user === undefined});
+  const userProfile = userProfileApi.useFetchUserProfileByIdQuery(user?.userId ?? "", {skip: user === undefined});
 
   const wishList = useMemo(() => {
     if (userProfile.data == undefined)

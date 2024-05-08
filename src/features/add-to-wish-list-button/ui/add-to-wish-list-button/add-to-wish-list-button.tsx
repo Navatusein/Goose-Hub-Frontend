@@ -10,8 +10,8 @@ interface IProps {
 
 const AddToWishListButton: FC<IProps> = (props) => {
   const {user} = useAppSelector(state => state.user);
-  const userProfile = userProfileApi.useFetchQuery(user?.userId ?? "", {skip: user === undefined});
-  const [updateProfile] = userProfileApi.useUpdateMutation();
+  const userProfile = userProfileApi.useFetchUserProfileByIdQuery(user?.userId ?? "", {skip: user === undefined});
+  const [updateProfile] = userProfileApi.useUpdateUserProfileMutation();
 
   const [wishListId, setWishListId] = useState<string | undefined>();
 

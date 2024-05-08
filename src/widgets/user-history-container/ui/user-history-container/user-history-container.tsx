@@ -12,7 +12,7 @@ interface GroupedByDate {
 const UserHistoryContainer: FC= () => {
   const {user} = useAppSelector(state => state.user);
 
-  const userProfile = userProfileApi.useFetchQuery(user?.userId ?? "", {skip: user === undefined});
+  const userProfile = userProfileApi.useFetchUserProfileByIdQuery(user?.userId ?? "", {skip: user === undefined});
 
   const ids = useMemo(() => {
     const list = userProfile.data?.history.map(item => {

@@ -15,14 +15,19 @@
   gap: 10px;
   box-shadow: 0 0 5px 5px rgba(0,0,0,0.8);
 
-  &.up {
+  &.open-position-up {
     bottom: 100%;
     margin-bottom: 10px;
   }
 
-  &.down {
+  &.open-position-down {
     top: 100%;
     margin-top: 10px;
+  }
+
+  &.center-middle {
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   &.hidden {

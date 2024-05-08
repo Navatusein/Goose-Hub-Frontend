@@ -11,6 +11,7 @@ interface IProps {
   align?: "start" | "end" | "center";
   warp?: boolean;
   onClick?: MouseEventHandler<HTMLDivElement>;
+  id?: string;
 }
 
 const FlexContainer: FC<IProps> = (props) => {
@@ -44,6 +45,7 @@ const FlexContainer: FC<IProps> = (props) => {
       className={`${styles.flexContainer} ${configStyles} ${props.className ?? ""}`}
       style={{gap: gap, ...props.styles}}
       onClick={props.onClick}
+      id={props.id}
     >
       {props.children}
     </div>

@@ -1,7 +1,7 @@
 import {CSSProperties, FC, useMemo, useState} from "react";
 import styles from "./content-player-card.module.scss";
 import {CheckboxTag, Divider, FlexContainer, Paragraph, Tag} from "@/shared/ui-kit";
-import {DataTypeEnum, IPreview} from "@/entities/common";
+import {DataTypeEnum, IPreview, previewApi} from "@/entities/common";
 import {IMovie} from "@/entities/movie";
 import {IAnime} from "@/entities/anime";
 import {ISerial} from "@/entities/serial";
@@ -11,6 +11,8 @@ import {ScreenshotContainer} from "@/features/screenshot-container";
 import {useAppSelector} from "@/shared/hooks/use-app-selector.ts";
 import {userProfileApi} from "@/entities/user-profile";
 import {Screenshot} from "@/features/screenshot";
+import {franchiseApi} from "@/entities/franchise";
+import {FranchiseCard} from "@/features/franchise-card";
 
 interface IProps {
   content: IPreview;
@@ -20,8 +22,11 @@ interface IProps {
 
 const ContentPlayerCard: FC<IProps> = (props) => {
   const {user} = useAppSelector(state => state.user);
-  const userProfile = userProfileApi.useFetchQuery(user?.userId ?? "", {skip: user === undefined});
-  const [updateProfile] = userProfileApi.useUpdateMutation();
+  const userProfile = userProfileApi.useFetchUserProfileByIdQuery(user?.userId ?? "", {skip: user === undefined});
+  const [updateProfile] = userProfileApi.useUpdateUserProfileMutation();
+
+  const franchise = franchiseApi.useFetchFranchiseByIdQuery(props.content.franchiseId!, {skip: props.content.franchiseId == undefined});
+  const franchiseContent = previewApi.useFetchPreviewByFranchiseIdQuery(props.content.franchiseId!, {skip: props.content.franchiseId == undefined});
 
   const contentAsMovie = props.content as IMovie;
   const contentAsSerial = props.content as ISerial;
@@ -72,11 +77,11 @@ const ContentPlayerCard: FC<IProps> = (props) => {
         <h2>{props.content.originalName}</h2>
       </FlexContainer>
 
-      {contentAsMovie.screenshotUrls.length != 0 && (
+      {contentAsMovie?.screenshotUrls?.length != 0 && (
         <>
           <Divider className={styles.divider}/>
           <ScreenshotContainer>
-            {contentAsMovie.screenshotUrls.map(item => (
+            {contentAsMovie?.screenshotUrls?.map(item => (
               <Screenshot url={item} key={item}/>
             ))}
           </ScreenshotContainer>
@@ -108,6 +113,21 @@ const ContentPlayerCard: FC<IProps> = (props) => {
       <Paragraph>
         {props.content.description}
       </Paragraph>
+
+      {franchise.data != undefined  && (
+        <>
+          <Divider/>
+          <h2>{franchise.data.name} - всі частини</h2>
+          <FlexContainer vertical className={styles.franchiseContainer}>
+            {franchiseContent.data?.map((item, index) => (
+              <div className={styles.franchiseCard}>
+                <FranchiseCard currentContentId={props.content.id!} content={item} index={index} key={index}/>
+                <Divider className={styles.franchiseCardDivider}/>
+              </div>
+            ))}
+          </FlexContainer>
+        </>
+      )}
 
       <Divider/>
       <h2>Коментарі</h2>

@@ -1,0 +1,20 @@
+.container {
+  position: relative;
+  overflow: visible;
+
+  .drop-down-container {
+    width: 300px;
+
+    @include respond-below(sm) {
+      top: 60px;
+      left: 10px;
+      right: 10px;
+      transform: none;
+      width: auto;
+    }
+  }
+
+  @include respond-below(sm) {
+    position: initial;
+  }
+}

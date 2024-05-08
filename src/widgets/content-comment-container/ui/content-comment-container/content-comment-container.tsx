@@ -21,7 +21,7 @@ const ContentCommentContainer: FC<IProps> = (props) => {
     return [...new Set(list)];
   }, [comments.data]);
 
-  const userPreviews = userProfileApi.useFetchByIdsQuery(userIds, {skip: userIds.length === 0});
+  const userPreviews = userProfileApi.useFetchUserProfilePreviewsByIdsQuery(userIds, {skip: userIds.length === 0});
 
   const previewList = useMemo(() => {
     if (userPreviews.data === undefined)
@@ -37,11 +37,11 @@ const ContentCommentContainer: FC<IProps> = (props) => {
   }, [comments.data])
 
   return (
-    <FlexContainer className={styles.commentContainer} vertical gap="page">
+    <FlexContainer className={styles.commentContainer} vertical gap="page" id="comments">
       <CommentFrom contentId={props.contentId}/>
 
       {previewList.length !== 0 && parentComments?.map((item) => (
-          <CommentCard key={item.id} userPreviews={previewList} comment={item} comments={comments.data!}/>
+        <CommentCard key={item.id} userPreviews={previewList} comment={item} comments={comments.data!}/>
       ))}
       {parentComments?.length === 0 && (
         <h3>Коментарів немає</h3>
