@@ -1,16 +1,17 @@
-import {ChangeEventHandler, FC} from "react";
+import {ChangeEventHandler, ForwardedRef, forwardRef, RefObject} from "react";
 import styles from "./file-upload.module.scss";
 
 interface IProps {
   onChange?: ChangeEventHandler<HTMLInputElement>;
+  ref?: RefObject<HTMLInputElement>;
 }
 
-const FileUpload: FC<IProps> = (props) => {
+const FileUpload = forwardRef((props: IProps, ref: ForwardedRef<HTMLInputElement>) => {
   return (
     <>
-      <input className={styles.input} type="file" onChange={props.onChange}/>
+      <input ref={ref} className={styles.input} type="file" onChange={props.onChange}/>
     </>
   );
-};
+});
 
 export default FileUpload;

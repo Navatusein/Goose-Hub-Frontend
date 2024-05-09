@@ -10,6 +10,8 @@ import {ScreenshotEditable} from "@/features/screenshot-editable";
 import SeasonModal from "../season-modal/season-modal";
 import EpisodeModal from "../episode-modal/episode-modal";
 import UploadImageButton from "../upload-image-button/upload-image-button";
+import UploadContentButton from "@/widgets/content-player-edit-card/ui/upload-content-button/upload-content-button.tsx";
+import {AnimeTypeEnum, IAnime} from "@/entities/anime";
 
 interface IProps {
   content: IPreview;
@@ -20,6 +22,7 @@ interface IProps {
 
 const ContentPlayerEditCard: FC<IProps> = (props) => {
   const previewAsMovie = props.content as IMovie;
+  const contentAsAnime = props.content as IAnime;
 
   const [uploadScreenshot] = uploadApi.useUploadScreenshotMutation();
   const [deleteScreenshot] = uploadApi.useDeleteScreenshotMutation();
@@ -160,6 +163,34 @@ const ContentPlayerEditCard: FC<IProps> = (props) => {
           )}
         </InputWithLabel>
       )}
+
+      <InputWithLabel label="Контент">
+        {props.content.id != undefined && (
+          <>
+            {(props.content.dataType == DataTypeEnum.movie || (props.content.dataType == DataTypeEnum.anime && contentAsAnime.animeType == AnimeTypeEnum.film)) && (
+              <UploadContentButton content={props.content} contentId={props.content.id!} isEpisode={false}/>
+            )}
+
+            {(props.content.dataType == DataTypeEnum.serial || (props.content.dataType == DataTypeEnum.anime && contentAsAnime.animeType != AnimeTypeEnum.film)) && (
+              <>
+                {selectedEpisode == undefined && (
+                  <Alert className={styles.alert} color="danger">
+                    Спочатку вибери серію
+                  </Alert>
+                )}
+                {selectedEpisode != undefined && (
+                  <UploadContentButton content={props.content} contentId={selectedEpisode!} isEpisode={true}/>
+                )}
+              </>
+            )}
+          </>
+        )}
+        {props.content.id == undefined && (
+          <Alert className={styles.alert} color="danger">
+            Спочатку створи контент
+          </Alert>
+        )}
+      </InputWithLabel>
 
       <InputWithLabel label="Скріншоти">
         {props.content.id != undefined && (

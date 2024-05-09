@@ -37,6 +37,7 @@ const ContentPlayerCard: FC<IProps> = (props) => {
       return contentAsMovie.contentUrl;
     }
     else if (props.content.dataType === DataTypeEnum.serial) {
+      console.log(contentAsSerial.seasons[0])
       return contentAsSerial.seasons[0]?.episodes[0]?.contentUrl;
     }
     else if (props.content.dataType === DataTypeEnum.anime) {

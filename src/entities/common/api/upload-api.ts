@@ -5,7 +5,7 @@ export const uploadApi = baseApi.injectEndpoints({
 
     uploadMovie: builder.mutation<void, FormData>({
       query: (formData) => ({
-        url: `/upload-api/v1/movie/content`,
+        url: `/upload-api/v1/upload/movie/content`,
         method: "POST",
         body: formData
       }),
@@ -14,7 +14,7 @@ export const uploadApi = baseApi.injectEndpoints({
 
     uploadSerial: builder.mutation<void, FormData>({
       query: (formData) => ({
-        url: `/upload-api/v1/serial/content`,
+        url: `/upload-api/v1/upload/serial/content`,
         method: "POST",
         body: formData
       }),
@@ -23,7 +23,7 @@ export const uploadApi = baseApi.injectEndpoints({
 
     uploadAnime: builder.mutation<void, FormData>({
       query: (formData) => ({
-        url: `/upload-api/v1/anime/content`,
+        url: `/upload-api/v1/upload/anime/content`,
         method: "POST",
         body: formData
       }),
