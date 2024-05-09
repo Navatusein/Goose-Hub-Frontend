@@ -1,11 +1,13 @@
-import {CSSProperties, FC} from "react";
+import {CSSProperties, FC, useMemo} from "react";
 import styles from "./header.module.scss"
 import {Button, FlexContainer, Logo} from "@/shared/ui-kit";
-import {AiOutlineFolder, AiOutlineUser} from "react-icons/ai";
+import {AiOutlineUser} from "react-icons/ai";
 import {useNavigate} from "react-router-dom";
 import {useAppSelector} from "@/shared/hooks/use-app-selector.ts";
 import {UserAvatar, userProfileApi} from "@/entities/user-profile";
 import NotificationButton from "@/widgets/header/ui/notification-button/notification-button.tsx";
+import AdminMenuButton from "@/widgets/header/ui/admin-menu-button/admin-menu-button.tsx";
+import {jwtDecoder} from "@/shared/helpers/jwt-decoder.ts";
 
 interface IProps {
   isAbsolute?: boolean;
@@ -20,6 +22,13 @@ const Header: FC<IProps> = (props) => {
 
   const userProfile = userProfileApi.useFetchUserProfileByIdQuery(user?.userId ?? "", {skip: user === undefined});
 
+  const jwtPayload = useMemo(() => {
+    if (!user)
+      return undefined;
+
+    return jwtDecoder(user.jwtToken);
+  }, [user]);
+
   return (
     <header
       className={`${styles.header} ${props.isAbsolute === true && styles.positionAbsolute} ${props.className ?? ""}`}
@@ -32,17 +41,14 @@ const Header: FC<IProps> = (props) => {
         )}
         {(user !== undefined && userProfile.data !== undefined) && (
           <>
-            <Button
-              type="outline"
-              shape="square"
-              icon={<AiOutlineFolder/>}
-              onClick={() => navigate("/profile/wish-list")}
-            />
+            {jwtPayload?.role == "Admin" && (
+              <AdminMenuButton/>
+            )}
             <NotificationButton userProfile={userProfile.data}/>
             <FlexContainer
               align="center"
               className={`${styles.userProfile} ${styles.outlineType}`}
-              onClick={() => navigate("/profile/settings")}
+              onClick={() => navigate("/profile/wish-list")}
             >
               <UserAvatar userProfile={userProfile!.data}/>
               {userProfile.data?.name}
@@ -57,11 +63,14 @@ const Header: FC<IProps> = (props) => {
         )}
         {(user !== undefined && userProfile.data !== undefined) && (
           <>
+            {jwtPayload?.role == "Admin" && (
+              <AdminMenuButton/>
+            )}
             <NotificationButton userProfile={userProfile.data}/>
             <FlexContainer
               align="center"
               className={`${styles.userProfile} ${styles.outlineType}`}
-              onClick={() => navigate("/profile/settings")}
+              onClick={() => navigate("/profile/wish-list")}
             >
               <UserAvatar userProfile={userProfile!.data}/>
             </FlexContainer>

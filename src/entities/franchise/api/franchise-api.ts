@@ -10,33 +10,38 @@ export const franchiseApi = baseApi.injectEndpoints({
         params: {
           query: query,
         }
-      })
+      }),
+      providesTags: () => ["franchise"]
     }),
     fetchFranchiseById: builder.query<IFranchise, string>({
       query: (id) => ({
         url: `/movie-api/v1/franchise/${id}`,
         method: "GET"
-      })
+      }),
+      providesTags: () => ["franchise"]
     }),
-    createFranchise: builder.query<IFranchise, IFranchise>({
+    createFranchise: builder.mutation<IFranchise, IFranchise>({
       query: (franchiseDto) => ({
         url: `/movie-api/v1/franchise/`,
         method: "POST",
         body: franchiseDto
-      })
+      }),
+      invalidatesTags: ["franchise"]
     }),
-    updateFranchise: builder.query<IFranchise, {id: string, franchiseDto: IFranchise}>({
-      query: ({id, franchiseDto}) => ({
+    updateFranchise: builder.mutation<IFranchise, {id: string, data: IFranchise}>({
+      query: ({id, data}) => ({
         url: `/movie-api/v1/franchise/${id}`,
         method: "PUT",
-        body: franchiseDto
-      })
+        body: data
+      }),
+      invalidatesTags: ["franchise"]
     }),
-    deleteFranchise: builder.query<void, string>({
+    deleteFranchise: builder.mutation<void, string>({
       query: (id) => ({
         url: `/movie-api/v1/franchise/${id}`,
         method: "DELETE"
-      })
+      }),
+      invalidatesTags: ["franchise"]
     }),
   }),
   overrideExisting: false

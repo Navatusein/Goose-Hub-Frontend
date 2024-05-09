@@ -120,8 +120,8 @@ const ContentPlayerCard: FC<IProps> = (props) => {
           <h2>{franchise.data.name} - всі частини</h2>
           <FlexContainer vertical className={styles.franchiseContainer}>
             {franchiseContent.data?.map((item, index) => (
-              <div className={styles.franchiseCard}>
-                <FranchiseCard currentContentId={props.content.id!} content={item} index={index} key={index}/>
+              <div className={styles.franchiseCard} key={index}>
+                <FranchiseCard currentContentId={props.content.id!} content={item} index={index}/>
                 <Divider className={styles.franchiseCardDivider}/>
               </div>
             ))}

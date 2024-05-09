@@ -16,12 +16,14 @@ const NotificationButton: FC<IProps> = (props) => {
 
   return (
     <div className={styles.container} ref={ref}>
-      <Button
-        type="outline"
-        shape="square"
-        icon={<AiOutlineBell/>}
-        onClick={() => setOpen(!open)}
-      />
+      <div className={styles.buttonContainer} title={props.userProfile?.notifications.length.toString() ?? "0"}>
+        <Button
+          type="outline"
+          shape="square"
+          icon={<AiOutlineBell/>}
+          onClick={() => setOpen(!open)}
+        />
+      </div>
       <Dropdown
         isOpen={open}
         setIsOpen={setOpen}

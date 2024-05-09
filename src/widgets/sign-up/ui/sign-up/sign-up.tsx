@@ -161,7 +161,7 @@ const SignUp: FC<IProps> = (props) => {
       <FlexContainer align="center" gap={10} warp>
         <Checkbox onChange={(e) => {setIsChecked(e.target.checked)}} />
         <Paragraph fontSize="medium">Погоджуюся з</Paragraph>
-        <Link text="Правилами користування" size="small" color="accent" to="#"/>
+        <Link text="Правилами користування" size="small" color="accent" to="/privacy-policy"/>
       </FlexContainer>
 
       <Button color="accent" disabled={!isChecked} text="Зареєструватися" onClick={() => register()} />

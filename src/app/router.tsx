@@ -15,6 +15,8 @@ import {ProfileWishListsPage} from "@/pages/profile-wish-lists";
 import UserProfileLayout from "@/app/layouts/user-profile-layout/user-profile-layout.tsx";
 import {ProfileWishListPage} from "@/pages/profile-wish-list";
 import {AdminContentEditPage} from "@/pages/admin-content-edit";
+import {ContactsPage} from "@/pages/contacts";
+import {AdminFranchiseEdit} from "@/pages/admin-franchise-edit";
 
 export const router = createBrowserRouter([
   {
@@ -48,6 +50,10 @@ export const router = createBrowserRouter([
       {
         path: "/privacy-policy",
         element: <PrivacyPolicyPage/>
+      },
+      {
+        path: "/contacts",
+        element: <ContactsPage/>
       },
       {
         element: <ProtectedLayout requiredRoles={["User", "Admin"]}/>,
@@ -85,6 +91,10 @@ export const router = createBrowserRouter([
           {
             path: "/admin/content/:contentId?",
             element: <AdminContentEditPage/>,
+          },
+          {
+            path: "/admin/franchise/:contentId?",
+            element: <AdminFranchiseEdit/>,
           }
         ]
       },
