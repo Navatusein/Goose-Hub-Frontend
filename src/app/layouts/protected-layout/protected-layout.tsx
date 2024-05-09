@@ -25,7 +25,7 @@ const ProtectedLayout: FC<IPros> = ({requiredRoles}) => {
     return <Navigate to="/login" replace/>
 
   if (!requiredRoles.includes(jwtPayload.role))
-    return <Navigate to="/forbidden" replace/>
+    return <Navigate to="/content" replace/>
 
   return <Outlet/>;
 };
