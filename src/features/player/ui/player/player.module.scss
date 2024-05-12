@@ -6,7 +6,8 @@
   width: 100%;
   position: relative;
   border-radius: $border-radius-default;
-  background-color: var(--color-secondary);
+  background-color: var(#000);
+  //background-color: var(--color-secondary);
 
   .react-player-container {
     border-radius: $border-radius-default !important;
