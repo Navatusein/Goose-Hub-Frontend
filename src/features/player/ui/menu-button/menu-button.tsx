@@ -12,7 +12,7 @@ interface IProps {
 const MenuButton: FC<IProps> = (props) => {
   const ref = useRef<HTMLDivElement>(null);
 
-  const [currentLevel, setCurrentLevel] = useState<number>(0);
+  const [currentLevel, setCurrentLevel] = useState<number>(2);
   const [isOpen, setIsOpen] = useState(false);
 
   const changeLevel = (level: number) => {
