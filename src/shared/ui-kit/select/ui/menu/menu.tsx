@@ -22,13 +22,17 @@ const Menu: FC<IProps> = (props) => {
     if (props.options === undefined)
       return [];
 
-    const notInOptions = props.values.filter(x => props.options?.find(y => y.value === x) == undefined).map(x => {
-      return {value: x, label: x as string};
-    });
+    let options = props.options;
 
-    const allOptions = [...props.options, ...notInOptions];
+    if (props.isCreatable) {
+      const notInOptions = props.values.filter(x => props.options?.find(y => y.value === x) == undefined).map(x => {
+        return {value: x, label: x as string};
+      });
 
-    let filtered = allOptions.filter(x => x.label.toLowerCase().includes(query.toLowerCase()));
+      options = [...options, ...notInOptions];
+    }
+
+    let filtered = options.filter(x => x.label.toLowerCase().includes(query.toLowerCase()));
 
     if (props.isCreatable && filtered.length === 0 && query.trim().length !== 0)
       filtered = [{label: query, value: query}]

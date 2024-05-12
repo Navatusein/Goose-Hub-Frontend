@@ -1,9 +1,9 @@
-import {CSSProperties, FC, useMemo, useState} from "react";
+import {CSSProperties, FC, useEffect, useMemo, useState} from "react";
 import styles from "./content-player-card.module.scss";
-import {CheckboxTag, Divider, FlexContainer, Paragraph, Tag} from "@/shared/ui-kit";
-import {DataTypeEnum, IPreview, previewApi} from "@/entities/common";
+import {CheckboxTag, Divider, FlexContainer, Paragraph, Select, Tag} from "@/shared/ui-kit";
+import {ContentTypeEnum, DataTypeEnum, IPreview, previewApi} from "@/entities/common";
 import {IMovie} from "@/entities/movie";
-import {IAnime} from "@/entities/anime";
+import {AnimeTypeEnum, IAnime} from "@/entities/anime";
 import {ISerial} from "@/entities/serial";
 import {Player} from "@/features/player";
 import {ContentCommentContainer} from "@/widgets/content-comment-container";
@@ -28,29 +28,105 @@ const ContentPlayerCard: FC<IProps> = (props) => {
   const franchise = franchiseApi.useFetchFranchiseByIdQuery(props.content.franchiseId!, {skip: props.content.franchiseId == undefined});
   const franchiseContent = previewApi.useFetchPreviewByFranchiseIdQuery(props.content.franchiseId!, {skip: props.content.franchiseId == undefined});
 
+  const [seasonId, setSeasonId] = useState<string | undefined>(undefined);
+  const [episodeId, setEpisodeId] = useState<string | undefined>(undefined);
+
   const contentAsMovie = props.content as IMovie;
   const contentAsSerial = props.content as ISerial;
   const contentAsAnime = props.content as IAnime;
+
+  useEffect(() => {
+    if (props.content.dataType == DataTypeEnum.serial) {
+      setSeasonId(contentAsSerial.seasons[0]?.id);
+    }
+    else if (props.content.dataType == DataTypeEnum.anime && contentAsAnime.animeType != AnimeTypeEnum.film && contentAsAnime.episodes != undefined) {
+      setEpisodeId(contentAsAnime.episodes[0]?.id);
+    }
+  }, [props.content]);
+
+  useEffect(() => {
+    if (props.content.dataType != DataTypeEnum.serial)
+      return;
+
+    let seasonIndex = contentAsSerial.seasons.findIndex(x => x.id == seasonId);
+
+    if (seasonIndex == -1)
+      seasonIndex = 0;
+
+    setEpisodeId(contentAsSerial.seasons[seasonIndex]?.episodes[0]?.id);
+  }, [seasonId]);
+
+  const seasonsOptions = useMemo(() => {
+    if (props.content.dataType != DataTypeEnum.serial || contentAsSerial == undefined)
+      return [];
+
+    return contentAsSerial.seasons.map(item => {
+      return {label: item.name?.length == 0 ? `${item.index} сезон` : item.name!, value: item.id!}
+    })
+  }, [props.content, contentAsSerial]);
+
+  const episodesOptions = useMemo(() => {
+    if (props.content.contentType != ContentTypeEnum.serial && props.content.contentType != ContentTypeEnum.anime)
+      return [];
+
+    if (props.content.dataType == DataTypeEnum.serial) {
+      if (contentAsSerial.seasons == undefined)
+        return [];
+
+      const index = contentAsSerial.seasons.findIndex(x => x.id == seasonId);
+
+      if (index == -1)
+        return [];
+
+      return contentAsSerial.seasons[index].episodes.map(item => {
+        return {label: item.name?.length == 0 ? `${item.index} серія` : item.name!, value: item.id};
+      })
+    }
+    else {
+      if (contentAsAnime.episodes == undefined)
+        return [];
+
+      return contentAsAnime.episodes.map(item => {
+        return {label: item.name?.length == 0 ? `${item.index} серія` : item.name!, value: item.id};
+      })
+    }
+  }, [props.content, seasonId])
 
   const contentSrc = useMemo(() => {
     if (props.content.dataType === DataTypeEnum.movie) {
       return contentAsMovie.contentUrl;
     }
     else if (props.content.dataType === DataTypeEnum.serial) {
-      console.log(contentAsSerial.seasons[0])
-      return contentAsSerial.seasons[0]?.episodes[0]?.contentUrl;
+      const seasonIndex = contentAsSerial.seasons.findIndex(x => x.id == seasonId);
+
+      if (seasonIndex == -1)
+        return undefined;
+
+      const episodeIndex = contentAsSerial.seasons[seasonIndex].episodes.findIndex(x => x.id == episodeId);
+
+      if (episodeIndex == -1)
+        return undefined;
+
+      return contentAsSerial.seasons[seasonIndex]?.episodes[episodeIndex]?.contentUrl;
     }
     else if (props.content.dataType === DataTypeEnum.anime) {
-      if (contentAsAnime.contentUrl !== undefined) {
+      if (contentAsAnime.animeType === AnimeTypeEnum.film) {
         return contentAsAnime.contentUrl;
       }
-      else if (contentAsAnime.episodes !== undefined) {
-        return contentAsAnime.episodes[0].contentUrl;
-      }
+
+      if (contentAsAnime.episodes == undefined)
+        return undefined;
+
+      const episodeIndex = contentAsAnime.episodes.findIndex(x => x.id == episodeId);
+
+      if (episodeIndex == -1)
+        return undefined;
+
+      return contentAsAnime?.episodes[episodeIndex]?.contentUrl;
     }
 
     return undefined;
-  }, [props.content])
+  }, [props.content, seasonId, episodeId])
 
   const isInHistory = useMemo(() => {
     if (userProfile.data == undefined)
@@ -61,7 +137,7 @@ const ContentPlayerCard: FC<IProps> = (props) => {
     return userProfile.data.history.find(x => x.contentId == props.content.id && x.viewDate == date) != undefined;
   }, [userProfile.data, props.content.id]);
 
-  const [player, setPlayer] = useState<"player" | "trailer">(contentSrc == undefined ? "trailer" : "player");
+  const [player, setPlayer] = useState<"player" | "trailer">("player");
 
   const addToHistory = () => {
     if (isInHistory || userProfile.data == undefined)
@@ -91,14 +167,36 @@ const ContentPlayerCard: FC<IProps> = (props) => {
 
       <Divider/>
       <FlexContainer>
-        {contentSrc != undefined && (
+        {1 == 1 && (
           <CheckboxTag text="Плеер" checked={player === "player"} onChange={() => setPlayer("player")}/>
         )}
         <CheckboxTag text="Трейлер" checked={player === "trailer"} onChange={() => setPlayer("trailer")}/>
       </FlexContainer>
 
       {player === "player" && (
-        <Player src={contentSrc} onPlay={() => addToHistory()}/>
+        <>
+          {(props.content.dataType == DataTypeEnum.serial || (props.content.dataType == DataTypeEnum.anime && contentAsAnime.animeType != AnimeTypeEnum.film)) && (
+            <FlexContainer>
+              {props.content.dataType == DataTypeEnum.serial && (
+                <Select
+                  placeholder="Сезони"
+                  className={styles.select}
+                  options={seasonsOptions}
+                  values={seasonId ? [seasonId] : []}
+                  setValues={value => setSeasonId(value[0] as string)}
+                />
+              )}
+              <Select
+                placeholder="Серії"
+                className={styles.select}
+                options={episodesOptions}
+                values={episodeId ? [episodeId] : []}
+                setValues={value => setEpisodeId(value[0] as string)}
+              />
+            </FlexContainer>
+          )}
+          <Player src={contentSrc} onPlay={() => addToHistory()}/>
+        </>
       )}
       {player === "trailer" && (
         <iframe style={{aspectRatio: "16/9", border: "none"}} src={contentAsMovie.trailerUrl}/>
