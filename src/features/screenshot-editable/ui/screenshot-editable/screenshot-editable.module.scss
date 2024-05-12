@@ -4,9 +4,11 @@
   border-radius: $border-radius-default;
 
   img {
+    aspect-ratio: 16/9;
     border-radius: $border-radius-default;
     object-fit: cover;
     height: 100%;
+    object-position: top;
   }
 
   .delete-button {
