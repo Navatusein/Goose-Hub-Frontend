@@ -55,7 +55,7 @@ const baseQueryWithRefresh: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQu
 const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: baseQueryWithRefresh,
-  tagTypes: ["content", "info", "comments", "userProfile", "franchise"],
+  tagTypes: ["content", "info", "comments", "userProfile", "franchise", "userPreview"],
   endpoints: () => ({})
 });
 

@@ -34,10 +34,10 @@ const CommentCard: FC<IProps> = (props) => {
   return (
     <>
       <FlexContainer>
-        <UserAvatar userProfile={userPreview}/>
+        <UserAvatar userProfile={userPreview ?? ""}/>
         <FlexContainer vertical>
           <FlexContainer vertical gap={0}>
-            <Paragraph fontSize="default">{userPreview.name}</Paragraph>
+            <Paragraph fontSize="default">{userPreview?.name ?? ""}</Paragraph>
             <Paragraph fontSize="small" color="secondary">{props.comment.dispatch}</Paragraph>
           </FlexContainer>
           <Paragraph fontSize="default" color="secondary">{props.comment.message}</Paragraph>
@@ -67,7 +67,7 @@ const CommentCard: FC<IProps> = (props) => {
         <FlexContainer vertical>
           <FlexContainer className={styles.answerModal} warp>
             <Paragraph className={styles.text} fontSize="large">Відповісти користувачу</Paragraph>
-            <Paragraph className={styles.text} fontSize="large" color="accent">{userPreview.name}</Paragraph>
+            <Paragraph className={styles.text} fontSize="large" color="accent">{userPreview?.name ?? ""}</Paragraph>
           </FlexContainer>
           <CommentFrom contentId={props.comment.contentId} replayCommentId={props.comment.id}/>
         </FlexContainer>

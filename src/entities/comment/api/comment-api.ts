@@ -23,7 +23,7 @@ export const commentApi = baseApi.injectEndpoints({
         method: "POST",
         body: comment
       }),
-      invalidatesTags: ["comments"]
+      invalidatesTags: ["comments", "userPreview"]
     }),
   }),
   overrideExisting: false

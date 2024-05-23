@@ -15,7 +15,8 @@ export const userProfileApi = baseApi.injectEndpoints({
         url: `/user-profile-api/v1/profile/ids`,
         method: "POST",
         body: ids
-      })
+      }),
+      providesTags: () => ["userPreview"],
     }),
     updateUserProfile: builder.mutation<IUserProfile, IUserProfile>({
       query: (userProfileDto) => ({
