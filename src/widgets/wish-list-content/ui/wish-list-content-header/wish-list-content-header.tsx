@@ -79,12 +79,12 @@ const WishListContentHeader: FC<IProps> = (props) => {
               placeholder="Назва"
             />
             <FlexContainer className={styles.switchContainer}>
-              <InputWithLabel label="Публічна" type="inline">
-                <Switch
-                  checked={wishList.isPrivate}
-                  onChange={e => setWishList({...wishList, isPrivate: e.target.checked})}
-                />
-              </InputWithLabel>
+              {/*<InputWithLabel label="Публічна" type="inline">*/}
+              {/*  <Switch*/}
+              {/*    checked={wishList.isPrivate}*/}
+              {/*    onChange={e => setWishList({...wishList, isPrivate: e.target.checked})}*/}
+              {/*  />*/}
+              {/*</InputWithLabel>*/}
               <InputWithLabel label="Сповіщення" type="inline">
                 <Switch
                   checked={wishList.notify}
