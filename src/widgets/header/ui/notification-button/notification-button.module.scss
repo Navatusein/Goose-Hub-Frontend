@@ -1,0 +1,38 @@
+.container {
+  position: relative;
+  overflow: visible;
+
+  .button-container {
+    position: relative;
+
+    &[title]:not([title="0"]):after {
+      width: 18px;
+      height: 18px;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      border-radius: $border-radius-circle;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--color-danger);
+      content: attr(title);
+    }
+  }
+
+  .drop-down-container {
+    width: 300px;
+
+    @include respond-below(sm) {
+      top: 60px;
+      left: 10px;
+      right: 10px;
+      transform: none;
+      width: auto;
+    }
+  }
+
+  @include respond-below(sm) {
+    position: initial;
+  }
+}

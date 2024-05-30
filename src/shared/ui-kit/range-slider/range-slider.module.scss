@@ -1,0 +1,39 @@
+.range-slider-container {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: 100%
+}
+
+.range-slider-root {
+  flex-grow: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  touch-action: none;
+}
+
+.range-slider-track {
+  background-color: var(--color-text-secondary);
+  position: relative;
+  flex-grow: 1;
+  border-radius: 9999px;
+  height: 5px;
+}
+
+.range-slider-range {
+  position: absolute;
+  background-color: var(--color-accent);
+  border-radius: 9999px;
+  height: 100%;
+}
+
+.range-slider-thumb {
+  @include clickable();
+
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+}

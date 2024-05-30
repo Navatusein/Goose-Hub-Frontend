@@ -1,0 +1,41 @@
+.container {
+  .avatar-container {
+    position: relative;
+
+    &:has(.delete-button) {
+      margin-right: -10px;
+    }
+
+    .delete-button {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+
+    .upload-button {
+      @include clickable;
+
+      width: 128px;
+      height: 128px;
+      padding: 30px;
+      border-radius: $border-radius-circle;
+    }
+  }
+
+  .menu {
+    width: 100%;
+    padding: 10px;
+    border-radius: $border-radius-default;
+    background-color: var(--color-secondary);
+  }
+
+  @include respond-below(md) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include respond-below(sm) {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}

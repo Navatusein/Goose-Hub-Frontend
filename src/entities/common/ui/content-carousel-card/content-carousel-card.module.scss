@@ -1,0 +1,69 @@
+.content {
+  width: 100%;
+  display: block;
+  flex-shrink: 0;
+  flex-grow: 0;
+  position: relative;
+  transition: translate 300ms ease-in-out;
+
+  & img {
+    object-fit: cover;
+    object-position: top;
+    width: 100%;
+    height: 100%;
+  }
+
+  .information {
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: $padding-body-xl;
+    width: 40%;
+    max-height: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: $gap-sm;
+
+    h1 {
+      font-size: $font-size-max;
+
+      @include respond-below(lg) {
+        font-size: $font-size-xxxl;
+      }
+
+      @include respond-below(sm) {
+        font-size: $font-size-xxl;
+      }
+
+      @include respond-below(xxs) {
+        font-size: $font-size-xl;
+      }
+    }
+
+    .button {
+      width: fit-content;
+    }
+
+    @include respond-below(lg) {
+      left: $padding-body-lg;
+      width: 60%;
+    }
+
+    @include respond-below(sm) {
+      left: 0;
+      padding: 0 $padding-body-sm;
+      width: 100%;
+    }
+  }
+
+  &:after {
+    position: absolute;
+    content: "";
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+    background: linear-gradient(to bottom, color-mix(in srgb, var(--color-background) 50%, var(--color-transparent)) 0%, var(--color-background) 100%);
+  }
+}

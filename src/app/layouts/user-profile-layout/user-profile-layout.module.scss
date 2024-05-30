@@ -1,0 +1,5 @@
+.container {
+  @include respond-below(md) {
+    flex-direction: column;
+  }
+}

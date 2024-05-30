@@ -1,0 +1,16 @@
+.comment-card {
+  padding: 10px;
+  width: 100%;
+  background-color: var(--color-secondary);
+  border-radius: $border-radius-default;
+  color: var(--color-text-secondary);
+
+  @include respond-below(xs) {
+    flex-direction: column;
+  }
+}
+
+.for-button {
+  padding: 10px;
+  height: 100%;
+}

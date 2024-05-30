@@ -1,0 +1,40 @@
+.container {
+  overflow: hidden;
+
+  @include respond-below(md) {
+    .divider {
+      display: none;
+    }
+  }
+}
+
+.title {
+  order: -1;
+
+  h2 {
+    color: var(--color-text-secondary);
+  }
+}
+
+.select {
+  max-width: 200px;
+
+  @include respond-below(sm) {
+    max-width: 100%;
+  }
+}
+
+.franchise-container {
+  background-color: var(--color-secondary);
+  border-radius: $border-radius-default;
+  padding: 10px;
+
+  .franchise-card {
+    display: contents;
+    &:last-child {
+      .franchise-card-divider {
+        display: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+.container {
+  @include input;
+  width: 100%;
+
+  .label {
+    height: $height-control-md;
+    display: flex;
+    position: relative;
+
+    .icon {
+      width: 25px;
+      height: 25px;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto 0;
+      left: 10px;
+    }
+
+    &:has(.icon) {
+      .field {
+        padding-left: 45px;
+      }
+    }
+  }
+}

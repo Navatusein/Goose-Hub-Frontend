@@ -1,0 +1,48 @@
+$breakpoints: (
+  xxs: 375px,
+  xs: 425px,
+  sm: 768px,
+  md: 1024px,
+  lg: 1280px,
+  xl: 1440px,
+);
+
+$breakpoint: map-get($breakpoints, sm);
+
+@mixin respond-above($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    @media (min-width: $breakpoint-value) {
+      @content;
+    }
+  }
+  @else {
+    @media (min-width: $breakpoint) {
+      @content;
+    }
+  }
+}
+
+@mixin respond-below($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    @media (max-width: ($breakpoint-value - 1)) {
+      @content;
+    }
+  }
+  @else {
+    @media (max-width: ($breakpoint - 1)) {
+      @content;
+    }
+  }
+}
+
+@mixin hover {
+  @media(hover: hover) and (pointer: fine)  {
+    &:hover:is([aria-disabled=false], :not([aria-disabled])) {
+      @content;
+    }
+  }
+}

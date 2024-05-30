@@ -1,0 +1,35 @@
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  .button-container {
+    display: contents;
+  }
+
+  .button {
+    order: 2;
+    width: 40px;
+    height: 40px;
+  }
+
+  @include respond-above(xxs) {
+    flex-direction: row;
+
+    .buttons-container {
+      display: contents;
+    }
+
+    .controls-container {
+      display: contents;
+
+      .flex-left {
+        order: 1;
+      }
+
+      .flex-right {
+        order: 3;
+      }
+    }
+  }
+}

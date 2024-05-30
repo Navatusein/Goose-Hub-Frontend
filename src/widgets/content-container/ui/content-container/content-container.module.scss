@@ -1,0 +1,62 @@
+.navigation-bar {
+  .link-container {
+    .link {
+      font-size: $font-size-xl;
+      font-weight: lighter;
+
+      @include respond-below(xxs) {
+        font-size: $font-size-md;
+        //font-weight: normal;
+      }
+
+      &.active {
+        font-size: $font-size-xxl;
+        font-weight: bold;
+
+        @include respond-below(xxs) {
+          font-size: $font-size-lg;
+        }
+      }
+    }
+
+    @include respond-below(sm) {
+      flex-wrap: wrap;
+    }
+  }
+  .input-container {
+    width: 500px;
+
+    .filterMenuButton {
+      display: none;
+
+      @include respond-below(md) {
+        display: flex;
+      }
+    }
+
+    @include respond-below(md) {
+      width: 100%;
+    }
+  }
+
+  @include respond-below(md) {
+    flex-direction: column;
+  }
+}
+
+.content {
+  .content-grid {
+    width: 80%;
+
+    @include respond-below(md) {
+      width: 100%;
+    }
+  }
+
+  @include respond-below(md) {
+    .filter-card {
+      display: none;
+    }
+  }
+}
+

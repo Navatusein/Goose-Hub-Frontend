@@ -1,0 +1,31 @@
+.container-edit {
+
+  .settings {
+
+    .switch-container {
+      @include respond-below(500px) {
+        width: 100%;
+      }
+    }
+
+    @include respond-below(1500px) {
+      width: 100%;
+    }
+
+    @include respond-below(500px) {
+      display: contents;
+    }
+  }
+
+  .button-container {
+    @include respond-below(1500px) {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  @include respond-below(1500px) {
+    flex-direction: column;
+  }
+}

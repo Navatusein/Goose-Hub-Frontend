@@ -1,0 +1,30 @@
+.avatar {
+  width: 48px;
+  min-height: 48px;
+  height: 48px;
+  min-width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-secondary);
+  border-radius: $border-radius-circle;
+
+  &.medium {
+    width: 128px;
+    height: 128px;
+    .text {
+      font-size: 60px;
+    }
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: $border-radius-circle;
+  }
+
+  .text {
+    font-size: $font-size-xxl;
+  }
+}

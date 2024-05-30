@@ -1,0 +1,28 @@
+.checkbox-tag {
+  @include clickable;
+
+  height: $height-control-sm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $padding;
+  border-radius: $border-radius-default;
+  user-select: none;
+  font-size: 14px;
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  &:has(input[type="checkbox"]:checked) {
+    color: var(--color-text-primary);
+    background-color: var(--color-accent);
+    border: solid 1px var(--color-accent);
+  }
+
+  &:has(input[type="checkbox"]:checked):active {
+    color: var(--color-text-primary);
+    background-color: var(--color-accent-active);
+    border: solid 1px var(--color-accent-active);
+  }
+}

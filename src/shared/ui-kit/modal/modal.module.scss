@@ -1,0 +1,26 @@
+.modal {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+
+  @include respond-below(sm) {
+    width: 100%;
+    padding: 10px $padding-body-sm;
+  }
+
+}
+
+.modal-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: color-mix(in srgb, var(--color-background) 80%, var(--color-transparent));
+}
+
+.hidden {
+  display: none !important;
+}

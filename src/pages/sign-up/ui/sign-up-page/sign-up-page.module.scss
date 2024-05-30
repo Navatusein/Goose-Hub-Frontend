@@ -1,0 +1,15 @@
+.container {
+  height: 100%;
+
+  .form {
+    width: 400px;
+
+    @include respond-below(xs) {
+      width: 100%;
+    }
+  }
+
+  @include respond-below(xs) {
+    padding: 0 $padding-body-sm;
+  }
+}

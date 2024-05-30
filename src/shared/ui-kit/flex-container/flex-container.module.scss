@@ -1,0 +1,49 @@
+.flex-container {
+  display: flex;
+
+  &.vertical {
+    flex-direction: column;
+  }
+
+  &.align-start {
+    align-items: start;
+  }
+
+  &.align-end {
+    align-items: end;
+  }
+
+  &.align-center {
+    align-items: center;
+  }
+
+  &.justify-start{
+    justify-content: start;
+  }
+
+  &.justify-end{
+    justify-content: end;
+  }
+
+  &.justify-center{
+    justify-content: center;
+  }
+
+  &.justify-space-between {
+    justify-content: space-between;
+  }
+
+  &.warp {
+    flex-wrap: wrap;
+  }
+
+  &.page-gap {
+    gap: 30px;
+
+    @include respond-below(sm) {
+      &.page-gap {
+        gap: 15px;
+      }
+    }
+  }
+}

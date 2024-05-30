@@ -1,0 +1,39 @@
+.card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+
+  .poster {
+    height: 100%;
+    position: relative;
+    background-color: var(--color-secondary);
+    aspect-ratio: 3/4;
+    border-radius: $border-radius-default;
+
+    & img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      border-radius: $border-radius-default;
+    }
+  }
+
+  .content-type-tag {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: var(--color-accent);
+    padding: 5px;
+    border-radius: $border-radius-default 0 $border-radius-default 0;
+  }
+
+  .name {
+    height: 2lh;
+    min-height: 2lh;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

@@ -1,0 +1,14 @@
+.filter-card {
+  height: fit-content;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  background-color: var(--color-secondary);
+  border-radius: $border-radius-default;
+
+  @include respond-below(xxs) {
+    min-width: 0;
+  }
+}

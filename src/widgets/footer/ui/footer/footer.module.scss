@@ -1,0 +1,45 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: $gap-sm;
+  padding: 10px $padding-body-xl;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $gap-md;
+
+    @include respond-below(sm) {
+      flex-direction: column;
+      gap: $gap-sm;
+    }
+  }
+
+  .link-container {
+    display: flex;
+    gap: $gap-lg;
+    align-items: center;
+
+    .link {
+      font-size: $font-size-lg;
+
+      @include respond-below(lg) {
+        font-size: $font-size-md;
+      }
+    }
+
+    @include respond-below(sm) {
+      flex-direction: column;
+      gap: $gap-sm;
+    }
+  }
+
+  @include respond-below(lg) {
+    padding: 10px $padding-body-lg;
+  }
+
+  @include respond-below(sm) {
+    padding: 10px $padding-body-sm;
+  }
+}

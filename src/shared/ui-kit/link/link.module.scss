@@ -1,0 +1,18 @@
+.link {
+  @include clickable;
+
+  font-size: 18px;
+  text-decoration: none;
+
+  &.small-size {
+    font-size: 16px;
+  }
+
+  @include hover {
+    text-decoration: underline;
+  }
+
+  &:active {
+    text-decoration: underline;
+  }
+} 

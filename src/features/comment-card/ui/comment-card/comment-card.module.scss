@@ -1,0 +1,10 @@
+.answer-modal {
+  .text {
+    text-wrap: nowrap !important;
+
+
+    @include respond-below(xs) {
+      font-size: $font-size-lg;
+    }
+  }
+}

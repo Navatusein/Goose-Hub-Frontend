@@ -1,0 +1,30 @@
+.container {
+  @include clickable;
+
+  width: 100%;
+  padding: 10px;
+  border-radius: $border-radius-default;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  overflow: hidden;
+  align-items: center;
+
+  .index {
+    width: 15px;
+  }
+
+  .name {
+    flex-grow: 1;
+    min-width: 300px;
+    text-wrap: wrap;
+  }
+
+  .release {
+    width: 150px;
+  }
+
+  .status {
+    width: 150px;
+  }
+}

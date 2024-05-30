@@ -1,0 +1,15 @@
+.container {
+  position: relative;
+
+  .dropdown {
+    width: fit-content;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0;
+    gap: 0;
+
+    .items {
+      font-size: $font-size-xs !important;
+    }
+  }
+}

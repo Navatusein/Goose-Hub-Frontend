@@ -1,0 +1,12 @@
+.page-container {
+  padding: 10px $padding-body-xl;
+
+  @include respond-below(lg) {
+    padding: 10px $padding-body-lg;
+  }
+
+  @include respond-below(sm) {
+    padding: 10px $padding-body-sm;
+    gap: 15px;
+  }
+}

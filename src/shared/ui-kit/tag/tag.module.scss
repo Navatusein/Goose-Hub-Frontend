@@ -1,0 +1,36 @@
+.tag {
+  height: $height-control-sm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: $padding;
+  background-color: var(--color-primary);
+  color: var(--color-text-primary);
+  border: solid 1px var(--color-primary);
+  border-radius: $border-radius-default;
+  font-size: 14px;
+  gap: 5px;
+  text-wrap: nowrap;
+
+  &.accent {
+    background-color: var(--color-accent);
+  }
+
+  &.danger {
+    background-color: var(--color-danger);
+  }
+
+  &.auto {
+    height: 100%;
+  }
+
+  .closeButton {
+    @include clickable;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 18px;
+    width: 18px;
+    padding: 1px;
+  }
+}

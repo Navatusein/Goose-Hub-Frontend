@@ -1,0 +1,16 @@
+.user-settings-form {
+  width: 100%;
+  background-color: var(--color-secondary);
+  padding: $padding-card-md;
+  border-radius: $border-radius-default;
+
+  .form {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: $gap-sm;
+
+    @include respond-below(sm) {
+      grid-template-columns: 1fr;
+    }
+  }
+}

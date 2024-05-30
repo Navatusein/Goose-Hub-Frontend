@@ -1,0 +1,39 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px $padding-body-xl;
+
+  &.position-absolute {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+  }
+
+  .menu-container {
+
+    .user-profile {
+      @include clickable;
+    }
+
+    @include respond-below(sm) {
+      display: none !important;
+    }
+  }
+
+  .burger-menu-container {
+    @include respond-above(sm) {
+      display: none !important;
+    }
+  }
+
+  @include respond-below(lg) {
+    padding: 10px $padding-body-lg;
+  }
+
+  @include respond-below(sm) {
+    padding: 10px $padding-body-sm;
+  }
+}

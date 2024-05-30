@@ -1,0 +1,32 @@
+.button {
+  --icon-size: 32px;
+  white-space: nowrap;
+  @include clickable;
+
+  height: $height-control-md;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $gap-sm;
+  border-radius: $border-radius-default;
+  padding: $padding;
+  font-size: $font-size-md;
+
+  &.square-shape {
+    padding: 0;
+    aspect-ratio: 1/1;
+  }
+
+  &.small-size {
+    --icon-size: 18px;
+
+    height: $height-control-sm;
+    font-size: $font-size-sm;
+    gap: $gap-xs;
+  }
+
+  .icon {
+    width: var(--icon-size);
+    height: var(--icon-size);
+  }
+}
